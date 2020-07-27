@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm8:8080/" />
+<title>CallOut_RasterServices_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_RasterServices_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the display and contents of the legend control layers-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Checks for availability of Legend Container.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td>CamdenMappingService</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='Development Map']</td>
+	<td>PlanningMap</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CamdenMappingService}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${PlanningMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CamdenMappingService}</td>
+	<td></td>
+</tr>
+<!--Verify the presence of the relevant Legend & our required layers-->
+<tr>
+	<td>verifyText</td>
+	<td>${CamdenMappingService}</td>
+	<td>Camden Mapping Service</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//li[@id='Conservation Map:ConservationAreas']/div</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//li[@id='Conservation Map:ConservationAreas']/div</td>
+	<td>Initial_ConservationArea</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//li[@id='Development Map:PlanningApplications']/div</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//li[@id='Development Map:PlanningApplications']/div</td>
+	<td>Initial_Pacishis</td>
+</tr>
+<!--Click on 109a Regent's Park Road-->
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>600,271</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td></td>
+</tr>
+<!--Checks for Call Out Information Box !!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td></td>
+</tr>
+<!--Checks for Heading no 1-->
+<tr>
+	<td>storeText</td>
+	<td>//div[@id=&quot;Info&quot;] //div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>Final_ConservationArea</td>
+</tr>
+<!--Checks for Heading no 2-->
+<tr>
+	<td>storeText</td>
+	<td>//div[@id=&quot;Info&quot;] //div[@class=&quot;infoTableHeading heavyFont master&quot;][2]</td>
+	<td>Final_Pacishis</td>
+</tr>
+<!--Ensure that the headers matched are listed on the legend.-->
+<tr>
+	<td>assertExpression</td>
+	<td>${Initial_Pacishis}</td>
+	<td>${Final_Pacishis}</td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Initial_ConservationArea}</td>
+	<td>${Final_ConservationArea}</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

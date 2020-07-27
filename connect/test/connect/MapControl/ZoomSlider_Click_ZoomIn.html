@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ZoomSlider Click ZoomIn</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ZoomSlider Click ZoomIn</td></tr>
+</thead><tbody>
+<!--Purpose : Verify the Zoom In by Slider Control.-->
+<!--Verify the map is present or not !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='myMap']</td>
+	<td></td>
+</tr>
+<!--Checks for the default zoom level is 8-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//img[contains(@src, &quot;level=8&quot;)]</td>
+	<td></td>
+</tr>
+<!--Click on Plus button to Zoom In-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;stratus_ZoomSliderControl_0&quot;]//div[@dojoattachpoint=&quot;incrementButton&quot;]</td>
+	<td>PlusButton</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${PlusButton}</td>
+	<td></td>
+</tr>
+<!--Check for new zoom level 9-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//img[contains(@src, &quot;level=9&quot;)]</td>
+	<td></td>
+</tr>
+<!--Test Passed !!-->
+
+</tbody></table>
+</body>
+</html>

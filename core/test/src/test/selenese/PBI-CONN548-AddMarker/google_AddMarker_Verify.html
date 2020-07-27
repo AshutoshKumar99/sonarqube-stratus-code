@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winsandra2:8082/" />
+<title>google_AddMarker_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">google_AddMarker_Verify</td></tr>
+</thead><tbody>
+<!--Different Projection : Verify that AddMarker button adds markers in the list and shows on Google Map.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapMarker/google.html</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Sample Page for Marker API</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@id='mapContainer']</td>
+	<td></td>
+</tr>
+<!--Enter values of x,y coordinates in textboxes.-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='mapContainer']/table/tbody/tr[1]/td[1]</td>
+	<td>x:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>527980.5</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='mapContainer']/table/tbody/tr[2]/td[1]</td>
+	<td>y:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>184085.25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;markerlocation&quot;]</td>
+	<td>house.png</td>
+</tr>
+<!--Click on Add Marker to add the marker in the list and show on Map !-->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeAlert</td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@onclick='addMapMarker();']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Verify that Values entered in textboxes gets added in the list and shows on the map.-->
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Markers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[1]</td>
+	<td>1. lon=-17358.37141712644,lat=6717574.069414243</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>//img[@id=&quot;OL_Icon_73_innerImage&quot;]</td>
+	<td></td>
+</tr>
+<!--Now checking that list can contain more than 1 entry.-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='mapContainer']/table/tbody/tr[1]/td[1]</td>
+	<td>x:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>527990.5</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='mapContainer']/table/tbody/tr[2]/td[1]</td>
+	<td>y:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>184086.25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;markerlocation&quot;]</td>
+	<td>yellow.png</td>
+</tr>
+<!--Click on Add Marker to add the marker in the list and show on Map !-->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@onclick='addMapMarker();']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>//img[@id=&quot;OL_Icon_73_innerImage&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[1]</td>
+	<td>1. lon=-17358.37141712644,lat=6717574.069414243</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[2]</td>
+	<td>2. lon=-17342.287654375406,lat=6717575.272386118</td>
+</tr>
+<!--Test Passed !!-->
+
+</tbody></table>
+</body>
+</html>

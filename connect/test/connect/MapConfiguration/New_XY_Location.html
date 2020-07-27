@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>New_XY_Location</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New_XY_Location</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the change in XY location of Map Configuration.-->
+<!--This is a amount of time that Selenium will wait for open to complete !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Open the Initial Connect page.-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>75000</td>
+</tr>
+<!--Store values for initial x and y co-ordinates.-->
+<tr>
+	<td>store</td>
+	<td>527880.5</td>
+	<td>initialX</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>184196.25</td>
+	<td>initialY</td>
+</tr>
+<!--Visually compared with MIPRO ; Leeder's house is in center.-->
+<!--Open new Connect page with new XY co-ordinates.-->
+<tr>
+	<td>pause</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-new-xy.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>75000</td>
+</tr>
+<!--Store new values for x and y co-ordinates.-->
+<!--New X coordinate is 160 pixels less then the initial coordinate value ; Calculated using MIPRO.-->
+<tr>
+	<td>store</td>
+	<td>527720.5</td>
+	<td>finalX</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>184196.25</td>
+	<td>finalY</td>
+</tr>
+<!--Visually compared with MIPRO ; Primrose Hill Court is now in center.-->
+<!--Calculate the new position of x and y; By subracting x by 160 and y by 0.-->
+<tr>
+	<td>assertEval</td>
+	<td>regexp:(${initialX} - 160)</td>
+	<td>${finalX}</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>regexp:(${initialY} - 0)</td>
+	<td>${finalY}</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/connect/locator/locatordemo.jsp" />
+<title>verify-search-results</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">verify-search-results</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/test-harness/locator/locatordemo.jsp</td>
+	<td></td>
+</tr>
+<!--Test Scenario 1: Verify contents of 'search string' are present in displayed results-->
+<!--Insert and store search string and click ok to display search results-->
+<tr>
+	<td>type</td>
+	<td>searchField</td>
+	<td>1 CHANCERY LANE LONDON CITY OF LONDON WC2A 1LF</td>
+</tr>
+<tr>
+	<td>storeValue</td>
+	<td>dijit_form_TextBox_0</td>
+	<td>storeSearchString</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='locator']//button</td>
+	<td></td>
+</tr>
+<!--Check if header element with proper value are present-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='result']//tr[@class='headerRow']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='result']//tr[@class='headerRow']</td>
+	<td></td>
+</tr>
+<!--Store total rowcount, counter curent row and index of colum to be verified -->
+<tr>
+	<td>storeXpathCount</td>
+	<td>//div[@id='result']/table/tbody[2]/tr</td>
+	<td>totalRows</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>1</td>
+	<td>currentRow</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>3</td>
+	<td>nameColumnID</td>
+</tr>
+<!--Loop through all table rows-->
+<tr>
+	<td>while</td>
+	<td>storedVars['currentRow']&nbsp;&nbsp;&lt;= storedVars['totalRows']</td>
+	<td></td>
+</tr>
+<!--For each row - retrieve target string, verify if it has elements of search string and increment counter-->
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody[2]/tr[${currentRow}]/td[${nameColumnID}]</td>
+	<td>storeResultElement</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>{searchExpression(storedVars['storeResultElement'],storedVars['storeSearchString'],0)}</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>getEval</td>
+	<td>storedVars['currentRow'] = ${currentRow} + 1;</td>
+	<td></td>
+</tr>
+<tr>
+	<td>endWhile</td>
+	<td></td>
+	<td></td>
+</tr>
+<!--end looping through all table rows-->
+<!--Notify search complete-->
+<tr>
+	<td>getEval</td>
+	<td>alert('Search complete');</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

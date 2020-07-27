@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<DescribeTableResponse xmlns="http://www.mapinfo.com/midev/service/feature/v1"
+                       xmlns:ns2="http://www.mapinfo.com/midev/service/geometries/v1"
+                       xmlns:ns3="http://www.mapinfo.com/midev/service/featurecollection/v1"
+        >
+    <TableMetadata hasRaster="false" supportsUpdate="false" supportsInsert="false" supportsDelete="false" count="36">
+        <ns3:AttributeDefinitionList>
+            <ns3:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns3:GeometryAttributeDefinition" useType="Unspecified" srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0" dataType="Geometry" name="geometryAttr"/>
+        </ns3:AttributeDefinitionList>
+        <ns3:KeyDefinition>
+            <ns3:AttributeRef>MapInfo_ID</ns3:AttributeRef>
+        </ns3:KeyDefinition>
+        <ns3:Envelope srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0">
+            <ns2:Pos>
+                <ns2:X>330419.5500950065</ns2:X>
+                <ns2:Y>155439.79507672694</ns2:Y>
+            </ns2:Pos>
+            <ns2:Pos>
+                <ns2:X>356408.09811652906</ns2:X>
+                <ns2:Y>177632.1025947798</ns2:Y>
+            </ns2:Pos>
+        </ns3:Envelope>
+    </TableMetadata>
+</DescribeTableResponse>

@@ -1,0 +1,159 @@
+<html>
+<head>
+<title>Search Nearest</title>
+<style>
+
+ /* This is a reference to the overall container div for each search results
+ container control that displays the selected search result object */
+.searchResultsContainer
+{
+   overflow:auto;
+   overflow-x:hidden;
+}
+
+/*  Inner container which holds all the searchResults rows */
+.SearchResultsControl div.containerMasterDiv
+{
+    border:5px solid #336600;
+}
+
+/*  Contains a 'row' within  each of the searchResults rows */
+.SearchResultsControl div.normalSearchResultRowDiv
+{
+    padding-left: 2px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    background-color: #FF9933;
+}
+
+/*  Contains a 'row' within  each of the searchResults rows.
+    Alternative row style */
+.SearchResultsControl div.alternativeSearchResultRowDiv
+{
+    padding-left: 2px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    background-color: #FFFF66;
+}
+
+/* Styling for the introduction div which contains the introduction text 
+   styling for the search results container*/
+.SearchResultsControl div.introductionSearchResultsDiv
+{
+    border-bottom:1px solid #ffffff;
+    font-weight: bold;
+    padding: 3px;
+    background-color: #000000;
+}
+
+/* Styling for the empty div which contains the empty results text styling 
+   for the search results container*/
+.SearchResultsControl div.emptySearchResultsDiv
+{
+    padding: 3px;
+    font-weight: bold;
+    background-color: #0000ff;
+}
+ </style>
+
+<script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+            dojo.require("stratus.SearchResultsControl");
+            dojo.require("stratus.catalog.Icon");
+            dojo.require("stratus.catalog.Table");
+            dojo.require("stratus.search.Feature");
+            
+            var SearchResultsControl = null;
+            var layer = null;
+            
+            dojo.addOnLoad(function() 
+            {
+                window.featureSearch = new stratus.search.FeatureSearch();
+                var icon = new stratus.catalog.Icon("../mapMarker/house.png", "0", "0", "34", "20");
+                var resultIcon = new stratus.catalog.Icon("../mapMarker/house.png", "0", "0", "34", "20");
+                var params =
+                {
+                    name: "ListedBuildings",
+                    title: "Title",
+                    Description: "Description",
+                    icon: icon,
+                    resultIcon:resultIcon
+                };
+                layer = new stratus.catalog.Table(params);                
+                
+                var summaryFields = new stratus.configuration.SummaryFields();
+                summaryFields.setTitleField("Title");
+                layer.summaryFields = summaryFields;
+                SearchResultsControl = new stratus.SearchResultsControl({}, dojo.byId("container"));
+                dojo.connect(SearchResultsControl, "onSearchResultsRowSelected","callback");
+                SearchResultsControl.setTable(layer);
+            });
+
+            function processResults(results)
+            {
+                SearchResultsControl.displayResults("camden square", layer, results);
+            }
+
+            function callback(result)
+            {
+                dojo.byId("testresults").innerHTML = result.properties.Title + "," +
+                        result.properties.Description ;
+            }
+    
+            function handleException(x)
+            {
+                var resultstable = dojo.byId("resultslist");
+                resultstable.innerHTML = "There was an error with the Service:" +
+                        x.message;
+            }
+
+            function searchNearestFromInput()
+            {
+                var f =
+                {
+                    "point" : {x:527990.5, y:184086.25, srs:'epsg:27700'},
+                    "tableName": ["ListedBuildings"],
+                    "attributeFields": ["Title", "Description"],
+                    "includeGeometry": false,
+                    "maxResults": 100,
+                    "maxDistance": 100,
+                    "distanceUnit": stratus.util.DistanceUnits.METER,
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+            
+            function searchNearestClear()
+            {
+                SearchResultsControl.clearResults();
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <br />
+
+        This test-harness page is present to test that each result includes Title field
+        and distance in metres (in bracket) next to it, the distance shows that the
+        results are listed in order of nearest to farthest. Result includes a further
+        two additional fields (which are optional) and User can select a result in
+        the list. 
+
+        <br>
+        Also test that individual results row displays the content in right order
+        as expected Title (distance)
+
+        <br /><br />
+        <input type="button" onclick="searchNearestFromInput();" 
+                name="Search" value="Search" />
+        <input type="button" onclick="searchNearestClear();" 
+                name="Clear" value="Clear" />
+        <p><div id="container" style="width: 50%; height: 50%;"></div></p>
+        <p><div id="resultslist" style="background-color:white;"></div></p>
+        <br /><br />
+        <div id="testresults" style="background-color:white;">
+            Row results shown here.</div>
+    </body>
+</html>

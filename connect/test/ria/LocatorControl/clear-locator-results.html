@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/connect/locator/locatordemo.jsp" />
+<title>Clear Locator Results Table</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Clear Locator Results Table</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/test-harness/locator/locatordemo.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td></td>
+</tr>
+<!--Insert nonsearchable value and store it in variable-->
+<tr>
+	<td>type</td>
+	<td>searchField</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td></td>
+	<td>emptyString</td>
+</tr>
+<!--Test Scenario 1: Insert searchable value-->
+<tr>
+	<td>type</td>
+	<td>searchField</td>
+	<td>City Road</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='locator']//button</td>
+	<td></td>
+</tr>
+<!--Check if header element with proper value are present-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='result']//tr[@class='headerRow']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='result']//tr[@class='headerRow']</td>
+	<td></td>
+</tr>
+<!--Check the values of the first row. -->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='result']//table/tbody[1]/tr[1]/td[1]</td>
+	<td>0.99999994</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='result']//table/tbody[1]/tr[1]/td[2]</td>
+	<td>145 POUND CITY KILBURN HIGH ROAD LONDON NW6 7HT</td>
+</tr>
+<!--Insert blank value and click submit to ensure that ...-->
+<tr>
+	<td>type</td>
+	<td>searchField</td>
+	<td>${emptyString}</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='locator']//button</td>
+	<td></td>
+</tr>
+<!--Error should be raised for entering blank -->
+<!--Check if alert is raised - Selenium doesn't handle JavaScript visible Alerts-->
+<tr>
+	<td>waitForCondition</td>
+	<td>selenium.browserbot.getCurrentWindow().document.getElementById('error').innerHTML</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Please enter a search term</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

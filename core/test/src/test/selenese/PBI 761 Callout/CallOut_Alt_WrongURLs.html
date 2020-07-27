@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winyellow:8082" />
+<title>CallOut_Alt_WrongURLs.html</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_WrongURLs.html</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check configuration of data populating the Call Out elements.-->
+<!--Image & Link summary fields are pointed to columns in the data which do NOT contain URLS, therefore they should not be displayed.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-761-map-callout/wrongURLS_summaryFields/wrongURLS_summaryFields.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=MasterMap&amp;level=8&amp;row=69&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan south & open the callout for Chamberlain Street (ListedBuildings data has all configured data fields)-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${tileLocator}</td>
+	<td>0,-500</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDownAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>mouseUpAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check for our expected results-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>3</td>
+</tr>
+<!--Check for ListedBuildings Chamberlain Street contains our configured data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ListedBuildings</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>ListedBuildingsElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>(South side) Nos.1-8 (Consecutive) and attached railings</td>
+</tr>
+<!--Check listed buildings linkout is not present, but text is.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ListedBuildingsElement//div[@class='infoTitle']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>CHAMBERLAIN STREET</td>
+</tr>
+<!--Image confirmation - confirm no image is displayed for the ListedBuilding-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ListedBuildingsElement}/img[@class='infoImage']</td>
+	<td></td>
+</tr>
+<!--KeyValue confirm -->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class='infoKey lightFont']</td>
+	<td>Grade II</td>
+</tr>
+<!--Description confirm-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>(South side) Nos.1-8 (Consecutive) and attached railings</td>
+</tr>
+<!--Check for ConservationAreas: 3 Chamberlain Street contains our configured data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][2]</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_1']</td>
+	<td>ConservationAreasElement</td>
+</tr>
+<!--Check linkout has not been returned, but text has.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ConservationAreasElement}//div[@class='infoTitle']/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class='infoTitle heavyFont']</td>
+	<td>Primrose Hill</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class='infoKey lightFont']</td>
+	<td>1971-10-01Z</td>
+</tr>
+<!--Check for PlanningApplications 3 Chamberlain Street contains our configured data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][3]</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_2']</td>
+	<td>PlanningApplicationsElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>Grant Full or Outline Perm. with Condit.: The erection of rear extension at first floor level and rear roof extension as shown on drawing no. LCG/02....</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>3 Chamberlain Street NW1</td>
+</tr>
+<!--Check the callout parameters sent.-->
+<!--Point selected verify the co-ordinates are those we expect (British National Grid, not screen co-ordinates)-->
+<!--Slight pixel differences between IE7 & FF hence the use of regexp-->
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;result&quot;]/table/tbody</td>
+	<td>resultsTable</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[2]/td[1]</td>
+	<td>Point:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[2]/td[2]</td>
+	<td>regexp:X: 52784.* Y: 18407.*SRS: epsg:27700</td>
+</tr>
+<!--Tables used.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[3]/td[1]</td>
+	<td>Tables:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[3]/td[2]</td>
+	<td>OpenSpaces,ListedBuildings,ConservationAreas,PlanningApplications,ProposedDevelopmentSites</td>
+</tr>
+<!--Table columns that are to be selected from - these are not configured, therefore we're checking the default values are used.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[4]/td[1]</td>
+	<td>Properties:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[4]/td[2]</td>
+	<td>Title,Street,Location,KeyValue,Description</td>
+</tr>
+<!--The width/buffer around the point selected.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[5]/td[1]</td>
+	<td>Width:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[5]/td[2]</td>
+	<td>0.335693359375</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

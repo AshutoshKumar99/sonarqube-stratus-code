@@ -1,0 +1,16 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-ptaglibrary_2_0.xsd" version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>Third Party API Inserter</short-name>
+    <tag>
+        <name>insert</name>
+        <tag-class>com.pb.stratus.controller.customtags.ScriptInserter</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>config</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag> 
+</taglib>
+
+  

@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            dojo.require("stratus.LocatorControl");
+            dojo.require("stratus.LocatorResultsControl");
+            dojo.require("dijit.form.FilteringSelect");
+            dojo.addOnLoad(init);
+            
+            function init()
+            {
+                var locatorControl = new stratus.LocatorControl({gazetteerName: 'MapMarkerDE'}, "locator");
+                locatorControl.setErrorHandler({
+    
+                    reset: function()
+                    {
+                        dojo.byId('error').innerHTML = '';
+                    },
+                    handle: function(err, msg)
+                    {
+                        dojo.byId('results').innerHTML = '';
+                        if (msg)
+                        {
+                            dojo.byId('error').innerHTML = msg;
+                        }
+                        else
+                        {
+                            dojo.byId('error').innerHTML = err;
+                        }           
+            
+                    }
+                });
+                var searchResults = new stratus.LocatorResultsControl({}, "results");
+                        
+                dojo.connect(locatorControl, "onSearchPerformed",  searchResults, "updateTable");                
+            }
+            
+            function setLocatorValue(value, gazetteerName)
+            {
+                dijit.byId('locator').searchField.setValue(value);
+                dijit.byId('locator').locatorSearch.gazetteerName = gazetteerName;
+                dojo.byId('error').innerHTML = '';
+                dojo.byId('results').innerHTML = '';
+            }
+            
+        </script>
+    </head>
+    <body>
+        <p>This Page tests the globalization of the Locator Service. Select the 
+        search string from the dropdown box and click the search button to get 
+        the results.</p>
+        <p>Note: For this page to work, the index-search service needs to be 
+        configured to use the Lucene search engine and the country-specific
+        index.dat file that corresponds to the search terms below.</p>
+        <div id="locator"></div>
+        German Search
+        <select dojoType="dijit.form.FilteringSelect"
+                id="selectBox"
+                autoComplete="false"
+                onChange="setLocatorValue(this.value, 'MapMarkerDE');">
+            <option selected="selected" value="Linzerstraße">Linzerstraße</option>
+            <option value="Rüdigerweg">Rüdigerweg</option>
+            <!-- Add more options here -->
+        </select>
+        Denmark Search
+        <select dojoType="dijit.form.FilteringSelect"
+                id="selectBox1"
+                autoComplete="false"
+                onChange="setLocatorValue(this.value, 'MapMarkerDA');">
+            <option selected="selected" value="københavn">københavn</option>  
+            <option value="århus">århus</option>
+          <option value="6000">6000</option>
+          <option value="sjælland">sjælland</option>
+            <!-- Add more options here -->
+        </select>
+        Sweden Search
+        <select dojoType="dijit.form.FilteringSelect"
+                id="selectBox2"
+                autoComplete="false"
+                onChange="setLocatorValue(this.value, 'MapMarkerSV');">
+            <option value="göteborg">göteborg</option>
+            <option value="skellefteå">skellefteå</option>
+          <option value="örnsköldsvik">örnsköldsvik</option>
+          <option value="piteå">piteå</option>
+          <option value="hässleholm">hässleholm</option>
+            <!-- Add more options here -->
+        </select>
+        <div id="results"></div>
+        <div id="error"></div>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://wingreen:8082/" />
+<title>LeftClickCallout_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LeftClickCallout_Test</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the presence of coordinate display & callout on left click on the Map Control-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>test-harness/conn-547-map-click-event/?mapConfigLocation=mapCallout.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=MasterMap&quot;)]</td>
+	<td>masterMap</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${masterMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='mapControl1']</td>
+	<td>MapDisplay</td>
+</tr>
+<!--Ensure the map control is visible.-->
+<tr>
+	<td>assertVisible</td>
+	<td>${MapDisplay}</td>
+	<td></td>
+</tr>
+<!--Click on the map control to get the coordinate display & callout-->
+<tr>
+	<td>clickAtImproved</td>
+	<td>${MapDisplay}</td>
+	<td>180,180</td>
+</tr>
+<!--Verify the callout-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Verify the coordinate display-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='x']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='y']</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<ns6:GetNamedMapLegendsResponse xmlns="http://www.mapinfo.com/midev/service/mappingcommon/v1"
+                                xmlns:ns6="http://www.mapinfo.com/midev/service/mapping/v1"
+        >
+    <ns6:Legend layerName="PerCapitaIncome" legendType="Cartographic" imageMimeType="image/png" title="PerCapitaIncome">
+        <ns6:LegendRow>
+            <ns6:Description>Region</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAJUlEQVR42mM4cODAfxBmgAJS+ZQDik2jrnMGBIyGwWgYDIowAADVPTPxJUN1tQAAAABJRU5ErkJggg==</ns6:Image>
+        </ns6:LegendRow>
+    </ns6:Legend>
+    <ns6:Legend layerName="PerCapitaIncome" legendType="RangedTheme" imageMimeType="image/png" title="Ranges by Per_Capita_Income">
+        <ns6:LegendRow>
+            <ns6:Description>8000.0 to 26000.0</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAH0lEQVR42mNgYGD4TyFm+N/Q8J9sPGrAqAGjBgwWAwD+88A+zsmwGgAAAABJRU5ErkJggg==</ns6:Image>
+        </ns6:LegendRow>
+        <ns6:LegendRow>
+            <ns6:Description>26000.0 to 28000.0</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVR42mNgYGD4TyFm+L+g4QHZeNSAUQNGDRgsBgAA4ZbBH27X7lAAAAAASUVORK5CYII=</ns6:Image>
+        </ns6:LegendRow>
+        <ns6:LegendRow>
+            <ns6:Description>28000.0 to 30000.0</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVR42mNgYGD4TyFm+H+g4QDZeNSAUQNGDRgsBgAAGeXBH1KyYKIAAAAASUVORK5CYII=</ns6:Image>
+        </ns6:LegendRow>
+        <ns6:LegendRow>
+            <ns6:Description>30000.0 to 32000.0</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVR42mNgYGD4TyFm+P+gYQHZeNSAUQNGDRgsBgAAUiXBH8j42swAAAAASUVORK5CYII=</ns6:Image>
+        </ns6:LegendRow>
+        <ns6:LegendRow>
+            <ns6:Description>32000.0 to 133000.0</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAH0lEQVR42mNgYGD4TyFm+P+/oYFsPGrAqAGjBgwWAwDeQMA+tgX45gAAAABJRU5ErkJggg==</ns6:Image>
+        </ns6:LegendRow>
+    </ns6:Legend>
+    <ns6:Legend layerName="PerCapitaIncome" legendType="FeatureStyleOverride" imageMimeType="image/png" title="PerCapitaIncome">
+        <ns6:LegendRow>
+            <ns6:Description>Region</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAJUlEQVR42mM4cODAfxBmgAJS+ZQDik2jrnMGBIyGwWgYDIowAADVPTPxJUN1tQAAAABJRU5ErkJggg==</ns6:Image>
+        </ns6:LegendRow>
+    </ns6:Legend>
+</ns6:GetNamedMapLegendsResponse>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<locator>
+	<search type="Mapinfo.SingleLineSearch">
+ 		 <url>/connect/controller/locator</url>
+ 	 	 <coordsys>EPSG:27700</coordsys>
+	</search>
+    
+</locator>

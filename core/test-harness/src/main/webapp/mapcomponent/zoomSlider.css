@@ -1,0 +1,54 @@
+/*
+ * Slider control for map zoom in/out
+ */
+
+/* The handle that is dragged by the user */
+.dijitSliderImageHandle
+{
+  background-image: url(img/zoomSelector.png);
+  height: 13px;
+  width: 18px;
+  border: none;
+  cursor: pointer;
+  /* offset the height a bit to align with tick marks */
+  top: -5px;
+}
+
+/* <div>s that contain the plus/minus buttons */
+.dijitSliderButtonContainer
+{
+  height: 17px;
+  width: 16px;
+  cursor: pointer;
+}
+
+/* The <div> containing the plus */
+.dijitSliderIncrementIconV
+{
+  background-image: url(img/zoomPlus.png);
+}
+
+/* The <div> containing the minus */
+.dijitSliderDecrementIconV
+{
+  background-image: url(img/zoomMinus.png);
+}
+
+/* The <span> that contains a + or - character, inside the SliderXIcon <div>s (for adaptive use) */
+.dijitSliderButtonInner
+{
+  visibility: hidden; 
+}
+
+/* This removes the red colour in the bottom part of the tray (the part below the handle) */
+.dijitSliderProgressBar, .dijitSliderBottomBumper
+{
+  background-color: transparent;
+}
+
+/* This is the bar that the handle travels on top of */
+.dijitSliderBar
+{
+  border: none;
+  background-color: red;
+}

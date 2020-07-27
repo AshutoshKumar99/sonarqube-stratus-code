@@ -1,0 +1,50 @@
+package com.pb.stratus.onpremsecurity.adminconsole.identity;
+
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import static org.mockito.Mockito.verify;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: al021ch
+ * Date: 3/22/14
+ * Time: 3:17 PM
+ * To change this template use File | Settings | File Templates.
+ */
+
+public class AnalystSsoRedirectHelperTest
+{
+    @Test
+    public void testAfterPropertiesSet() throws Exception
+    {
+        AnalystSsoRedirectHelper helper = new AnalystSsoRedirectHelper();
+        helper.setSsoStartUrl("sso: @{tenant}}");
+        helper.afterPropertiesSet();
+
+        assertEquals("sso: tenantName", helper.m_processedSsoStartUrl);
+    }
+
+    @Test
+    public void testSendSsoRedirect() throws Exception
+    {
+        AnalystSsoRedirectHelper helper = new AnalystSsoRedirectHelper();
+        helper.setSsoStartUrl("sso");
+        helper.afterPropertiesSet();
+
+        HttpServletRequest request = new MockHttpServletRequest();
+        HttpServletResponse response = new MockHttpServletResponse();
+
+        helper.sendSsoRedirect(request, response);
+
+        ArgumentCaptor<String> responseCaptor = new ArgumentCaptor<String>();
+        verify(response).sendRedirect(responseCaptor.capture());
+
+    }
+
+}

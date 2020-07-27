@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.200.230:8080" />
+<title>ContextMenu_I18N_Text</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ContextMenu_I18N_Text</td></tr>
+</thead><tbody>
+<!--Purpose : Test the contents of the right click context menu to display in Swedish -->
+<!--This is a amount of time that Selenium will wait for open to complete !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml&amp;locale=sv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<!--Open the context menu - "contextMenu" command is more reliable than "contextMenuAt".-->
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>CenterTileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${CenterTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>contextMenu</td>
+	<td>${CenterTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<!-- Verify the Context Menu gets displayed-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<!--Check the text is in Swedish & if placed in the correct order-->
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_0']/td[2]</td>
+	<td>FirstMenuItem</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_1']/td[2]</td>
+	<td>SecondMenuItem</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${FirstMenuItem}</td>
+	<td>glob:*Zooma Ut</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SecondMenuItem}</td>
+	<td>glob:*Zooma In</td>
+</tr>
+<!--PASS expected-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winyellow:8082/" />
+<title>Wrong Properties Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Wrong Properties Test</td></tr>
+</thead><tbody>
+<!--To verify the Feature Search Wrong Properties-->
+<!--setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-545-feature-search-object/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='regularValues' and @onclick='searchAtWrongProperties();']</td>
+	<td>wrongProperties</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${wrongProperties}</td>
+	<td></td>
+</tr>
+<!--verify that no results returned-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='result']//table</td>
+	<td>0</td>
+</tr>
+<!--Check the error message has not been returned - start by waiting 30 seconds after clicking on the button.-->
+<tr>
+	<td>pause</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>//*[@id=&quot;errorClass&quot;]</td>
+	<td>stratus.search.UnknownPropertyException</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>//*[@id=&quot;errorMessage&quot;]</td>
+	<td>NonExistingProperty</td>
+</tr>
+<!--Now check what we did get back.-->
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;result&quot;]</td>
+	<td>resultsTable</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[1]/table/thead[1]/tr/th</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[1]/table/thead[2]/tr/th</td>
+	<td>KeyValue</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[1]/table/tbody/tr[1]/td</td>
+	<td>No: PE9800096</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[1]/table/tbody/tr[2]/td</td>
+	<td>No: LE9800097</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[1]/table/tbody/tr[3]/td</td>
+	<td>No: 9200367</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[1]/table/tbody/tr[4]/td</td>
+	<td>No: 9270076</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[2]/table/thead[1]/tr/th</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[2]/table/thead[2]/tr/th</td>
+	<td>KeyValue</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/div[2]/table/tbody/tr/td</td>
+	<td>1971-10-01Z</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

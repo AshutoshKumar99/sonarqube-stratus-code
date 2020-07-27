@@ -1,0 +1,30 @@
+/*
+ Right-Click Zoom Context Menu
+*/
+
+
+/* Overall context menu */
+.dijitMenuTable
+{
+  border: 2px solid red;
+}
+
+
+/* Individual Menu Items */
+.dijitMenuItem
+{
+  background-color:black;
+  font-family:'Arial';
+  font-size: 1.0em;
+  color:white;
+}
+
+/* Menu item mouse hover*/
+.dijitMenuItemHover
+{
+  background-color:white;
+  font-family:'Verdana';
+  font-size: 1.1em;
+  color: black;
+  font-weight:bold;
+}

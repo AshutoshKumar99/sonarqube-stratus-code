@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>LegendControl</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LegendControl</td></tr>
+</thead><tbody>
+<!--Test for the display and expand/collapse functionality of legend control layers-->
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Check for the presence and initial state of Legend Control-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='CamdenPlan2']</td>
+	<td>Camden Mapping Service</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[@type='checkbox']</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='PlanApps']</td>
+	<td>Camden Mapping Service</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[@type='checkbox']</td>
+	<td>true</td>
+</tr>
+<!--Click on Named Map layer  'CamdenPlan2'  and 'PlanApps' to expand the layer-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='CamdenPlan2']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//*[@id=&quot;CamdenPlan2:UDP_Conservation_Area&quot;]</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//*[@id=&quot;CamdenPlan2:UDP_Proposal_Site&quot;]</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//*[@id=&quot;CamdenPlan2:UDP_Open_Space_Other&quot;]</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//*[@id=&quot;PlanApps&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//*[@id=&quot;PlanApps:Pacishis&quot;]</td>
+	<td></td>
+</tr>
+<!--Click on Named Map layer 'CamdenPlan2' to collapse the layer-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='CamdenPlan2']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>//*[@id=&quot;CamdenPlan2:UDP_Conservation_Area&quot;]</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>//*[@id=&quot;CamdenPlan2:UDP_Proposal_Site&quot;]</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>//*[@id=&quot;CamdenPlan2:UDP_Open_Space_Other&quot;]</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[@type='checkbox']</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='PlanApps']</td>
+	<td>Camden Mapping Service</td>
+</tr>
+<tr>
+	<td>assertVisible</td>
+	<td>//*[@id=&quot;PlanApps:Pacishis&quot;]</td>
+	<td>false</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>//input[@type='checkbox']</td>
+	<td>true</td>
+</tr>
+<!---->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ListCoordSysByCodeSpaceResponse xmlns="http://www.mapinfo.com/midev/service/geometry/v1">
+    <CoordSys coordSysType="GEOGRAPHIC" displayName="Coord sys 1" srsName="codeSpace1:coordSys1"/>
+    <CoordSys coordSysType="GEOGRAPHIC" displayName="Coord sys 2" srsName="codeSpace1:coordSys2"/>
+    <CoordSys coordSysType="GEOGRAPHIC" displayName="Coord sys 3" srsName="codeSpace1:coordSys3"/>
+    <CoordSys coordSysType="GEOGRAPHIC" displayName="Coord sys 4" srsName="codeSpace1:coordSys4"/>
+</ListCoordSysByCodeSpaceResponse>

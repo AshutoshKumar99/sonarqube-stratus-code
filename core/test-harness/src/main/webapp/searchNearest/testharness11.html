@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>Search Nearest</title>
+        <script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+
+            dojo.addOnLoad(function() {
+                window.featureSearch = new stratus.search.FeatureSearch();
+            });
+
+           function showAjaxLoader()
+           {
+            var resultstable = dojo.byId("resultsDiv");
+            resultstable.innerHTML = "<div class='ajaxloader'><img src='ajax-loader.gif' alt='Loading'/></div>";
+           }
+
+
+            function roundNumber(numToRound, decPlaces) {
+              return Math.round(numToRound * Math.pow(10, decPlaces)) / Math.pow(10, decPlaces);
+            }
+
+
+            function processResults(results)
+            {
+                var resultstable = dojo.byId("resultsDiv");
+                resultstable.innerHTML = "";
+
+                for(layer in results)
+                {
+                   resultstable.innerHTML = "<ol> "+
+				                             "<li>Title=" + results[layer][0].properties.Title + "</li>" +
+				                             "<li>Email=" + results[layer][0].properties.Email + "</li>" +
+											 "<li>LiveDepartureBoard=" + results[layer][0].properties.LiveDepartureBoard + "</li>" +
+											 "<li>Distance=" + results[layer][0].properties.Distance + "</li>" +
+										    "</ol>";
+                }
+
+                if(results[layer].length == 0)
+                {
+                    resultstable.innerHTML = "No results found";
+                }
+            }
+
+
+            function handleException(x)
+            {
+                var resultstable = dojo.byId("resultsDiv");
+                resultstable.innerHTML = "There was an error with the Service:" + x.message;
+            }
+
+            function searchNearestFromInputNull()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:528005, y:184031, srs:'epsg:27700'},
+                    "tableName": "ListedBuildings",
+                    "attributeFields": null,
+                    "includeGeometry": false,
+					"maxResults": 1,
+                    "maxDistance": 1,
+                    "distanceUnit": "mile",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+	
+			function searchNearestFromInputBlank()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:528005, y:184031, srs:'epsg:27700'},
+                    "tableName": "ListedBuildings",
+                    "attributeFields": "",
+                    "includeGeometry": false,
+					"maxResults": 1,
+                    "maxDistance": 1,
+                    "distanceUnit": "mile",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <p>This page tests the searchNearest function by calling it with null or blank attributeFields paramater.  As this a optional field, all fields should be returned
+        </p>
+
+        <div id="searchButtonDiv">
+            <button onclick="searchNearestFromInputNull();">Search Null</button>
+            <button onclick="searchNearestFromInputBlank();">Search Blank</button>
+        </div>
+
+        <div id="resultsDiv">
+        </div>
+
+    </body>
+</html>

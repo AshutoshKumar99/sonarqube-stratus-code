@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://lon01323:8080/connect" />
+<title>Postcode AutoComplete</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Postcode AutoComplete</td></tr>
+</thead><tbody>
+<!--Purpose: test the autocomplete function of the Postcode Search-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMapORIGINAL&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<!--need to wait for connect to finish downloading tiles etc, else the autocomplete doesn't work.-->
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;postcode&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>//*[@id=&quot;postcode&quot;]</td>
+	<td></td>
+</tr>
+<!--Check for the initial height of Suggestions List to be zero-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;locator&quot;]//div[2]/ul</td>
+	<td>SuggestionList</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SuggestionList}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${SuggestionList}</td>
+	<td>SuggestionsHeight</td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>${SuggestionList}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${SuggestionsHeight}</td>
+	<td>0</td>
+</tr>
+<!--need to input 2 letters else Selenium & Connect get confused & don't display the AutoComplete!-->
+<tr>
+	<td>type</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>N</td>
+</tr>
+<tr>
+	<td>typeKeys</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>W</td>
+</tr>
+<!--Pause is a necessary evil here as the typeKeysAndWait command doesn't recognise the autocomplete suggestion box.-->
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${SuggestionList}</td>
+	<td>PopulatedSuggestionList</td>
+</tr>
+<!--this is why this test fails! because there is NO SUGGESTION LIST!-->
+<tr>
+	<td>echo</td>
+	<td>SuggestionHeight = ${PopulatedSuggestionList} ( IF 0 this means that AutoComplete has not worked!)</td>
+	<td></td>
+</tr>
+<!--Check for the number of candidates we're expecting and that the first few are the correct results!-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id=&quot;locator&quot;]//div[2]/ul/li/a</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;locator&quot;]//div[2]/ul/li[1]/a</td>
+	<td>NW1 0AB</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;locator&quot;]//div[2]/ul/li[2]/a</td>
+	<td>NW1 0AY</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;locator&quot;]//div[2]/ul/li[3]/a</td>
+	<td>NW1 0BA</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="securityProductServiceInterface" factory-bean="securityProductServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="securityProductServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass"
+                  value="com.pb.spectrum.platform.server.config.core.ws.productapi.impl.SecurityProductServiceImpl"/>
+        <property name="address" value="${spectrumserver.securityproductservice.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg
+                        value="{http://impl.productapi.ws.core.config.server.platform.spectrum.pb.com/}SecurityProductService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg
+                        value="{http://impl.productapi.ws.core.config.server.platform.spectrum.pb.com/}SecurityProductServiceImplPort"/>
+            </bean>
+        </property>
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+            <!-- Add  other interceptors here-->
+        </property>
+        <property name="properties">
+            <map>
+                <entry key="set-jaxb-validation-event-handler" value="false"/>
+            </map>
+        </property>
+        <property name="wsdlLocation" value="${spectrumserver.securityproductservice.wsdl}"/>
+    </bean>
+</beans>

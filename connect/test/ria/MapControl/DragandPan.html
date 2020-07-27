@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>DragPanfinal</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DragPanfinal</td></tr>
+</thead><tbody>
+<!--This is a amount of time that Selenium will wait for open to complete !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--This command opens the MapComponent Page !!-->
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--We are storing the position of Middle Leftmost tile to the variable !!-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap&quot;]/div/div/div/div/img</td>
+	<td>MiddleLeftInitialTile</td>
+</tr>
+<!--It waits till the Middle left Tile is located !!-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${MiddleLeftInitialTile}</td>
+	<td></td>
+</tr>
+<!--This stores the Left element position to variable named "ContainerLeft"-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>ContainerLeft</td>
+</tr>
+<!--This stores the Top element position to variable named "ContainerTop"-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>ContainerTop</td>
+</tr>
+<!--This command drags the current position and drop it to another location by a distance of 650 pixels-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${MiddleLeftInitialTile}</td>
+	<td>+650,+650</td>
+</tr>
+<!--This stores the new position of left to variable named "NewContainerLeft"-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>NewContainerLeft</td>
+</tr>
+<!--This stores the new position of top to variable named "NewContainerTop"-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>NewContainerTop</td>
+</tr>
+<!--This comapres the value of new left position-->
+<tr>
+	<td>assertEval</td>
+	<td>${ContainerLeft}+650</td>
+	<td>${NewContainerLeft}</td>
+</tr>
+<!--This comapres the value of new top position-->
+<tr>
+	<td>assertEval</td>
+	<td>${ContainerTop}+650</td>
+	<td>${NewContainerTop}</td>
+</tr>
+<!--Test Passed !!!!!!! :)-->
+
+</tbody></table>
+</body>
+</html>

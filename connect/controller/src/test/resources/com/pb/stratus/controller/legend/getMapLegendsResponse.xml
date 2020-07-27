@@ -1,0 +1,54 @@
+<GetMapLegendsResponse xmlns="http://www.mapinfo.com/midev/service/mapping/v1" xmlns:ns2="http://www.mapinfo.com/midev/service/mappingcommon/v1" xmlns:ns3="http://www.mapinfo.com/midev/service/table/v1" xmlns:ns4="http://www.mapinfo.com/midev/service/style/v1" xmlns:ns5="http://www.mapinfo.com/midev/service/featurecollection/v1" xmlns:ns6="http://www.mapinfo.com/midev/service/geometries/v1" xmlns:ns7="http://www.mapinfo.com/midev/service/theme/v1" xmlns:ns8="http://www.mapinfo.com/midev/service/common/v1" xmlns:ns9="http://www.mapinfo.com/midev/service/units/v1" id="l1">
+    <Legend imageMimeType="image/png" legendType="Cartographic">
+        <LegendRow>
+            <Description>Region</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVR42mNgoBpoYPhPEqZIM4YhWEz9/x8PH58BeDXC+KMuGHUBXhdQnJQpylBkAgCyNtdYV0kdLQAAAABJRU5ErkJggg==</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>Line</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGUlEQVR42mNgGAXDAjQw/KcIU27AKBgGAAAg7y/h8ElS6AAAAABJRU5ErkJggg==</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>Point</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAJklEQVR42mNgGAWDGTQw/EfBFGkmyRBcmok2ZBgYQHEgUiUa6QkATxBNzYOCrCsAAAAASUVORK5CYII=</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>Region</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAALklEQVR42mNgoBpoYPhPEqZIM4YhUAFUgJtPwADCBo26YNQFeF1AcVKmLEORCQAjUQJKWcUkwQAAAABJRU5ErkJggg==</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>Region</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAJ0lEQVR42mNgoCL4TyKmSDOGIVhNJcK1owaMGkAbAyhOyhRlKLIAAGngXaPvyHPjAAAAAElFTkSuQmCC</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>Line</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAFUlEQVR42mNgGAWjAAL+U4hHwdAHAEdyD/HdCXpNAAAAAElFTkSuQmCC</Image>
+        </LegendRow>
+    </Legend>
+    <Legend title="RangeTheme" imageMimeType="image/png" legendType="RangedTheme">
+        <LegendRow>
+            <Description>0 to 83</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGklEQVR42mP4/5/hPyWYYdSAUQNGDRguBgAAxp79H8morbIAAAAASUVORK5CYII=</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>83 to 170</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGklEQVR42mP4f4HhPyWYYdSAUQNGDRguBgAAMY3OH+/UpCYAAAAASUVORK5CYII=</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>170 to 339</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGklEQVR42mP4v4DhPyWYYdSAUQNGDRguBgAAk8+eH9tqkMQAAAAASUVORK5CYII=</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>339 to 736</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGUlEQVR42mP4n8DwnxLMMGrAqAGjBgwXAwBsMV4fOa+zoQAAAABJRU5ErkJggg==</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>736 to 1045</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGUlEQVR42mP4b8DwnxLMMGrAqAGjBgwXAwDOcy4fmJKlEQAAAABJRU5ErkJggg==</Image>
+        </LegendRow>
+        <LegendRow>
+            <Description>1045 to 1904</Description>
+            <Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGUlEQVR42mP4z8DwnxLMMGrAqAGjBgwXAwAwxP4QisZM5QAAAABJRU5ErkJggg==</Image>
+        </LegendRow>
+    </Legend>
+</GetMapLegendsResponse>

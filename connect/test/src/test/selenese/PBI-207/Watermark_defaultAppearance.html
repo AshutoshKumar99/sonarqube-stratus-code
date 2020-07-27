@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Watermark_defaultAppearance</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Watermark_defaultAppearance</td></tr>
+</thead><tbody>
+<!--Purpose: To verify that watermark image is displayed and verifying that right image(PBLogo512256.png) is displayed .-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id =&quot;OpenLayers.Layer.Watermark_18&quot;]</td>
+	<td>watermarkTileLocator</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${watermarkTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>${watermarkTileLocator}//img[contains(@src, 'images/PBLogo512256.png')]</td>
+	<td>watermark</td>
+</tr>
+<!-- Wait for watermark to be fully loaded-->
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${watermark}</td>
+	<td></td>
+</tr>
+<!--Verify the default height and width of Watermark-->
+<tr>
+	<td>storeElementHeight</td>
+	<td>${watermark}</td>
+	<td>watermarkHeight</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${watermarkHeight}</td>
+	<td>256</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${watermark}</td>
+	<td>watermarkWidth</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${watermarkWidth}</td>
+	<td>512</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

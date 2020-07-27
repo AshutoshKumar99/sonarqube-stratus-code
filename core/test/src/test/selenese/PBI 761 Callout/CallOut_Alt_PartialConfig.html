@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winyellow:8082" />
+<title>CallOut_Alt_PartialConfig.html</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_PartialConfig.html</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check configuration of data populating the Call Out elements.-->
+<!--Only 3 summary fields are configured for this test, the others should not be populated by default.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-761-map-callout/partialSummaryFields/partialSummaryFields.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=MasterMap&amp;level=8&amp;row=69&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan south & open the callout for Chamberlain Street (ListedBuildings data has all configured data fields)-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${tileLocator}</td>
+	<td>0,-500</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDownAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>mouseUpAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check for our expected results-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>3</td>
+</tr>
+<!--Check for ListedBuildings Chamberlain Street contains our partially configured data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ListedBuildings</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>ListedBuildingsElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>TQ2784SE</td>
+</tr>
+<!--Image confirmation - image should be displayed-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${ListedBuildingsElement}/img[@class='infoImage']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${ListedBuildingsElement}/img[@class='infoImage']@src</td>
+	<td>http://mycamden.camden.gov.uk/LPGSearch/ListedBuildingPhoto/thumbnails/195.jpg</td>
+</tr>
+<!--KeyValue confirm - configured to point to Boro_Ref data column-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class='infoKey lightFont']</td>
+	<td>30/12/1999 00:00</td>
+</tr>
+<!--Description confirm - not configured therefore default text should not appear-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>(South side) Nos.1-8 (Consecutive) and attached railings</td>
+	<td></td>
+</tr>
+<!--Verify the title is not a hyperlink because the link summary field is not configured.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle&quot;]/a</td>
+	<td></td>
+</tr>
+<!--Check for ConservationAreas - does not contain any data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][2]</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_1']</td>
+	<td>ConservationAreasElement</td>
+</tr>
+<!--Check for PlanningApplications - does not contain any data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][3]</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_2']</td>
+	<td>PlanningApplicationsElement</td>
+</tr>
+<!--Check the callout parameters sent.-->
+<!--Point selected verify the co-ordinates are those we expect (British National Grid, not screen co-ordinates)-->
+<!--Slight pixel differences between IE7 & FF hence the use of regexp-->
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;result&quot;]/table/tbody</td>
+	<td>resultsTable</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[2]/td[1]</td>
+	<td>Point:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[2]/td[2]</td>
+	<td>regexp:X: 52784.* Y: 18407.*SRS: epsg:27700</td>
+</tr>
+<!--Tables used.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[3]/td[1]</td>
+	<td>Tables:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[3]/td[2]</td>
+	<td>OpenSpaces,ListedBuildings,ConservationAreas,PlanningApplications,ProposedDevelopmentSites</td>
+</tr>
+<!--Table columns that are to be selected from - these are not configured, therefore we're checking the default values are used.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[4]/td[1]</td>
+	<td>Properties:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[4]/td[2]</td>
+	<td>OS_Sheet,Image,,DateListed,</td>
+</tr>
+<!--The width/buffer around the point selected.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[5]/td[1]</td>
+	<td>Width:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[5]/td[2]</td>
+	<td>0.335693359375</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

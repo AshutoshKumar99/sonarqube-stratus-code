@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm8:8080" />
+<title>SingleBusinessLayer_NoBaseMap</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SingleBusinessLayer_NoBaseMap</td></tr>
+</thead><tbody>
+<!--Purpose: Verify configuration of a single business layer(Camden Mapping Service) without any base map.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Open the Corresponding xml file.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-singleBusinessLayer.xml</td>
+	<td></td>
+</tr>
+<!-- Expect there to be no Map Picker buttons as only no base layers are configured.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td></td>
+</tr>
+<!--Check for the presence and initial state of Legend Control-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>Conservation Map</td>
+	<td>Conservation Map</td>
+</tr>
+<!--CamdenPlan2 and the checkbox are siblings hence using the .. within the identifier to give us a unique ID for each of the checkboxes.-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;Conservation Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>//div[@id=&quot;Conservation Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<!--Verify the Planning Map is not available.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id='PlanningApplications']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>//div[@id='PlanningApplications']</td>
+	<td>Planning map</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id=&quot;PlanningApplications&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<!--Verify that there are no base layers existing or being displayed -->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=CamdenPlan2&amp;level=8&amp;row=68&amp;col=69&amp;output=png&quot;)]</td>
+	<td>landLineTileLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=MasterMap&quot;)]</td>
+	<td>masterMapTileLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=Aerial&quot;)]</td>
+	<td>aerialTileLocator</td>
+</tr>
+<!--Using the verifyEval isElementPresent because selenium.isVisible doesn't work in IE7-->
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${landLineTileLocator}') || !selenium.isVisible('${landLineTileLocator}')</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${masterMapTileLocator}') || !selenium.isVisible('${masterMapTileLocator}')</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${aerialTileLocator}') || !selenium.isVisible('${aerialTileLocator}')</td>
+	<td>true</td>
+</tr>
+<!--PASS expected.-->
+
+</tbody></table>
+</body>
+</html>

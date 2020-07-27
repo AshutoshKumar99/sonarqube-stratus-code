@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.216:8080" />
+<title>SimpleMixedLayerType_Ordering</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SimpleMixedLayerType_Ordering</td></tr>
+</thead><tbody>
+<!--This test loads 1 base layer and 1 business in specific orders and verifies they are loaded in those orders.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--BASE Layer First Config File-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-mixedLayers1.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Conservation Map&quot;)]</td>
+	<td>BusinessLayer</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;getTile?name=LandLine&quot;)]</td>
+	<td>BaseLayer</td>
+</tr>
+<!--Ensure that the layer elements are loaded-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BaseLayer}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BusinessLayer}</td>
+	<td></td>
+</tr>
+<!--Check the DIV orders, to ensure the Business Layer is on top.-->
+<!--We can do this by grabbing the grandparent container div through using the ".." notation-->
+<!--and checking the z-index which manages the order of visibility.-->
+<!--The top layer should have a z-index of 335 (the highest z-index).-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${BaseLayer}/../../@style</td>
+	<td>regexp:(.*z-index:.*335.*)|(.*Z-INDEX:.*335.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${BusinessLayer}/../../@style</td>
+	<td>regexp:(.*z-index:.*330.*)|(.*Z-INDEX:.*330.*)</td>
+</tr>
+<!--Base Layer First. Pass.-->
+<!--**-->
+<!--BUSINESS Layer First Config-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-mixedLayers2.xml</td>
+	<td></td>
+</tr>
+<!--Ensure that the layer elements are loaded-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BusinessLayer}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BaseLayer}</td>
+	<td></td>
+</tr>
+<!--Use the z-index of the grandparent container div to check the order of visibility of layers.-->
+<!--The top layer should have a z-index of 335 (highest z-index value).-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${BusinessLayer}/../../@style</td>
+	<td>regexp:(.*z-index:.*335.*)|(.*Z-INDEX:.*335.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${BaseLayer}/../../@style</td>
+	<td>regexp:(.*z-index:.*330.*)|(.*Z-INDEX:.*330.*)</td>
+</tr>
+<!--Business Layer First. Pass.-->
+
+</tbody></table>
+</body>
+</html>

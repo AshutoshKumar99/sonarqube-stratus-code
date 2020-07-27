@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>ContextMenu_Stay_MouseOver</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ContextMenu_Stay_MouseOver</td></tr>
+</thead><tbody>
+<!--Purpose : Check that Context Menu Stays if mouse remains over it.-->
+<!--Open the Connect page.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<!--Store the Center Tile position to :Center Tile"-->
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>CenterTileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${CenterTileLocator}</td>
+	<td></td>
+</tr>
+<!--Right Click on Center Tile left top corner.-->
+<tr>
+	<td>contextMenuAt</td>
+	<td>${CenterTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>//tr[@id='dijit_MenuItem_0']/td[2]</td>
+	<td></td>
+</tr>
+<!--Waiting for 5 seconds to check Context Menu stays, As Mouse is over Zoom In.-->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Storing the Context Menu and Verifying thr presence.-->
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_0']/td[2]</td>
+	<td>FirstMenuItem</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${FirstMenuItem}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_1']/td[2]</td>
+	<td>SecondMenuItem</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SecondMenuItem}</td>
+	<td></td>
+</tr>
+<!--Context Menu stays, Pass !!!-->
+
+</tbody></table>
+</body>
+</html>

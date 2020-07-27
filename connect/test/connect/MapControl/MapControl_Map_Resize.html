@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>MapControl_Map_Resize</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MapControl_Map_Resize</td></tr>
+</thead><tbody>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<!--Resize the browser-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1000,700</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${mapLocator}</td>
+	<td>MapWidthOld</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${mapLocator}</td>
+	<td>MapHeightOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${mapLocator}</td>
+	<td>MapTopOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>MapLeftOld</td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${tileLocator}</td>
+	<td>tileLeftAbsolute</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>tileTopAbsolute</td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>800,500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${mapLocator}</td>
+	<td>MapWidthNew</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${mapLocator}</td>
+	<td>MapHeightNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${mapLocator}</td>
+	<td>MapTopNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>MapLeftNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${tileLocator}</td>
+	<td>tileLeftNewAbsolute</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>tileTopNewAbsolute</td>
+</tr>
+<!--Verify that the map size(width and height) changes as per the change in browser size-->
+<tr>
+	<td>verifyEval</td>
+	<td>${MapWidthOld}-${MapWidthNew}</td>
+	<td>200</td>
+</tr>
+<!--Ensure that after re-sizing,the left position of map has not changed-->
+<tr>
+	<td>verifyEval</td>
+	<td>${MapLeftOld}-${MapLeftNew}</td>
+	<td>0</td>
+</tr>
+<!--Ensure that after re-sizing,the top position of map has not changed-->
+<tr>
+	<td>verifyEval</td>
+	<td>${MapTopOld}-${MapTopNew}</td>
+	<td>0</td>
+</tr>
+<!--Logic: The centre of the map or any reference point on the map will move by a distance which is half of the difference of the map width/height before and after browser re-size. -->
+<!--Tile left and top position have been used as a reference point in this script.-->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>Math.abs((${MapWidthOld}-${MapWidthNew})/2)</td>
+	<td>mapWidthDifference</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>Math.abs((${MapHeightOld}-${MapHeightNew})/2)</td>
+	<td>mapHeightDifference</td>
+</tr>
+<!--We will consider a tolerance of 10 pixels -->
+<tr>
+	<td>assertEval</td>
+	<td>Math.abs(${tileLeftAbsolute}-${tileLeftNewAbsolute})-${mapWidthDifference}&lt;=10</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>Math.abs(${tileTopAbsolute}-${tileTopNewAbsolute})-${mapHeightDifference}&lt;=10</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

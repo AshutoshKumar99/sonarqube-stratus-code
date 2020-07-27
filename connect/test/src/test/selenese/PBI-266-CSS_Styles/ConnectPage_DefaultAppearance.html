@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/connect/" />
+<title>ConnectPage_DefaultAppearance</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ConnectPage_DefaultAppearance</td></tr>
+</thead><tbody>
+<!--Purpose: confirm all expected controls and banner images are available-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Open the Connect application-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<!--If page title is not present, test will fail.-->
+<tr>
+	<td>assertTitle</td>
+	<td>Stratus Connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>myMap</td>
+	<td></td>
+</tr>
+<!--Check if banner is displayed correctly - can't check images as they're now in CSS -->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='banner']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='banner']/div[@id='companyLogo']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='banner']/div[@id='productLogo']</td>
+	<td></td>
+</tr>
+<!--Image positions can't be checked because the images are now coming through CSS (@14/11/08 we have no way of checking this) .-->
+<!--Fail if the Map Legend control, map control and legend control are not present -->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;myMap&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;locator&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legend&quot;]</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

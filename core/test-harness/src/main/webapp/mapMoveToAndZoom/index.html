@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+<head>
+<title>Map moveToAndZoom Demo</title>
+
+<link rel="stylesheet" type="text/css" href="/test-harness/common/sample.css"></link>
+
+<script type="text/javascript">
+            
+            dojo.require("stratus.MapControl");
+            
+            dojo.addOnLoad(function() { 
+
+            
+           var myMap;
+            
+           myMap = new stratus.MapControl({configFile: "map.xml", callBackFunction: function(){}}, dojo.byId('samplemap'));
+           if(window.badmapconfig && window.badmapconfig == true)
+           {
+                alert('Bad MapConfigFile or something else went wrong');
+           }
+           window.map = myMap;
+           });
+           
+           function panAndZoomMap()
+           {		
+			
+			var xloc = dojo.byId("xlocation").value;
+			var yloc = dojo.byId("ylocation").value;
+			var zoomLevel = dojo.byId("zoomLevel").value;
+            window.map.moveToAndZoom({x:xloc,y:yloc}, zoomLevel);
+			
+			document.getElementById('messages').innerHTML= 'Map panned';
+			
+           }
+
+</script>
+</head>
+<body>
+
+<h1>Map moveToAndZoom Demo </h1>
+<div id="mapContainer" style="width:300px;height:300px;">
+<div id="samplemap" style="width:100%;height:100%;"></div>
+</div>
+
+<a id="mappanlink" href="#" onclick="panAndZoomMap()">Click here to Pan and Zoom Map</a>
+<br /><br />
+<div id="messages" class="messages">Nothing to report.</div>
+
+<table>
+	<tr>
+		<td>X:</td>
+		<td><input id="xlocation" type="text" style="width:100px;" value="527480.5"/></td>
+	</tr>
+	<tr>
+		<td>Y:</td>
+		<td><input id="ylocation" type="text" style="width:100px;" value="184296.25"/></td>
+	</tr>
+	<tr>
+		<td>Z:</td>
+		<td><input id="zoomLevel" type="text" style="width:100px;" value="9"/></td>
+	</tr>
+</table>
+
+<button onclick="panAndZoomMap();">moveTo</button>
+
+</body>
+</html>

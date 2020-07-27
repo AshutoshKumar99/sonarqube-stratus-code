@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:http="http://cxf.apache.org/transports/http/configuration"
+       xmlns:cxfsec="http://cxf.apache.org/configuration/security"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://cxf.apache.org/configuration/security http://cxf.apache.org/schemas/configuration/security.xsd
+          http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <!-- Import various client definitions -->
+    <import resource="geometryClient.xml"/>
+    <import resource="featureClient.xml"/>
+    <import resource="mappingClient.xml"/>
+	<import resource="authorizationClient.xml"/>
+    <import resource="spectrumTokenManagerClient.xml"/>
+    <import resource="spectrumTokenLogoutClient.xml"/>
+    <import resource="securityProductServiceClient.xml"/>
+
+    <http:conduit name="https://.*">
+        <http:tlsClientParameters disableCNCheck="${auth.ssl.disableCNCheck}">
+        <!--    <cxfsec:keyManagers keyPassword="password">
+                <cxfsec:keyStore type="jks" password="${auth.wstrust.keystore.password}"
+                                 url="file:///${stratus.customer.config.dir}/_global_/keystore.jks"/>
+            </cxfsec:keyManagers>
+            <cxfsec:trustManagers>
+                <cxfsec:keyStore type="jks" password="${auth.wstrust.keystore.password}"
+                                 url="file:///${stratus.customer.config.dir}/_global_/keystore.jks"/>
+            </cxfsec:trustManagers>-->
+        </http:tlsClientParameters>
+        <http:client AllowChunking="false" AutoRedirect="true" Connection="close" ReceiveTimeout="${ws.client.timeout}"/>
+    </http:conduit>
+
+    <bean class="org.springframework.web.context.support.ServletContextAttributeExporter">
+        <property name="attributes">
+            <map>
+                <!-- inject the following beans into the servlet context so the servlets can access them. -->
+                <entry key="com.mapinfo.midev.service.mapping.ws.v1.MappingServiceInterface">
+                    <ref bean="mappingServiceClient"/>
+                </entry>
+                <entry key="com.mapinfo.midev.service.feature.ws.v1.FeatureServiceInterface">
+                    <ref bean="featureServiceClient"/>
+                </entry>
+                <entry key="com.mapinfo.midev.service.geometry.ws.v1.GeometryServiceInterface">
+                    <ref bean="geometryServiceClient"/>
+                </entry>
+				<entry key="com.g1.dcg.managers.access.AclManagerService">
+                    <ref bean="aclManagerServiceClient"/>
+                </entry>
+				
+            </map>
+        </property>
+    </bean>
+
+    <!-- basic authorisation header -->
+    <bean id="basicAuthentication" class="com.pb.stratus.onpremsecurity.interceptors.ConnectAuthenticationOutInterceptor">
+    <property name="requestBasisAccessConfigurationResolver" ref="accessConfigurationResolver"/>
+    <property name="authorizationUtils" ref="authorizationUtils"/>
+    <property name="jwtAuthorizationHandler" ref="jwtAuthorizationHandler" />
+</bean>
+</beans>

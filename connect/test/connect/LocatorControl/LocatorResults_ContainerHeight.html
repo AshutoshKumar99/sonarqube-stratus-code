@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Blank Search</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Blank Search</td></tr>
+</thead><tbody>
+<!--PBI 117:Hide Results - Test script to check for the Locator Results Container-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id=&quot;result&quot;]</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${locatorResultsLocator}</td>
+	<td>ResultHeight</td>
+</tr>
+<!--Check for the initial size of Locator Results to be zero-->
+<tr>
+	<td>assertEval</td>
+	<td>${ResultHeight}</td>
+	<td>0</td>
+</tr>
+<!--Insert searchable value-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>City Road</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Check for the size of Locator Results to be greater than zero. For the search for 'City Road', the height is observed to be 250 px.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}//table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${locatorResultsLocator}</td>
+	<td>ExpandedResultHeight</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${ExpandedResultHeight}</td>
+	<td>245</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

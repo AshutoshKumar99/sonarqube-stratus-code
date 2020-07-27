@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map-config max-bounds-left="522000.0" max-bounds-right="533000.0" max-bounds-top="190000.0" max-bounds-bottom="179000.0" max-resolution="42.96875" initial-x="527880.5" initial-y="184196.25" max-zoom-levels="10" units="METER" initial-zoom="8" default-copyright="LB of Camden License 100019726" projection="epsg:27700" disable-callout-control="false" disable-double-click-zoom="false" disable-drag-pan="false" disable-locator-marker="false" disable-map-picker="false" disable-mouse-wheel-zoom="false" disable-pan-control="false" disable-slider-control="false" disable-zoom-menu="false" show-all-info-fields="false" gif-images-for-ie6="true">
+  <summary-fields>
+    <title-column value="Title" />
+    <description-column value="Description" />
+    <image-column value="Image" />
+    <link-column value="Link" />
+    <keyvalue-column value="KeyValue" />
+  </summary-fields>
+  <ZoomLevels>
+    <ZoomLevel Value="1" Name="Entire District" />
+    <ZoomLevel Value="3" Name="Locality" />
+    <ZoomLevel Value="5" Name="Street" />
+    <ZoomLevel Value="10" Name="Property" />
+  </ZoomLevels>
+  <map service="Envinsa-Mapping" friendly-name="Development Map" map-name="Development Map" url="mapping/getmap" show-as="business" tile-width="512" tile-height="512" opacity="1.0" copyright="Camden Crown Copyright 2008" alpha="true" visible="true" />
+  <map service="Envinsa-Mapping" friendly-name="Conservation Map" map-name="Conservation Map" url="mapping/getmap" show-as="business" tile-width="512" tile-height="512" opacity="1.0" copyright="Camden Crown Copyright 2008" alpha="true" visible="true" />
+  <map service="Envinsa-Tile" friendly-name="Satellite" map-name="Aerial" url="http://winmidevservice:8060/MapTilingService/RESTService/getTile" show-as="base" tile-width="256" tile-height="256" opacity="1.0" copyright="GetMapping Limited 2006 " alpha="false" visible="true" />
+  <map service="Envinsa-Tile" friendly-name="Street Pro" map-name="StreetProMM" url="http://winmidevservice:8060/MapTilingService/RESTService/getTile" show-as="base" tile-width="256" tile-height="256" opacity="0.75" copyright="Crown Copyright 2008. All rights reserved." alpha="true" visible="true" />
+  <map service="Envinsa-Tile" friendly-name="MasterMap" map-name="MasterMap" url="http://winmidevservice:8060/MapTilingService/RESTService/getTile" show-as="base" tile-width="256" tile-height="256" opacity="0.75" copyright="Crown Copyright 2008. All rights reserved." alpha="false" visible="true" />
+  
+  </map-config>

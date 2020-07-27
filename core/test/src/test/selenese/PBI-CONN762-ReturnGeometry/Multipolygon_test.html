@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Multipolygon_test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Multipolygon_test</td></tr>
+</thead><tbody>
+<!--Verifing the Mutipolygon Button-->
+<!--setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-762-feature-search-geometry/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='multiPolygon' and @onclick='searchMultiPolygon();']</td>
+	<td>MultiPolygon</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${MultiPolygon}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td>Result</td>
+</tr>
+<!--waiting for the result table-->
+<tr>
+	<td>waitForText</td>
+	<td>${Result}/div/table/tbody/tr/td</td>
+	<td>OpenLayers.Geometry.MultiPolygon</td>
+</tr>
+<!--verifying the result-->
+<tr>
+	<td>verifyText</td>
+	<td>${Result}/div/table/tbody/tr/td[2]/table/tbody/tr/td</td>
+	<td>POLYGON((526560.0059094203 185640.64017474372,526400.4639771141 185912.5923292488,526077.752285617 185818.30931748077,525994.3534925794 185600.7515927311,526114.0058192785 185459.33207364753,526324.3208378454 185444.83622304164,526560.0059094203 185640.64017474372))</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

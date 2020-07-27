@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>IncorrectControllerPath_LocatorXML</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">IncorrectControllerPath_LocatorXML</td></tr>
+</thead><tbody>
+<!--Tests the Locator Configuration file for Incorrect URL-->
+<tr>
+	<td>setTimeout</td>
+	<td></td>
+	<td>75000</td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?locatorConfigLocation=/test-harness/config/Locator/IncorrectControllerPath.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SearchButton</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>cityroad</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SearchButton}</td>
+	<td></td>
+</tr>
+<!--Checks for error message-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;error&quot;]</td>
+	<td>Error</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${Error}</td>
+	<td>Please check the locator search configuration</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

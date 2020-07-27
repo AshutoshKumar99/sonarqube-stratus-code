@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/connect/index.jsp" />
+<title>Display selected address on the map</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Display selected address on the map</td></tr>
+</thead><tbody>
+<!--Purpose: Does map center on an address when selected from Results list?-->
+<!--Not included in the Locator Control test suite because this was never finished as the Verify_Address.html test... requires completing when next working on Locator control OR when there's a standard way of verifying actions & the consequent modification of the map. -->
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button[1]</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>city road</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Wait for result element to be displayed and check the header contents-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='result']</td>
+	<td>Results</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${Results}/table/thead/tr/td[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${Results}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${Results}/table/thead/tr/td[1]</td>
+	<td>Score</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${Results}/table/thead/tr/td[2]</td>
+	<td>Address</td>
+</tr>
+<!--Select the first address '145 POUND CITY KILBURN HIGH ROAD LONDON NW6 7HT' from the result table-->
+<tr>
+	<td>click</td>
+	<td>${Results}/table/tbody/tr[1]/td[2]</td>
+	<td></td>
+</tr>
+<!--Wait for the map to load-->
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<!--Verify the tile related to the selected address '145 POUND CITY KILBURN HIGH ROAD LONDON NW6 7HT' is present-->
+<!--PROBLEM! This doesn't actually verify anything other than some tile is available... it doesn't confirm anything!-->
+<!--Should NOT use the OpenLayers ID as this is liable to change, but need a better way of doing this.-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>OpenLayersDiv114</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

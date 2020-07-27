@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8082" />
+<title>getAllCategories_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">getAllCategories_Test</td></tr>
+</thead><tbody>
+<!--To verify the getAllCategories values-->
+<!--Setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>test-harness/conn-950-content-search/index.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id=&quot;catalogContent&quot; and @onclick=&quot;getCategories();&quot;]</td>
+	<td>getAllCategories</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;fileName&quot;]</td>
+	<td>contentsearch</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${getAllCategories}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='result']</td>
+	<td></td>
+</tr>
+<!--Verfiy 2 tables are returned-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='result']//table</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[1]/tr/th</td>
+	<td>Category Name : Environment</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[2]/table/thead[1]/tr/th</td>
+	<td>Category Name : Education</td>
+</tr>
+<!--Verify the first row of first table-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[1]</td>
+	<td>Layer Name</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[2]</td>
+	<td>Title</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[1]</td>
+	<td>Open Spaces</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[2]</td>
+	<td>Title</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[3]</td>
+	<td>Link</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[3]</td>
+	<td>URL</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[4]</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[4]</td>
+	<td>Description</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[5]</td>
+	<td>Icon-Url</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[5]</td>
+	<td>exact:http://server/icons/OS.png</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[6]</td>
+	<td>Icon-offsetX</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[6]</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[7]</td>
+	<td>Icon-offsetY</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[7]</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[8]</td>
+	<td>Icon-height</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[8]</td>
+	<td>20</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[2]/tr/th[9]</td>
+	<td>Icon-width</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr[1]/td[9]</td>
+	<td>20</td>
+</tr>
+<!--Adding check for .xml in filename-->
+<tr>
+	<td>click</td>
+	<td>//button[@id=&quot;reset&quot; and @onclick=&quot;reset();&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;fileName&quot;]</td>
+	<td>contentsearch.xml</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${getAllCategories}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='result']</td>
+	<td></td>
+</tr>
+<!--Verfiy 2 tables are returned-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='result']//table</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead[1]/tr/th</td>
+	<td>Category Name : Environment</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[2]/table/thead[1]/tr/th</td>
+	<td>Category Name : Education</td>
+</tr>
+<!--Pass Expected!-->
+
+</tbody></table>
+</body>
+</html>

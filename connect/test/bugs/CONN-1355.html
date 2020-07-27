@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>CONN-1355</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CONN-1355</td></tr>
+</thead><tbody>
+<!--Purpose: Bug fix for bug CONN-1367.-->
+<!--CONN-1367: Bug raised for right click on zoom slider control causing context menu to be displayed.-->
+<!--THIS TEST IS NOT TO BE RUN - SELENIUM CANNOT INTERACT CORRECTLY WITH THE SLIDER CONTROL.-->
+<!--Test has been checked in, in case we can find someway to work around the limitations of Selnium in the future.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1216,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Next line should be /connect only, revert once merged.-->
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>flat 26 frewell house portpool lane</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//*[@id=&quot;resultsContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@id='MapMarker']</td>
+	<td></td>
+</tr>
+<!--Is the map displaying our expected tile?-->
+<tr>
+	<td>storeExpression</td>
+	<td>//img[contains(@src, 'name=StreetProMM&amp;level=8&amp;row=94&amp;col=108')]</td>
+	<td>portpoolLaneTile</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${portpoolLaneTile}</td>
+	<td></td>
+</tr>
+<!--Is Marker in the centre?-->
+<!--Find the centre (x,y) of the Map Container in relation to the browser border - not just the centre of the MapContainer.-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id='myMap']</td>
+	<td>MapLeftEdge</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>//div[@id='myMap']</td>
+	<td>MapWidth</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapWidth} /2 + ${MapLeftEdge}</td>
+	<td>MapCentreX</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id='myMap']</td>
+	<td>MapTopEdge</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@id='myMap']</td>
+	<td>MapHeight</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapHeight} /2 +${MapTopEdge}</td>
+	<td>MapCentreY</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Map Centre co-ord = ${MapCentreX},${MapCentreY}</td>
+	<td></td>
+</tr>
+<!--Then work out the point of the Marker. This is in relation to the browser border too.-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerLeftEdge</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerWidth</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${markerWidth}/2 +${markerLeftEdge}</td>
+	<td>markerPointX</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerTopEdge</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerHeight</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${markerHeight}+${markerTopEdge}</td>
+	<td>markerPointY</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Marker Point co-ord = ${markerPointX},${markerPointY}</td>
+	<td></td>
+</tr>
+<!--Remove the callout for the searched for address.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${CallOut}//div[@id=&quot;Info_close&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Verify the Marker Point co-ord is within 20 pixels of the Map Centre.-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${MapCentreX} - ${markerPointX}) &lt; 20</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${MapCentreY} - ${markerPointY}) &lt; 20</td>
+	<td>true</td>
+</tr>
+<!--Click on the zoom slider on the corner of the underlying property that will produce a call out.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_ZoomSliderControl_0']</td>
+	<td>SliderControl</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>${SliderControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDownAt</td>
+	<td>${SliderControl}</td>
+	<td>29,204</td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${SliderControl}</td>
+	<td></td>
+</tr>
+<!--Store the callout object, pause 30 seconds and check it has not appeared.-->
+<tr>
+	<td>pause</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Test Passed !! :)-->
+
+</tbody></table>
+</body>
+</html>

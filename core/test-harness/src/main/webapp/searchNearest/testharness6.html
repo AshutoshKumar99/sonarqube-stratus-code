@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Search Nearest</title>
+        <script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+
+            dojo.addOnLoad(function() {
+                window.featureSearch = new stratus.search.FeatureSearch();
+            });
+
+           function showAjaxLoader()
+           {
+            var resultstable = dojo.byId("resultsDiv");
+            resultstable.innerHTML = "<div class='ajaxloader'><img src='ajax-loader.gif' alt='Loading'/></div>";
+           }
+
+
+            //
+            // In this page, we only want to display whether we got any results, and if those results had geometries or not.
+            // We're not interested in showing the results themselves.
+            //
+            function processResults(results)
+            {
+                var resultstable = dojo.byId("resultsDiv");
+                resultstable.innerHTML = "";
+                var hasAnyGeometries = false;
+
+                for(layer in results)
+                {
+                    if (results[layer].length == 0)
+                    {
+                        resultstable.innerHTML = "No results returned";
+                    }
+                    else
+                    {
+                        for(var i = 0; i < results[layer].length; i++)
+                        {
+                            if (results[layer][i].geometry)
+                            {
+                                hasAnyGeometries = true;
+                            }
+                        }
+
+                        if (hasAnyGeometries)
+                        {
+                            resultstable.innerHTML = "Failure: geometries were returned";
+                        }
+                        else
+                        {
+                            resultstable.innerHTML = "Success: geometries were not returned";
+                        }
+                    }
+                }
+            }
+
+
+            function handleException(x)
+            {
+                var resultstable = dojo.byId("resultsDiv");
+                resultstable.innerHTML = "There was an error with the Service:" + x.message;
+            }
+
+            function searchNearestFromInput()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:527990.5, y:184086.25, srs:'epsg:27700'},
+                    "tableName": ["ListedBuildings"],
+                    "attributeFields": ["Title"],
+                    "includeGeometry": false,
+                    "maxResults": 10,
+                    "maxDistance": 1610,
+                    "distanceUnit": "meter",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <p>This page tests the searchNearest function by calling it with "includeGeometry"="false"</p>
+
+        <div id="searchButtonDiv">
+            <button onclick="searchNearestFromInput();">Search</button>
+        </div>
+
+        <p>
+        <div id="resultsDiv">
+        </div>
+        <p>
+
+    </body>
+</html>

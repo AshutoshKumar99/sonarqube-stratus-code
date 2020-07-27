@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Verify map scrolling feature</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Verify map scrolling feature</td></tr>
+</thead><tbody>
+<!--TEST SCROLL MAP for connect it should be somethhing like this-->
+<!--=====================-->
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Check for the existence of pan controls-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='panControl_myMap']/button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='panControl_myMap']/button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='panControl_myMap']/button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='panControl_myMap']/button[4]</td>
+	<td></td>
+</tr>
+<!--SCROLL TOP (Pan button [1] - North)-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalNorth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>//div[@id='panControl_myMap']/button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>//div[@id='panControl_myMap']/button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollNorth</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalNorth']&lt;storedVars['AfterScrollNorth']</td>
+	<td>true</td>
+</tr>
+<!--SCROLL BOTTOM (Pan button [2] - South)-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalNorth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>//div[@id='panControl_myMap']/button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>//div[@id='panControl_myMap']/button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollNorth</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalNorth']&gt;storedVars['AfterScrollNorth']</td>
+	<td>true</td>
+</tr>
+<!--SCROLL LEFT (Pan button [3] - West)-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalWest</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>//div[@id='panControl_myMap']/button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>//div[@id='panControl_myMap']/button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollWest</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalWest']&lt;storedVars['AfterScrollWest']</td>
+	<td>true</td>
+</tr>
+<!--SCROLL RIGHT (Pan button [4] - East)-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalWest</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>//div[@id='panControl_myMap']/button[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>//div[@id='panControl_myMap']/button[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollWest</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalWest']&gt;storedVars['AfterScrollWest']</td>
+	<td>true</td>
+</tr>
+<!--==================================-->
+
+</tbody></table>
+</body>
+</html>

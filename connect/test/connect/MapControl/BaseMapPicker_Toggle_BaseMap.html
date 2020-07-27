@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Toggle BaseMap</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Toggle BaseMap</td></tr>
+</thead><tbody>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!--Purpose: Verify the base map picker control is working correctly. It assumes three base maps to be configured: MasterMap, Aerial, and LandLine-->
+<tr>
+	<td>waitForXpathCount</td>
+	<td>//div[@class='baseMapPickerControl']//button</td>
+	<td>3</td>
+</tr>
+<!--Store away some reused values. In FF (and possibly other browsers) //div[@class='baseMapPickerControl']//button[2] doesn't work so we use the descendant:: axis (see XPath spec for more details)-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>landLineButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>aerialButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>masterMapButtonLocator</td>
+</tr>
+<!--Verify the MasterMap base map is visible (given the preceeding case test we know that the others are not visible) -->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=MasterMap&quot;)]</td>
+	<td>masterMapTileLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=Aerial&quot;)]</td>
+	<td>aerialTileLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=LandLine&amp;level=8&amp;row=68&amp;col=69&amp;output=png&quot;)]</td>
+	<td>landLineTileLocator</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${masterMapTileLocator}</td>
+	<td></td>
+</tr>
+<!--Now let's click on Aerial and check if it's visible and the others aren't-->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<tr>
+	<td>click</td>
+	<td>${aerialButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${aerialTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${masterMapTileLocator}') || !selenium.isVisible('${masterMapTileLocator}')</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${landLineTileLocator}') || !selenium.isVisible('${landLineTileLocator}')</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${masterMapButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${aerialButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${landLineButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--And finally, the same for LandLine-->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<tr>
+	<td>click</td>
+	<td>${landLineButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${landLineTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${masterMapTileLocator}') || !selenium.isVisible('${masterMapTileLocator}')</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>!selenium.isElementPresent('${aerialTileLocator}') || !selenium.isVisible('${aerialTileLocator}')</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${masterMapButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${aerialButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${landLineButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--PASS EXPECTED-->
+<!--Return to original base map-->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<tr>
+	<td>click</td>
+	<td>${masterMapButtonLocator}/div</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

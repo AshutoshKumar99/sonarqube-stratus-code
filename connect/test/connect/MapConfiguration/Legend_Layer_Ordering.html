@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.216:8080" />
+<title>Legend_Layer_Ordering</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Legend_Layer_Ordering</td></tr>
+</thead><tbody>
+<!--This test loads 1 Base map layer, and 2 business layers. It then ensures that the ordering on the legend control reflects that of the ordering in the configuration.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Camden First Config File-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-mixedLayers3.xml</td>
+	<td></td>
+</tr>
+<!--Store the layer legend id's as variables-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;legend&quot;]</td>
+	<td>legendControl</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Conservation Map</td>
+	<td>Layer1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Development Map</td>
+	<td>Layer2</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${legendControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;${Layer1}&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;${Layer2}&quot;]</td>
+	<td></td>
+</tr>
+<!--Check the first div in the legend and ensure it is camdenplan-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][1]/div@id</td>
+	<td>${Layer1}</td>
+</tr>
+<!--Check the 2nd Div in the list and ensure it is PlanApps-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][2]/div@id</td>
+	<td>${Layer2}</td>
+</tr>
+<!--Pass- if Camden comes befor PlanApps for this config-->
+<!--***-->
+<!--Now we load up the default config and ensure PlanApps is first-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${legendControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;${Layer1}&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;${Layer2}&quot;]</td>
+	<td></td>
+</tr>
+<!--Check the first div in the legend and ensure it is PlanApps-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][1]/div@id</td>
+	<td>${Layer2}</td>
+</tr>
+<!--Check the 2nd Div in the list and ensure it is camdenplan-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][2]/div@id</td>
+	<td>${Layer1}</td>
+</tr>
+<!--Pass- if PlanApps comes before Camden for this config-->
+
+</tbody></table>
+</body>
+</html>

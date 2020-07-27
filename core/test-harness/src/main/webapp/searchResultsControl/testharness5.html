@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Search Nearest</title>
+<script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+            dojo.require("stratus.SearchResultsControl");
+            dojo.require("stratus.catalog.Icon");
+            dojo.require("stratus.catalog.Table");
+            dojo.require("stratus.search.Feature");
+			
+			var searchResultsContainer = null;
+			var layer = null;
+			
+            dojo.addOnLoad(function() 
+            {
+                window.featureSearch = new stratus.search.FeatureSearch();
+				var icon = new stratus.catalog.Icon("../mapMarker/house.png", "0", "0", "34", "20");
+                var resultIcon = new stratus.catalog.Icon("../mapMarker/house.png", "0", "0", "34", "20");
+                var params =
+                {
+                    name: "ListedBuildings",
+                    title: "Title",
+                    Description: "Description",
+                    icon: icon,
+                    resultIcon:resultIcon
+                };
+                layer = new stratus.catalog.Table(params);                
+                var summaryFields = new stratus.configuration.SummaryFields();
+                summaryFields.setTitleField("Title");
+		        layer.summaryFields = summaryFields;
+                searchResultsContainer = new stratus.SearchResultsControl({}, dojo.byId("container"));
+                searchResultsContainer.setTable(layer);
+                searchNearestFromInput();
+            });
+
+            function showAjaxLoader()
+            {
+                var resultstable = dojo.byId("resultslist");
+            }
+
+            function processResults(results)
+            {
+                searchResultsContainer.displayResults("camden square", layer, results);
+            }
+
+             function handleException(x)
+             {
+                var resultstable = dojo.byId("resultslist");
+                resultstable.innerHTML = "There was an error with the Service:" + 
+                         x.message;
+             }
+
+             function searchNearestFromInput()
+             {
+                showAjaxLoader();
+                 var f =
+                 {
+                     "point" : {x:527990.5, y:184086.25, srs:'epsg:27700'},
+                     "tableName": ["ListedBuildings"],
+                     "attributeFields": ["Title", "Description"],
+                     "includeGeometry": false,
+                     "maxResults": 10,
+                     "maxDistance": 0,
+                     "distanceUnit": stratus.util.DistanceUnits.METER,
+                     "callback": processResults,
+                     "exceptionCallback": handleException
+                 };
+                 window.featureSearch.searchNearest(f);
+             }
+
+             function searchNearestClear()
+             {
+                 searchResultsContainer.clearResults();
+             }
+        </script>
+
+    </head>
+    <body>
+        <br />
+
+        This test-harness page is present to test that the clean result function.
+        Clicking on a Clear button will clear the results from the result container.
+
+        <br /><br />
+        <input type="button" onclick="searchNearestClear();" name="Clear"
+                value="Clear" />
+        <p><div id="container" style="width: 50%; height: 50%;"></div></p>
+        <p><div id="resultslist" style="background-color:white;"></div></p>
+
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://lon01324:8080/connect/" />
+<title>Hide Recent Search Results</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Hide Recent Search Results</td></tr>
+</thead><tbody>
+<!--PBI 117:Hide Results - Create test script to verify the hide 'Recent Search Results' functionality-->
+<!--In order to test this functionality, we need to populate the cookies with the recent search data to display the'Show recent search results' link.We click on this link to view the 'recent search history' and to view the 'hide' link used to collapse the 'recent search view'-->
+<!--Please Note: This test is has a prerequisite that 'Hide Search Results' test has been run before for the cookies to  be populated with search data -->
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;cachedAddressContainer&quot;]</td>
+	<td>RecentSearch</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;cachedTitleLabel&quot;]</td>
+	<td>Recent search results</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;showRecentCachedHide&quot;]</td>
+	<td>Hide</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;cacheResultContainer&quot;]//table/tbody[1]/tr[1]/td[1]</td>
+	<td>145 POUND CITY KILBURN HIGH ROAD LONDON NW6 7HT</td>
+</tr>
+<!--Click on 'Hide' link to clear the 'Recent Search Results'. Store the initial  and expanded height of the Locator Results Container-->
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@id=&quot;cachedAddressContainer&quot;]</td>
+	<td>InitialContainerHeight</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id=&quot;showRecentCachedHide&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@id=&quot;cachedAddressContainer&quot;]</td>
+	<td>CollapseContainerHeight</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${CollapseContainerHeight}-${InitialContainerHeight})==0</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>//div[@id=&quot;showCachedAddressLink&quot;]</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

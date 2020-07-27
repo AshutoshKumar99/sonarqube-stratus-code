@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Regular Values Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Regular Values Test</td></tr>
+</thead><tbody>
+<!--To verify the Feature search regular values-->
+<!--Setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>test-harness/conn-545-feature-search-object/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='regularValues' and @onclick='searchRegular();']</td>
+	<td>regularValues</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${regularValues}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='result']//table</td>
+	<td></td>
+</tr>
+<!--verify 2 tables are returned-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='result']//table</td>
+	<td>2</td>
+</tr>
+<!--verify the table names-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[1]/table/thead/tr[1]/th</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div[2]/table/thead/tr[1]/th</td>
+	<td>ConservationAreas</td>
+</tr>
+<!--verify the first table's feature values-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='result']/div[1]/table/tbody/tr/td</td>
+	<td>8</td>
+</tr>
+<!--verify the second table's feature values-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id='result']/div[2]/table/tbody/tr/td</td>
+	<td>2</td>
+</tr>
+<!--Pass Expected!-->
+
+</tbody></table>
+</body>
+</html>

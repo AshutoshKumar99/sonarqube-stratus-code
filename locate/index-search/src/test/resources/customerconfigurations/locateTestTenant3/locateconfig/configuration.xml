@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locate-config>
+
+    <default-instance>Tenant3Gazetteer1</default-instance>
+
+    <engine>
+        <name>Lucene</name>
+        <class>com.pb.gazetteer.lucene.LuceneIndexSearchFactory</class>
+        <idle-period>5</idle-period>
+    </engine>
+
+     <instance>
+        <name>Tenant3Gazetteer1</name>
+        <engine-name>Lucene</engine-name>
+        <config>
+            <pending-directory>${config.dir}/locateTestTenant3/lucene/indexes/Tenant3Gazetteer1/pending</pending-directory>
+            <active-directory>${config.dir}/locateTestTenant3/lucene/indexes/Tenant3Gazetteer1/active</active-directory>
+            <srs>epsg:27700</srs>
+            <searchlogic>UKPreparserSearch</searchlogic>
+        </config>
+    </instance>
+</locate-config>

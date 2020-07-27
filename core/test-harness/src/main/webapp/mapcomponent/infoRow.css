@@ -1,0 +1,94 @@
+/**
+ * The overall inner container that holds all the callout info results. 
+ * Please ensure that you do use the "!important" css specifier for all the 
+ * css properties in this class - otherwise they will not be affected.  
+ */ 
+#Info_contentDiv
+{
+    height: 87%!important;
+    padding:5px!important;
+    margin: 5px!important;
+    overflow-x:hidden!important;
+    
+}
+
+/**
+ * This class handles the layer name / info header for the set of results being
+ * displayed from a single table/layer source. 
+ */ 
+.infoTableHeading
+{
+    background-color:black;
+    padding:5px;
+    clear: both;
+    color:white;
+    font-family:'Arial Black';
+    font-variant:small-caps;
+}
+
+/**
+ * This is responsible for handling each unique result set shown in the info
+ * box. It would be advisable to leave the width, height and clear properties 
+ * as they are - other properties can be modified without fear.   
+ */ 
+
+.infoRow
+{
+	width:300px;
+	height:auto;
+	padding:3px;
+	margin:10px;
+	border:1px solid #C0C0C0;
+    clear: both;
+    background-color:#FFFF99;
+
+}
+
+/**
+ * This class is responsible for the title of each unique result set. This class
+ * can be used as a prefix identifier for styling any anchor (<a>) tag contained
+ * within the infoTitle div.  
+ */ 
+.infoTitle
+{
+    font-weight:normal;
+    font-variant:small-caps;
+    color:#555555;
+}
+
+/**
+ * infoDescription class controls the styling of the main descriptive text for 
+ * each unique result. 
+ */
+.infoDescription
+{
+    color:black;
+    font-size:1.2em;
+}
+
+/**
+ * This class styles the record/data identifier text that is normally found to
+ * the right of the Title text for each unique result. You should not modify the
+ * float property if you wish the key to appear beside the title text.  
+ */ 
+.infoKey
+{
+    color:red;
+    float:right;
+	font-size:0.7em;
+}
+/**
+ * This class handles how images are displayed within search results (if any).
+ * Do not modify the float property if you wish for the image for each result
+ * to be displayed to the left of the title and descriptive text. Ensure you
+ * leave overflow set to hidden, if you want to avoid the size of the image
+ * distorting the callout info box.    
+ */ 
+.infoImage
+{
+    float:left;
+    overflow:hidden;
+    margin: 2px;
+    border: 2px dotted red;
+    padding: 2px;
+}

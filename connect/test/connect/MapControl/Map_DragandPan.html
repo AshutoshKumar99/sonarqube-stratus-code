@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>DragandPan</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">DragandPan</td></tr>
+</thead><tbody>
+<!--Purpose : Test the Map Drag and Pan functionality.-->
+<!--We are storing the Middle Rightmost tile-->
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=71&amp;output=png')]</td>
+	<td>MiddleRightInitialTile</td>
+</tr>
+<!--Waits till the Middle Right Tile is located !!-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${MiddleRightInitialTile}</td>
+	<td></td>
+</tr>
+<!--Store the Left and Top positions of the map container (not the tile)-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>ContainerLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>ContainerTop</td>
+</tr>
+<!--This command drags the current position and drop it to another location by a distance of 650 pixels-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${MiddleRightInitialTile}</td>
+	<td>+650,+650</td>
+</tr>
+<!--Stores the new positions of the container left and top-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>NewContainerLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>NewContainerTop</td>
+</tr>
+<!--This comapres the value of new left position-->
+<tr>
+	<td>verifyEval</td>
+	<td>${ContainerLeft}+650</td>
+	<td>${NewContainerLeft}</td>
+</tr>
+<!--This comapres the value of new top position-->
+<tr>
+	<td>verifyEval</td>
+	<td>${ContainerTop}+650</td>
+	<td>${NewContainerTop}</td>
+</tr>
+<!--Test Passed !!!!!!! :)-->
+
+</tbody></table>
+</body>
+</html>

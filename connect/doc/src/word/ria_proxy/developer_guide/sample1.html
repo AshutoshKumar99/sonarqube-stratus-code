@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+<head>
+<title>Remote Deployment Demo</title>
+
+<script type="text/javascript" src="dojo/dojo/dojo.js.uncompressed.js"></script>
+<script type="text/javascript" src="contextpath.js"></script>
+<script type="text/javascript" src="http://${proxy.host}/riaproxy/Proxy.aspx?req=http://${controller.host}/test-harness/openlayers/OpenLayers.js"></script>
+
+<link rel="stylesheet" type="text/css" href="http://${proxy.host}/riaproxy/Proxy.aspx?req=http://${controller.host}/test-harness/openlayers/theme/default/style.css"></link>
+<link rel="stylesheet" type="text/css" href="dojo/dijit/themes/dijit.css"></link>
+<link rel="stylesheet" type="text/css" href="dojo/dijit/themes/tundra/tundra.css"></link>
+<link rel="stylesheet" type="text/css" href="dojo/dojo/resources/dojo.css"></link>
+
+
+<script type="text/javascript">
+
+var djConfig = {
+
+parseOnLoad: true,
+
+};
+
+</script>
+
+<script type="text/javascript">
+            
+            
+		dojo.registerModulePath("stratus", "http://${proxy.host}/riaproxy/Proxy.aspx?req=http://${controller.host}/test-harness/widgets/stratus")
+
+		dojo.require("stratus.core");
+		dojo.require("stratus.MapControl");
+		dojo.require("stratus.LegendControl");
+		
+
+		dojo.addOnLoad(function() { 
+
+		
+			var callback = function(test)
+			{
+				return function mapCallback(map1)
+				{
+				// loading legend control
+				var legendControl = new stratus.LegendControl({}, dojo.byId('legend'), map1);
+
+				}
+			}
+
+			var myMap;
+			
+			myMap = new stratus.MapControl({configFile: "http://${proxy.host}/riaproxy/map.xml", callBackFunction: callback()}, dojo.byId('samplemap'));
+			if(window.badmapconfig && window.badmapconfig == true)
+			{
+				alert('Bad MapConfigFile or something else went wrong');
+			}
+			window.map = myMap;
+			
+			// Override the stylesheets for the RIA controls as the image references will not work
+			appMgr.loadStyleSheet("css/panControl.css");
+			appMgr.loadStyleSheet("css/zoomSlider.css");
+			appMgr.loadStyleSheet("css/legendControl.css");
+			appMgr.loadStyleSheet("css/baseMapPickerControl.css");
+		
+		});
+           
+            
+</script>
+
+</head>
+<body>
+
+<h1>Remote Deployment Demo</h1><br />
+<div id="mapContainer" style="width:300px;height:300px;">
+<div id="samplemap" style="width:100%;height:100%;"></div>
+</div>
+<br />
+<br />
+<div id="legendcontainer" style="height:200px;width:200px;border:1px solid red;">
+<div id="legend"></div>
+</div>
+
+</body>
+</html>

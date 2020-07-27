@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm8:8080/" />
+<title>test-wrong-summary-fields</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">test-wrong-summary-fields</td></tr>
+</thead><tbody>
+<!--
+    This test checks if CONN-417 was fixed. The configuration hast the show-all-info-fields attribute set to true and contains
+    illegal values for all summary fields. The expected behaviour is that upon a click on a map feature the callout shows 
+    all field values for that specific feature. The summary fields in the configuration should be entirely ignored (since
+    show-all-info-fields is true.
+-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-wrong-summary-fields.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//img[contains(@src, '/MapTilingService/RESTService/getTile?name=Conservation Map&amp;level=8&amp;row=69&amp;col=70')]</td>
+	<td>conservationMapTile</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${conservationMapTile}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>${conservationMapTile}</td>
+	<td>0,0</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>popup</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${popup}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>${popup}/descendant::div[contains(@class, 'emptyCallout')]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

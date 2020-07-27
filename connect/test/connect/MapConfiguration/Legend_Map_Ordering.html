@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Legend_Map_Ordering</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Legend_Map_Ordering</td></tr>
+</thead><tbody>
+<!--This test loads 1 Base map layer, and 2 business layers. It then ensures that the ordering on the legend control and the configuration is reflected in the map layer ordering.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Landline Base, then Camden Business, then PlanApps Business Config File-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-mixedLayers3.xml</td>
+	<td></td>
+</tr>
+<!--Store the layer legend id's and the respective map layers as variables-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;legend&quot;]</td>
+	<td>legendControl</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Conservation Map</td>
+	<td>Legend1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Conservation Map&quot;)]</td>
+	<td>BusinessLayer1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Development Map</td>
+	<td>Legend2</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Development Map&quot;)]</td>
+	<td>BusinessLayer2</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;getTile?name=LandLine&quot;)]</td>
+	<td>BaseLayer</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${legendControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;${Legend1}&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;${Legend2}&quot;]</td>
+	<td></td>
+</tr>
+<!--Check the legend order is camdenplan then PlanApps-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][1]/div@id</td>
+	<td>${Legend1}</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][2]/div@id</td>
+	<td>${Legend2}</td>
+</tr>
+<!--Check the map layers & ensure that the ordering matches our expectations (baselayer has highest z-index and business layers are ordered as CamdenPlan then PlanApps).-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${BaseLayer}/../../@style</td>
+	<td>regexp:(.*z-index:.*340.*)|(.*Z-INDEX:.*340.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${BusinessLayer1}/../../@style</td>
+	<td>regexp:(.*z-index:.*335.*)|(.*Z-INDEX:.*335.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${BusinessLayer2}/../../@style</td>
+	<td>regexp:(.*z-index:.*330.*)|(.*Z-INDEX:.*330.*)</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

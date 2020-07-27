@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><locate-config>
+    <default-instance>CamdenNLPG</default-instance>
+
+    <engine>
+        <name>Lucene</name>
+        <class>com.pb.gazetteer.lucene.LuceneIndexSearchFactory</class>
+        <idle-period>30</idle-period>
+    </engine>
+
+    <instance>
+        <name>Gaz1</name>
+        <engine-name>Lucene</engine-name>
+        <config>
+            <pending-directory>C:\\index\\Camden\\testRemote</pending-directory>
+            <active-directory>C:\\index\\Camden\\testLocal</active-directory>
+            <srs>epsg:27700</srs>
+            <searchlogic>DEFAULT_LOGIC</searchlogic>
+        </config>
+    </instance>
+
+</locate-config>

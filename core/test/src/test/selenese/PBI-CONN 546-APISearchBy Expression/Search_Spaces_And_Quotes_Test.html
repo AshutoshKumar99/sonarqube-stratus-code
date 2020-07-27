@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.219:8082/" />
+<title>Search_Spaces_And_Quotes_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Search_Spaces_And_Quotes_Test</td></tr>
+</thead><tbody>
+<!--Test for specifying Spaces and Quotes-->
+<!--Setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-546-api-search-by-column/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//input[@id='searchExpression']</td>
+	<td>textBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='searchQuery' and @onclick='searchQuery();']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${textBox}</td>
+	<td>Title='St John''s Wood'</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${Search}</td>
+	<td></td>
+</tr>
+<!--Waiting for the result table-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='result']/div/table/thead[1]/tr/th</td>
+	<td>Table Name : ConservationAreas</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div/table/thead[2]/tr/th[1]</td>
+	<td>KeyValue</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div/table/tbody/tr/td[1]</td>
+	<td>1970-03-01Z</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div/table/thead[2]/tr/th[2]</td>
+	<td>Title</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='result']/div/table/tbody/tr/td[2]</td>
+	<td>St John's Wood</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

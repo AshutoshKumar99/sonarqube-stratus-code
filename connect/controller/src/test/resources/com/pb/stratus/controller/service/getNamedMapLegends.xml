@@ -1,0 +1,26 @@
+<ns5:GetNamedMapLegendsResponse xmlns="http://www.mapinfo.com/midev/service/geometries/v1"
+                                xmlns:ns5="http://www.mapinfo.com/midev/service/mapping/v1"
+        >
+    <ns5:Legend layerName="testTable1" legendType="Cartographic" imageMimeType="image/png" title="testTable1">
+        <ns5:LegendRow>
+            <ns5:Description>testDescription1</ns5:Description>
+            <ns5:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR42mP4z8DwnxLMAGcgAWL5cANI0YTMRzGAXEMYyHU+igGjYTAaBoMjDCjBAD9D2yWbVvlbAAAAAElFTkSuQmCC</ns5:Image>
+        </ns5:LegendRow>
+        <ns5:LegendRow>
+            <ns5:Description>testDescription2</ns5:Description>
+            <ns5:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVR42mP4z8DwnxLMACYYGOA0DBDDhxtAjmY4Ta5mrAaQZdhoGIyGweAJA0owAD9D2yWSufpkAAAAAElFTkSuQmCC</ns5:Image>
+        </ns5:LegendRow>
+    </ns5:Legend>
+    <ns5:Legend layerName="testTable2" legendType="FeatureStyleOverride" imageMimeType="image/png" title="testTable2">
+        <ns5:LegendRow>
+            <ns5:Description>testDescription3</ns5:Description>
+            <ns5:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAL0lEQVR42mNgYGD4TyFm+H/g6n+yMdwABoYFaBLE8annAlJtxmnAaBiMhsHQDAMAIZMSbswLls4AAAAASUVORK5CYII=</ns5:Image>
+        </ns5:LegendRow>
+    </ns5:Legend>
+    <ns5:Legend layerName="testTable2" legendType="Cartographic" imageMimeType="image/png" title="testTable2">
+        <ns5:LegendRow>
+            <ns5:Description>testDescription4</ns5:Description>
+            <ns5:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVR42mNoYGD4TwlmABNkglEDRg0YNYDaBlCCATg0WcW7CiS1AAAAAElFTkSuQmCC</ns5:Image>
+        </ns5:LegendRow>
+    </ns5:Legend>
+</ns5:GetNamedMapLegendsResponse>

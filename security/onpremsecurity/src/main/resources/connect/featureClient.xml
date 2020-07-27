@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="featureServiceClient" factory-bean="featureServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="featureServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.mapinfo.midev.service.feature.ws.v1.FeatureServiceInterface"/>
+        <property name="address" value="${spatialserver.feature.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://www.mapinfo.com/midev/service/feature/ws/v1}FeatureService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://www.mapinfo.com/midev/service/feature/ws/v1}FeatureServiceInterface"/>
+            </bean>
+        </property>
+        <property name="wsdlLocation" value="${spatialserver.feature.wsdl}"/>
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+        </property>
+        <property name="properties">
+            <map>
+                <entry key="set-jaxb-validation-event-handler" value="false" />
+                <entry key="schema-validation-enabled" value="false" />
+            </map>
+        </property>
+        <!--<property name="features">
+            <list>
+                <bean class="org.apache.cxf.feature.LoggingFeature">
+                    <constructor-arg name="out" value="file:///C:/cxfmessagesFeature.log"/>
+					<constructor-arg name="in" value="file:///C:/cxfmessagesFeature.log"/>
+                </bean>
+
+            </list>
+        </property>-->
+    </bean>
+</beans>

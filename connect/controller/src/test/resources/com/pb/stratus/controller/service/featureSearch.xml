@@ -1,0 +1,310 @@
+<ns3:SearchIntersectsResponse xmlns="http://www.mapinfo.com/midev/service/common/v1"
+                              xmlns:ns2="http://www.mapinfo.com/midev/service/geometries/v1"
+                              xmlns:ns3="http://www.mapinfo.com/midev/service/feature/v1"
+                              xmlns:ns4="http://www.mapinfo.com/midev/service/featurecollection/v1"
+        >
+    <ns4:FeatureCollection>
+        <ns4:FeatureCollectionMetadata count="1">
+            <ns4:AttributeDefinitionList>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryAttributeDefinition" useType="Unspecified" srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0" dataType="Geometry" name="Obj"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleAttributeDefinition" useType="Unspecified" dataType="Style" name="MI_Style"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppNumber"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal01"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal02"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal03"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal04"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal05"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal06"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal07"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal08"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal09"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Proposal10"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="FlatNo"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Address01"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Address02"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Address03"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Address04"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Address05"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Address06"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="PostCode"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="CaseFilePt1"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="CaseFilePt2"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="CaseFilePt3"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="RegisterDate"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="ApplicationType"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="ApplicationTypeCode"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="DOECode"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="DecisionDate"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Decision"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="DecisionCode"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="DecisionLevel"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="CommitteeCode"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="CommitteeDate"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="DecisionDoE"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="S106Indicator"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="S106SigDate"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealDoERef"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealType"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealMethod"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealLodgedDate"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealDecision"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealDecisionCode"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="AppealDecisionDate"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="UpdUser"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="KeyValue"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Description"/>
+                <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Title"/>
+            </ns4:AttributeDefinitionList>
+            <ns4:Envelope srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0">
+                <ns2:Pos>
+                    <ns2:X>529090.0029082929</ns2:X>
+                    <ns2:Y>183680.0014017541</ns2:Y>
+                </ns2:Pos>
+                <ns2:Pos>
+                    <ns2:X>529105.3964373687</ns2:X>
+                    <ns2:Y>183699.89570706896</ns2:Y>
+                </ns2:Pos>
+            </ns4:Envelope>
+        </ns4:FeatureCollectionMetadata>
+        <ns4:FeatureList>
+            <ns4:Feature>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                    <ns2:FeatureGeometry xsi:type="ns2:MultiPolygon" srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0">
+                        <ns2:Polygon srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0">
+                            <ns2:Exterior>
+                                <ns2:LineString>
+                                    <ns2:Pos>
+                                        <ns2:X>529094.900474587</ns2:X>
+                                        <ns2:Y>183699.59579291847</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529098.5035662882</ns2:X>
+                                        <ns2:Y>183694.1973382095</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529103.796895515</ns2:X>
+                                        <ns2:Y>183685.69977061357</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529105.3964373687</ns2:X>
+                                        <ns2:Y>183682.90057187527</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529101.3975827346</ns2:X>
+                                        <ns2:Y>183680.0014017541</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529101.1997012682</ns2:X>
+                                        <ns2:Y>183680.0014017541</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529096.9040244345</ns2:X>
+                                        <ns2:Y>183687.39928413276</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529096.697897907</ns2:X>
+                                        <ns2:Y>183687.29931274895</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529096.5000164405</ns2:X>
+                                        <ns2:Y>183687.59922689945</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529096.3021349742</ns2:X>
+                                        <ns2:Y>183687.89914104994</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529096.697897907</ns2:X>
+                                        <ns2:Y>183688.29902658425</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529094.6036523873</ns2:X>
+                                        <ns2:Y>183691.69805362262</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529090.0029082929</ns2:X>
+                                        <ns2:Y>183698.19619354978</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529093.1030512669</ns2:X>
+                                        <ns2:Y>183699.89570706896</ns2:Y>
+                                    </ns2:Pos>
+                                    <ns2:Pos>
+                                        <ns2:X>529094.900474587</ns2:X>
+                                        <ns2:Y>183699.59579291847</ns2:Y>
+                                    </ns2:Pos>
+                                </ns2:LineString>
+                            </ns2:Exterior>
+                        </ns2:Polygon>
+                    </ns2:FeatureGeometry>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>PE9800886</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>Extension to form two, one bedroom flats.</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>(Plans submitted).</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>16A-16B</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>Pratt Street,</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>London</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>NW1</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>J12</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>17</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>2</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>11/12/98 00:00:00</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>Full Planning Application</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>TPFU</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>MIOT</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>D</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>
+</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>DO/Mus</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>No: PE9800886</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>: Extension to form two, one bedroom flats. (Plans submitted)....</ns4:Value>
+                </ns4:AttributeValue>
+                <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                    <ns4:Value>Pratt Street,</ns4:Value>
+                </ns4:AttributeValue>
+            </ns4:Feature>
+        </ns4:FeatureList>
+    </ns4:FeatureCollection>
+</ns3:SearchIntersectsResponse>

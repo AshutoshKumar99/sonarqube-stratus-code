@@ -1,0 +1,15 @@
+<ns5:DescribeNamedMapResponse xmlns="http://www.mapinfo.com/midev/service/geometries/v1"
+                              xmlns:ns5="http://www.mapinfo.com/midev/service/mapping/v1"
+                              xmlns:ns6="http://www.mapinfo.com/midev/service/table/v1"
+        >
+    <ns5:Map name="testMap1">
+        <ns5:Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns5:FeatureLayer">
+            <ns5:VisibilityConstraintList/>
+            <ns6:Table xsi:type="ns6:NamedTable" name="/testTable1"/>
+        </ns5:Layer>
+        <ns5:Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns5:FeatureLayer">
+            <ns5:VisibilityConstraintList/>
+            <ns6:Table xsi:type="ns6:NamedTable" name="/testTable2"/>
+        </ns5:Layer>
+    </ns5:Map>
+</ns5:DescribeNamedMapResponse>

@@ -1,0 +1,11 @@
+The tests described here are not all used in the suite. 
+
+There needs to be some rationalisation of which tests are appropriate for the Connect app, which ones should be tested on the core code & which should be on the RIA Controls themselves.
+
+Only after that rationalisation of the test purposes will the modifications be made to include the tests in the appropriate place in the SVN structure & point to the appropriate .xml configuration file.
+
+Sandra Polhill 12/05/09.
+
+Scripts for CONN-1355 and CONN-1367 currently do not adequately test the scenarios for the bugs, and should not be run at this time - the scripts have been committed in case fixes can be established.
+
+Chris Marks 18/05/09

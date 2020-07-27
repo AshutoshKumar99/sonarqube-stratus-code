@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>VerifyLayerPresent</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">VerifyLayerPresent</td></tr>
+</thead><tbody>
+<!--Make sure the layer data is available and check the source of the image.-->
+<!--This confirms that the image has been received from Envinsa 5.0 Mapping Service-->
+<!--Timeout set high to avoid test failing when Connect is initialising the MapComponent page.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Test fails if the Business Layer image is not displayed-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div[2]/div[1]/img</td>
+	<td>CamdenMapLayer</td>
+</tr>
+<!--wait for an image attribute (class) to be available, then we know we have something to test!-->
+<tr>
+	<td>waitForAttribute</td>
+	<td>${CamdenMapLayer}@class</td>
+	<td>olTileImage</td>
+</tr>
+<!--A long waitFor is required for this condition to be met when running in TeamCity.-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CamdenMapLayer}&quot;, window.document); img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<!--Ensure the '+' is no longer available.-->
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>OpenLayers_Control_MaximizeDiv</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

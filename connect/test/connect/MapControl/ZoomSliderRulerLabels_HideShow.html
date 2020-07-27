@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Default Appearance</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Default Appearance</td></tr>
+</thead><tbody>
+<!--Purpose:To check the presence of marker after ZoomIn, address is verified manually-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Verify Entire Slider is present-->
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//*[@id=&quot;sliderContainer_stratus_ZoomSliderControl_0&quot;]</td>
+	<td></td>
+</tr>
+<!--Verify Slider Ruler is present-->
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;sliderContainer_stratus_ZoomSliderControl_0&quot;]</td>
+	<td>SliderRuler</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SliderRuler}</td>
+	<td></td>
+</tr>
+<!--Hover on vertical ruler-->
+<tr>
+	<td>mouseOver</td>
+	<td>${SliderRuler}</td>
+	<td></td>
+</tr>
+<!--Verify Ruler's label frame is present-->
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//*[contains(@class, 'zoomSliderControl')]//*[contains(@class, 'dijitRuleContainer')][2]</td>
+	<td>SliderRulerLabels</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SliderRulerLabels}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>${SliderRulerLabels}</td>
+	<td></td>
+</tr>
+<!--Verify Slider Ruler Labels-->
+<tr>
+	<td>verifyText</td>
+	<td>${SliderRulerLabels}/Div[1]/span</td>
+	<td>Entire District</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SliderRulerLabels}/Div[3]/span</td>
+	<td>Locality</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SliderRulerLabels}/Div[5]/span</td>
+	<td>Street</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SliderRulerLabels}/Div[10]/span</td>
+	<td>Property</td>
+</tr>
+<!--Move mouse away after check is complete-->
+<tr>
+	<td>mouseOut</td>
+	<td>${SliderRuler}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${SliderRulerLabels}</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

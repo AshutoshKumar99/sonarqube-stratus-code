@@ -1,0 +1,53 @@
+/**
+ * The CSS properties in this file are mainly responsible for the search Result's
+ * control and it's appearance. 
+ */ 
+ 
+ /* This is a reference to the overall container div for each search results
+ container control that displays the selected search result object */
+.searchResultsContainer1
+{
+  overflow:auto;
+  overflow-x:hidden;
+}
+
+/*  Inner container which holds all the searchResults rows */
+.searchResultsContainer1 div.containerMasterDiv
+{
+    border:1px solid #000000;
+}
+
+/*  Contains a 'row' within  each of the searchResults rows */
+.searchResultsContainer1 div.normalSearchResultRowDiv
+{
+	padding-left: 2px;
+	padding-bottom: 5px;
+	padding-top: 2px;
+	background-color: #FF9933;
+}
+
+/*  Contains a 'row' within  each of the searchResults rows.  Alternative row style */
+.searchResultsContainer1 div.alternativeSearchResultRowDiv
+{
+	padding-left: 2px;
+	padding-bottom: 5px;
+	padding-top: 2px;
+	background-color: #FFFF66;
+}
+
+/* Styling for the introduction div which contains the introduction text styling for the search results container*/
+.searchResultsContainer1 div.introductionSearchResultsDiv
+{
+	border-bottom:1px solid #000000;
+	font-weight: bold;
+	padding: 3px;
+	background-color: #ffffff;
+}
+
+/* Styling for the empty div which contains the empty results text styling for the search results container*/
+.searchResultsContainer1 div.emptySearchResultsDiv
+{
+	padding: 3px;
+	font-weight: bold;
+	background-color: #ffffff;
+}

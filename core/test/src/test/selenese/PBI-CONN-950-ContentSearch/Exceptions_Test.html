@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://wingreen:8082" />
+<title>Exceptions_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Exceptions_Test</td></tr>
+</thead><tbody>
+<!--To verify the Exceptions-->
+<!--Setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>test-harness/conn-950-content-search/index.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id=&quot;catalogContent&quot; and @onclick=&quot;getCategories();&quot;]</td>
+	<td>getAllCategories</td>
+</tr>
+<!--1 Checking for non existent config file-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;fileName&quot;]</td>
+	<td>wrongfile</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${getAllCategories}</td>
+	<td></td>
+</tr>
+<!--Verfiy Exception is returned-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='errorClass']</td>
+	<td>stratus.FileNotFoundException</td>
+</tr>
+<!--2 Checking for invaild config file-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;fileName&quot;]</td>
+	<td>invalidcontentsearch.xml</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${getAllCategories}</td>
+	<td></td>
+</tr>
+<!--Verfiy Exception is returned-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='errorClass']</td>
+	<td>stratus.InvalidConfigFileException</td>
+</tr>
+<!--3 Checking for blank config file-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;fileName&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${getAllCategories}</td>
+	<td></td>
+</tr>
+<!--Verfiy Exception is returned-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='errorMessage']</td>
+	<td>Config file required</td>
+</tr>
+<!--Pass Expected!-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+<head>
+    <title>Stratus RIA Services</title>
+    <link rel="stylesheet" type="text/css" href="css/riaAPIDocContentpage.css" />
+    <script src="js/forms.js" type="text/javascript" language="javascript"></script>
+    <script type="text/javascript">
+
+        function resizeContent()
+        {
+            var body = document.getElementsByTagName("body")[0];
+            var height = body.offsetHeight;
+            var banner = document.getElementById("banner");
+            height -= banner.offsetHeight;
+            var content = document.getElementById("content");
+            content.style.height = height + "px";
+            var toc = document.getElementById("toc");
+            toc.style.height = height + "px";
+        }
+
+        // When the index tree is toggled, expand and collapse the selected branch
+        function treeNodeSelected(el)
+        {
+            if (el == null)
+            {
+                return;
+            }
+
+            var treeNodeImage;
+
+            for (var i=0, a=el.childNodes, childNode; childNode=a[i]; i++)
+            {
+                if (childNode.id == "treeNodeToggle")
+                {
+                    treeNodeImage = childNode;
+                }
+                else if (childNode.className == "treeSubnodesHidden")
+                {
+                    childNode.className = "treeSubnodes";
+                    treeNodeImage.className = "treeLinkImageExpand";
+                    break;
+                }
+                else if (childNode.className == "treeSubnodes")
+                {
+                    childNode.className = "treeSubnodesHidden";
+                    treeNodeImage.className = "treeLinkImageCollapse";
+                    break;
+                }
+            }
+        }
+
+
+    </script>
+</head>
+
+<body onload="resizeContent();" onresize="resizeContent();">
+<div id="banner">
+    <div id="companyLogo"></div>
+    <div id="productLogo"></div>
+</div>
+<div id="toc">
+    <div class="index">
+        <div id="classList">
+            <div class="treeNode" id="treeNode_ria" title="namespace_ria">
+                <div id="treeNodeToggle" class="treeLinkImageExpand" onclick="treeNodeSelected(this.parentNode)"></div>
+                <span class="classListTitle" style="cursor: pointer;">ria</span>
+                <div class="treeSubnodes">
+                    <div class="treeNode" id="treeNode_locateService" title="namespace_locateService">
+                        <div id="treeNodeToggle" class="treeClassNode"></div>
+						<span class="classListTitle" style="cursor: pointer;">
+							<a href="./riaAPIDocumentation.html">LocateService</a>
+						</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div id="formElement">
+        <h1>RIA Locate Service</h1>
+        <p class="description">
+            The LocateService class provides methods to enable the user to perform intelligent searches for a
+            particular query.
+            Results are returned either as a <i>List</i> or as <i>JSON</i>.
+            Callers must register callbacks with the deferred object using <code>addCallback(...)</code> to handle the
+            returned results and, optionally, <code>addErrback(...)</code> to handle any errors returned.
+        <p>For example:
+                 <pre>
+                        function doSearch()
+                        {
+                            ...
+                            var locateService = ria.LocateService("/riaproxy?url=","http://localhost:8080");
+                            var deferredResult = locateService.search(tenant, gazetteer, srs, count, query);
+                            deferredResult.addCallback(handleResults);
+                            deferredResult.addErrback(handleError);
+                        }
+
+                        function handleResults(output) {
+                            if (output.features) {
+                               ...
+                            }
+                        }
+
+                        function handleError(error) {
+                            ...
+                        }
+                 </pre>
+        </p>
+        <table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class ria.search.FeatureService.">
+            <caption>Method Summary</caption>
+            <thead>
+            <tr>
+                <th scope="col">Method Attributes</th>
+                <th scope="col">Method Name and Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="nameDescription">
+                    <div class="fixedFont"><b><a href="./riaAPIDocumentation.html#list">list</a></b>(tenant)
+                    </div>
+                    <div class="description">List all the gazetteers of the given tenant.</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="nameDescription">
+                    <div class="fixedFont"><b><a href="./riaAPIDocumentation.html#describe">describe</a></b>(tenant, gazetteer)
+                    </div>
+                    <div class="description">Give detailed information about the gazetteer of a tenant.</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="nameDescription">
+                    <div class="fixedFont"><b><a href="./riaAPIDocumentation.html#search">search</a></b>(tenant, gazetteer, srs, count, query)
+                    </div>
+                    <div class="description">List search results for a query string entered by a particular tenant for a particular gazetteer.
+                        The SRS and Count fields are optional.</div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="sectionTitle">
+            Constructor Detail
+        </div>
+        <a name="constructor"> </a>
+        <div class="fixedFont">
+            <b>ria.LocateService</b>(proxyPath, connectHost)
+        </div>
+        <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>proxyPath</b>
+            </dt>
+            <dd>ria proxy application name along with url param format</dd>
+
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>connectHost</b>
+            </dt>
+            <dd>the machine name (along with the port number) on which connect application is running</dd>
+        </dl>
+
+        <div class="sectionTitle">
+            Method Detail
+        </div>
+
+        <a name="list"></a>
+        <div class="fixedFont">
+            <b>list</b>(tenant)
+        </div>
+        <div class="description">
+            Lists all the valid gazetteers for the given tenant.
+        </div>
+        <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>tenant</b>
+            </dt>
+            <dd>the tenant name for which all the valid gazetteer names need to be listed</dd>
+        </dl>
+        <dl class="detailList">
+            <dt class="heading">Returns:</dt>
+            <dd>
+                <span class="light fixedFont">{ArrayList}</span>
+                a list of all the valid gazetteer names
+            </dd>
+        </dl>
+
+        <hr />
+
+        <a name="describe"></a>
+        <div class="fixedFont">
+            <b>describe</b>(tenant, gazetteer)
+        </div>
+        <div class="description">
+            Gives detailed information about the gazetteer of a particular tenant.
+        </div>
+        <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>tenant</b>
+            </dt>
+            <dd>the tenant name for which the information of the given gazetteer name will be provided</dd>
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>gazetteer</b>
+            </dt>
+            <dd>the gazetteer name the information which needs to be extracted</dd>
+        </dl>
+        <dl class="detailList">
+            <dt class="heading">Returns:</dt>
+            <dd>
+                <span class="light fixedFont">{JSON}</span>
+                a json giving detailed information about the gazetteer for the given tenant
+            </dd>
+        </dl>
+
+        <hr />
+
+        <a name="search"></a>
+        <div class="fixedFont">
+            <b>search</b>(tenant, gazetteer, srs, count, query)
+        </div>
+        <div class="description">
+            List search results for a query string entered by a particular tenant
+            for a particular gazetteer. The SRS and Count fields are optional.
+        </div>
+        <dl class="detailList">
+            <dt class="heading">Parameters:</dt>
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>tenant</b>
+            </dt>
+            <dd>the tenant name for which the given query string needs to be searched</dd>
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>gazetteer</b>
+            </dt>
+            <dd>the gazetteer name............</dd>
+            <dt>
+                <span class="light fixedFont">{String} {Optional}</span> <b>srs</b>
+            </dt>
+            <dd>the srs...........</dd>
+            <dt>
+                <span class="light fixedFont">{String} {Optional}</span> <b>count</b>
+            </dt>
+            <dd>the number of search results that need to be populated</dd>
+            <dt>
+                <span class="light fixedFont">{String}</span> <b>query</b>
+            </dt>
+            <dd>the query string for which information needs to be searched</dd>
+        </dl>
+        <dl class="detailList">
+            <dt class="heading">Returns:</dt>
+            <dd>
+                <span class="light fixedFont">{JSON}</span>
+                a json giving multiple search results for the given query string
+            </dd>
+        </dl>
+
+    </div>
+</div>
+</body>
+</html>

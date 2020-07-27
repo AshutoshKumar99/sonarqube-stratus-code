@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8081" />
+<title>pan-north</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">pan-north</td></tr>
+</thead><tbody>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!-- This test case verifies that the pan control buttons pan the map by 1/4th 
+     of the map width/height in the respective directions -->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[contains(@class, 'north')]</td>
+	<td>north</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${mapLocator}</td>
+	<td>mapHeight</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${mapHeight} / 4</td>
+	<td>panAmountVertical</td>
+</tr>
+<!--Check for the existence of pan controls-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[contains(@class, 'panControl')]</td>
+	<td></td>
+</tr>
+<!-- We use a specific tile to track the effect of panning -->
+<tr>
+	<td>storeExpression</td>
+	<td>//img[contains(@src, '/MapTiling/RESTService/getTile?name=StreetProMM&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<!-- Store the tile offset from the left-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>tileTop</td>
+</tr>
+<!-- Pan to the north. XXX due to the way the button events are interpreted 
+     we have to simulate the full click event sequence of the browser -->
+<tr>
+	<td>mouseDown</td>
+	<td>${north}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${north}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${north}</td>
+	<td></td>
+</tr>
+<!-- Pause until the animation finishes -->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>tileTopNew</td>
+</tr>
+<!-- 
+    Verify that the pan amount is equal to the expected verical pan amount 
+    (+/- 10px). Note that we expect the old tile top offset to be less than 
+    the new top offset (which corresponds to the viewport panning to the North) 
+-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${panAmountVertical} - (${tileTopNew} - ${tileTop})) &lt; 10</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

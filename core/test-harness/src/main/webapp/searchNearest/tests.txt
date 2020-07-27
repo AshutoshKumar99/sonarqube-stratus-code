@@ -1,0 +1,85 @@
+1. Call searchNearest function with a point in one coordinate system, but searching a table in another coordinate system.
+   (Assuming chosen point and search distance are ok and would normally return results)
+   = should return results with distance rounded to one decimal place in miles.
+   testharness1.html
+
+2. Call function with units of "mile"
+   = should return results with "Distance" property in miles.
+   testharness2.html
+
+3. Call function with units of "meter"
+   = should return results with "Distance" property in meters.
+   testharness3.html
+
+4. Call function with a point outside the bounds of the table being searched.
+   = Should return no results, and not report an error.
+   testharness4.html
+
+5. Call searchNearest function with includeGeometry = true
+   = should return results whose "geometry" property is not null.
+   testharness5.html
+
+6. Call searchNearest function with includeGeometry = false
+   = should return results whose "geometry" property is null.
+   testharness6.html
+
+7. Call searchNearest function with includeGeometry parameter missing. 
+   = Should behave as if includeGeometry = false
+   testharness7.html
+
+8. Call function with a point having x and y = "" or null.
+    = Function should return an error stating that the coordinates cannot be null or blank and must be numeric.
+    testharness8.html
+    
+9. Call function with a point having srs="" or null.
+    = Function should return an error stating that coordinate projection srs cannot be null or blank.
+    testharness9.html   
+    
+10. Call function with tableName = "" or null.
+    = Function should return an error stating that the tableName is a mandatory field.
+    testharness10.html
+
+11. Call function with attributeFields = "" or null.
+    = Function should return values with all attributes (the default)
+    testharness11.html     
+    
+12. Call searchNearest function with includeGeometry = "" or null
+   = Should behave as if includeGeometry = false, i.e. no geometries returned.
+   testharness12.html
+
+13. Call function with maxResults = "" or null.
+    = Function should return an error stating that the maxResults is a mandatory field.
+    testharness13.html 
+
+14. Call function with maxDistance = ""
+    = Function should return results.
+    testharness14.html    
+    
+15. Call function with maxDistance = null
+    = Function should return results.
+    testharness14.html         
+    
+16. Call function with null or blank distanceUnit paramater.
+    = Function should return one or more results with the distanceUnit should default to "mile".
+    testharness15.html 
+
+17. Call function with tableName parameter missing.
+    = Function should return an error stating that the tableName is a mandatory field.
+    testharness16.html   
+
+18. Call function with maxResults parameter missing.
+    = Function should return an error stating that the maxResults is a mandatory field.
+    testharness17.html   
+
+19. Call function with maxDistance parameter missing.
+    = Function should return one or more results.
+    testharness18.html 
+
+20. Call function with tableName parameter incorrect.
+    = Function should return return a specific error stating that the the table name was not recognised.
+    testharness19.html
+
+
+FIXME 11 and 17, 14 and 18, and 15 and 19 should be merged into one page 
+respectively or split into three speparate ones (no param, null, empty string)
+

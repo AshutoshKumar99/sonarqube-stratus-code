@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm4:8080" />
+<title>ContextMenuSizeText</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ContextMenuSizeText</td></tr>
+</thead><tbody>
+<!--Test the size and contents of the right click context menu.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--Open the context menu - "contextMenu" command is more reliable than "contextMenuAt".-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div/div[2]/img</td>
+	<td>CenterTile</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CenterTile}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>75000</td>
+</tr>
+<tr>
+	<td>contextMenu</td>
+	<td>${CenterTile}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<!-- Verify the Context Menu gets displayed & is the right size-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementWidth</td>
+	<td>map_menu_div_myMap</td>
+	<td>120</td>
+</tr>
+<!--Check the text is correct & in the correct order-->
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_0']/td[2]</td>
+	<td>FirstMenuItem</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_1']/td[2]</td>
+	<td>SecondMenuItem</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${FirstMenuItem}</td>
+	<td>Zoom Out</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SecondMenuItem}</td>
+	<td>Zoom In</td>
+</tr>
+<!--PASS expected-->
+
+</tbody></table>
+</body>
+</html>

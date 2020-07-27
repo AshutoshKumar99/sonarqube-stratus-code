@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.30:8080/" />
+<title>LocatorSearch_MapAddress</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorSearch_MapAddress</td></tr>
+</thead><tbody>
+<!--Purpose: Search for address, Make sure map recenters also check for Marker Position.-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<!--Insert a searchable value-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>20 KING HENRY'S ROAD LONDON NW3 3RP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Click on first row-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}//table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=68&amp;output=png&quot;)]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${tileLocator}</td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${tileLocator}</td>
+	<td>tileLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>tileTop</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${markerLocator}</td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${markerLocator}</td>
+	<td>markerLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${markerLocator}</td>
+	<td>markerTop</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>${markerLeft} - ${tileLeft}</td>
+	<td>differenceLeft</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>${markerTop} - ${tileTop}</td>
+	<td>differenceTop</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${differenceLeft}</td>
+	<td>regexp:211|221|231</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${differenceTop}</td>
+	<td>regexp:185</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

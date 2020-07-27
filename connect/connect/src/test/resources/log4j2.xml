@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="default" fileName="$logs/connect.log"
+                     filePattern="$logs/connect-%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss,SSS} [%C] [thread=%t] %n [%p] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="default"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-config>
+  <tableName>ConservationAreas_NU</tableName>
+  <desc>uête</desc>
+  <comments>uête</comments>
+  <column id="0">
+    <columnName>Name</columnName>
+    <columnType>STRING</columnType>
+    <operator>Like</operator>
+    <displayType>Choisir dans la liste</displayType>
+    <label>name</label>
+  </column>
+</query-config>

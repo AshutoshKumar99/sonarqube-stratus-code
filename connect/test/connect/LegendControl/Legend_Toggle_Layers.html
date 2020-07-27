@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Toggle between Layers</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Toggle between Layers</td></tr>
+</thead><tbody>
+<!--Purpose: validate unchecking of a layer selection removes the selected layer from view.-->
+<!--Check for the initial 'on' state of the checkbox-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Conservation Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>CamdenMapCheckbox</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>${CamdenMapCheckbox}</td>
+	<td></td>
+</tr>
+<!--Check for the presence of the Camden layer-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='OpenLayers.Layer.TileServer_10']/div[1]/img</td>
+	<td>CamdenMapLayer</td>
+</tr>
+<tr>
+	<td>waitForAttribute</td>
+	<td>${CamdenMapLayer}@class</td>
+	<td>olTileImage</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CamdenMapLayer}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<!--Uncheck the checkbox-->
+<tr>
+	<td>click</td>
+	<td>${CamdenMapCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Verifying that after unchecking the layer is removed-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${CamdenMapLayer}</td>
+	<td></td>
+</tr>
+<!--Remove the Planning layer as well.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Development Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>PlanningMapCheckbox</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>${PlanningMapCheckbox}</td>
+	<td></td>
+</tr>
+<!--Check for the presence of the Planning map layer-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='OpenLayers.Layer.MappingService_12']/div[1]/img</td>
+	<td>PlanningMapLayer</td>
+</tr>
+<tr>
+	<td>waitForAttribute</td>
+	<td>${PlanningMapLayer}@class</td>
+	<td>olTileImage</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${PlanningMapLayer}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<!--Uncheck the checkbox-->
+<tr>
+	<td>click</td>
+	<td>${PlanningMapCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Verifying that after unchecking the layer is removed-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${PlanningMapLayer}</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

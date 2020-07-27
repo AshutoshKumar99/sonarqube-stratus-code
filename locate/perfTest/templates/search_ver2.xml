@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:web="http://webservice.gazetteer.pb.com/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <web:search>
+            <searchParameters>
+                <searchString>{3}</searchString>
+                <maxRecords>{2}</maxRecords>
+                <gazetteerName>{1}</gazetteerName>
+				<tenantName>{0}</tenantName>
+            </searchParameters>
+        </web:search>
+    </soapenv:Body>
+</soapenv:Envelope>

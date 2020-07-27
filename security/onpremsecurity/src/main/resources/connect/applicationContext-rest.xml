@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+              http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+              http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <jaxrs:server id="restService" address="/rest">
+        <jaxrs:features>
+            <cxf:logging/>
+        </jaxrs:features>
+
+        <jaxrs:serviceBeans>
+            <ref bean="restLocateService"/>
+        </jaxrs:serviceBeans>
+
+        <jaxrs:providers>
+            <bean class="com.pb.stratus.connect.services.rest.LocatorJSONProvider"/>
+            <bean class="com.pb.stratus.connect.services.rest.LocatorExceptionProvider"/>
+            <!--            <ref bean="oAuthInFirst"/>-->
+        </jaxrs:providers>
+    </jaxrs:server>
+
+    <jaxrs:server id="restAnalyst" address="/rest/Service">
+        <jaxrs:features>
+            <cxf:logging/>
+        </jaxrs:features>
+
+        <jaxrs:serviceBeans>
+            <ref bean="restAnalystService"/>
+        </jaxrs:serviceBeans>
+
+        <jaxrs:providers>
+            <bean class="com.pb.stratus.connect.services.rest.LocatorJSONProvider"/>
+            <bean class="com.pb.stratus.connect.services.rest.LocatorExceptionProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+
+
+    <bean id="restLocateService" class="com.pb.stratus.connect.services.rest.RESTLocateService"/>
+
+    <bean id="restAnalystService" class="com.pb.stratus.connect.services.rest.RESTAnalystService"/>
+
+    <bean id="jwtAuthorizer" class="com.pb.stratus.onpremsecurity.http.JWTRequestAuthorizerImpl">
+        <property name="jwtAuthorizationHandler" ref="jwtAuthorizationHandler"/>
+    </bean>
+
+    <bean id="httpRequestExecutorFactory" class="com.pb.stratus.onpremsecurity.http.HttpRequestExecutorFactoryImpl">
+        <property name="requestAuthorizer" ref="jwtAuthorizer"/>
+    </bean>
+
+    <bean id="httpRequestExecutorRoutingFactory"
+          class="com.pb.stratus.onpremsecurity.http.HttpRequestExecutorRoutingFactory"/>
+
+    <bean id="basicAuthHeaderAuthorizer"
+          class="com.pb.stratus.onpremsecurity.http.BasicAuthenticationRequestAuthorizerImpl">
+        <property name="anonymousUsername" value="${anonymousUsername}"/>
+        <property name="anonymousPassword" value="${anonymousPassword}" />
+    </bean>
+
+    <bean id="httpRequestExecutorFactoryWithBasicAuthn"
+          class="com.pb.stratus.onpremsecurity.http.HttpRequestExecutorFactoryImpl">
+        <property name="requestAuthorizer" ref="basicAuthHeaderAuthorizer"/>
+    </bean>
+
+    <bean id="httpRequestExecutorWithTokenAuthn" factory-bean="httpRequestExecutorFactory"
+          factory-method="create"/>
+
+    <bean id="httpRequestExecutorWithBasicAuthn" factory-bean="httpRequestExecutorFactoryWithBasicAuthn"
+          factory-method="create"/>
+
+    <bean id="clientHttpRequestFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory"/>
+
+    <bean id="spectrumTokenService" class="com.pb.stratus.onpremsecurity.authentication.SpectrumTokenService">
+        <constructor-arg index="0"  type="java.lang.String" value="${spectrumserver.token.url}"/>
+        <constructor-arg index="1"  type="java.lang.String" value="${spectrumserver.token.logout.url}"/>
+        <constructor-arg index="2"  type="java.lang.Integer" value="${spectrumserver.token.ttl}"/>
+        <constructor-arg index="3"   ref="httpRequestExecutorWithBasicAuthn"/>
+        <constructor-arg index="4"   ref="httpRequestExecutorWithTokenAuthn"/>
+        <constructor-arg index="5"   ref="clientHttpRequestFactory"/>
+    </bean>
+
+    <bean id ="simpleClientHttpRequestFactory"  class="org.springframework.http.client.SimpleClientHttpRequestFactory"/>
+
+    <bean id= "restClient" class="com.pb.stratus.onpremsecurity.http.RestClient">
+        <constructor-arg  ref="httpRequestExecutorWithTokenAuthn"></constructor-arg>
+        <constructor-arg  ref="clientHttpRequestFactory"></constructor-arg>
+    </bean>
+</beans>

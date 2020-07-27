@@ -1,0 +1,208 @@
+<ns4:FeatureCollection>
+    <ns4:FeatureCollectionMetadata count="8">
+        <ns4:AttributeDefinitionList>
+            <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryAttributeDefinition" useType="Unspecified" srsName="mapinfo:coordsys 1, 104" dataType="Geometry" name="Obj"/>
+            <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleAttributeDefinition" useType="Unspecified" dataType="Style" name="MI_Style"/>
+            <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Title"/>
+            <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="LiveDepartureBoard"/>
+            <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="Email"/>
+            <ns4:AttributeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:ScalarAttributeDefinition" dataType="Double" name="Distance"/>
+        </ns4:AttributeDefinitionList>
+        <ns4:Envelope srsName="epsg:4326">
+            <ns2:Pos>
+                <ns2:X>-0.175202</ns2:X>
+                <ns2:Y>51.527767</ns2:Y>
+            </ns2:Pos>
+            <ns2:Pos>
+                <ns2:X>-0.133488</ns2:X>
+                <ns2:Y>51.550663</ns2:Y>
+            </ns2:Pos>
+        </ns4:Envelope>
+    </ns4:FeatureCollectionMetadata>
+    <ns4:FeatureList>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.15287299999999998</ns2:X>
+                        <ns2:Y>51.543875</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Chalk Farm</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&amp;StationCode=CHF&amp;NorthernGo=Go&amp;switchNorthern=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>mailto:stratus@mapinfo.com</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>366.89337150123123</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.142694</ns2:X>
+                        <ns2:Y>51.539311</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Camden Town</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&amp;StationCode=CTN&amp;NorthernGo=Go&amp;switchNorthern=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Not Available</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>927.6315514979185</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.164602</ns2:X>
+                        <ns2:Y>51.550340999999996</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Belsize Park</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&amp;StationCode=BPK&amp;NorthernGo=Go&amp;switchNorthern=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>mailto:stratus@mapinfo.com</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>1192.951852034551</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.175202</ns2:X>
+                        <ns2:Y>51.542745</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Swiss Cottage</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=jubilee&amp;StationCode=SWC&amp;JubileeGo=Go&amp;switchJubilee=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>mailto:stratus@mapinfo.com</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>1354.7094872102145</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.13891699999999998</ns2:X>
+                        <ns2:Y>51.534375999999995</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Mornington Crescent</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&amp;StationCode=MCR&amp;NorthernGo=Go&amp;switchNorthern=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Not Available</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>1386.9653805590856</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.174558</ns2:X>
+                        <ns2:Y>51.534698</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>St John's Wood</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=jubilee&amp;StationCode=SJW&amp;JubileeGo=Go&amp;switchJubilee=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Not Available</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>1481.5105708016079</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.140784</ns2:X>
+                        <ns2:Y>51.550663</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Kentish Town</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&amp;StationCode=KTN&amp;NorthernGo=Go&amp;switchNorthern=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Not Available</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>1484.2325463919005</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+        <ns4:Feature>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:GeometryValue">
+                <ns2:FeatureGeometry xsi:type="ns2:Point" srsName="mapinfo:coordsys 1, 104">
+                    <ns2:Pos>
+                        <ns2:X>-0.133488</ns2:X>
+                        <ns2:Y>51.527767</ns2:Y>
+                    </ns2:Pos>
+                </ns2:FeatureGeometry>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StyleValue"/>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>Euston</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>http://www.tfl.gov.uk/tfl/livetravelnews/departureboards/tube/default.asp?LineCode=northern&amp;StationCode=EUS&amp;NorthernGo=Go&amp;switchNorthern=off</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:StringValue">
+                <ns4:Value>mailto:stratus@mapinfo.com</ns4:Value>
+            </ns4:AttributeValue>
+            <ns4:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns4:DoubleValue">
+                <ns4:Value>2140.856401810714</ns4:Value>
+            </ns4:AttributeValue>
+        </ns4:Feature>
+    </ns4:FeatureList>
+</ns4:FeatureCollection>

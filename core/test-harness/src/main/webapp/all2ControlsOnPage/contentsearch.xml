@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<find-nearest-config>
+  <categories>
+    <category>
+      <name>Category</name>
+      <layers>
+        <layer>
+          <name>Layer 1</name>
+          <alias>Layer</alias>
+          <marker>
+            <url>/controller/getmarker?name=yellow-parking.png</url>
+            <symbol-url />
+            <shadow-url />
+            <size>
+              <width>24.0</width>
+              <height>54.0</height>
+            </size>
+            <anchor-point>
+              <x>12.0</x>
+              <y>54.0</y>
+            </anchor-point>
+          </marker>
+          <summary-fields>
+            <title>Title</title>
+            <description>Description</description>
+            <image />
+            <link>URL</link>
+            <key />
+          </summary-fields>
+        </layer>
+        <layer>
+          <name>Layer 2</name>
+          <alias>Layer</alias>
+          <marker>
+            <url>/controller/getmarker?name=blue-parking.png</url>
+            <symbol-url />
+            <shadow-url />
+            <size>
+              <width>44.0</width>
+              <height>64.0</height>
+            </size>
+            <anchor-point>
+              <x>22.0</x>
+              <y>64.0</y>
+            </anchor-point>
+          </marker>
+          <summary-fields>
+            <title>Title</title>
+            <description>Description</description>
+            <image />
+            <link>URL</link>
+            <key />
+          </summary-fields>
+        </layer>
+      </layers>
+    </category>
+  </categories>
+</find-nearest-config>

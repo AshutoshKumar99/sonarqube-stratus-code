@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="productConfigurationServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass"
+                  value="com.g1.dcg.managers.resource.ProductResourceConfigurationManagerService"/>
+        <property name="address" value=""/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg
+                        value="{http://resource.managers.dcg.g1.com/}ProductResourceConfigurationManagerService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg
+                        value="{http://resource.managers.dcg.g1.com/}ProductResourceConfigurationManagerServicePortType"/>
+            </bean>
+        </property>
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+            <!-- Add  other interceptors here-->
+        </property>
+        <property name="properties">
+            <map>
+                <entry key="set-jaxb-validation-event-handler" value="false"/>
+            </map>
+        </property>
+        <property name="wsdlLocation" value="classpath:wsdl/ProductResourceConfigurationManagerService.wsdl"/>
+    </bean>
+</beans>

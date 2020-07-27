@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.51:8080/" />
+<title>Legend_Expand_Collapse</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Legend_Expand_Collapse</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the expand/collapse functionality of the legend control and the Legend icons -->
+<!--Check the layer descriptions are already expanded-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<!--Check for the layers under 'Camden mapping Service' legend-->
+<!--Verify layer - UDP_Conservation_Area-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='ConservationAreas']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='ConservationAreas']/label</td>
+	<td>ConservationAreas</td>
+</tr>
+<!--Verify layer - UDP_Proposal_Site-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='ListedBuildings']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='ListedBuildings']/label</td>
+	<td>ListedBuildings</td>
+</tr>
+<!--Verify layer - UDP_Open_Space_Other-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='OpenSpaces']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='OpenSpaces']/label</td>
+	<td>OpenSpaces</td>
+</tr>
+<!--Check for the layers under 'Planning Map' legend-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='PlanningApplications']/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='PlanningApplications']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='PlanningApplications']/label</td>
+	<td>PlanningApplications</td>
+</tr>
+<!--Click on  'Camden Mapping Service' heading to collapse the legend-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<!--Pauses inserted to make sure we wait for the concertina effect to happen. (Future = find a better way of doing this!)-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id=&quot;ConservationAreas&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id=&quot;ListedBuildings&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id=&quot;OpenSpaces&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>//div[@id=&quot;Conservation Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<!--Click on 'Planning map' heading to collapse the legend-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='Development Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id=&quot;PlanningApplications&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>//div[@id=&quot;Development Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

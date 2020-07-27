@@ -1,0 +1,73 @@
+body {
+font-family: "Open Sans",Arial,Helvetica,Sans-Serif !important;
+}
+
+.pb-footer {
+    font-size: .85em;
+    background-color: #f6f6f6;
+    border-top: 1px solid #d7d5d5;
+}
+
+.pb-footer-logo {
+    display: inline-block;
+    height: 23px;
+    margin-left: 40%;
+    color: #000000;
+}
+
+.pb-footer-fixed {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1005;
+}
+
+#header {
+display: block;
+height: 49px;
+position: relative;
+margin: 0;
+padding: 0 13px 0 0;
+background-color: #ffffff;
+background-repeat: repeat-x;
+}
+
+#header div {
+display: inline-block;
+vertical-align: middle;
+height: 49px;
+float: left;
+}
+
+#logo-group span {
+display: inline-block;
+height: 39px;
+float: left;
+overflow: visible;
+width: 351px;
+font-size: 18px;
+font-weight: bold;
+color: #0082d5;
+}
+
+#logo {
+display: inline-block;
+width: 175px;
+margin-top: 13px;
+margin-left: 9px;
+}
+
+.login {
+    margin-top: 20%;
+}
+
+.pb-corporate-logo {
+    background: url("../images/PBBlueSmall.png") no-repeat;
+    float: right;
+    height: 31px;
+    margin-left: 84%;
+    margin-top: -41px;
+    text-indent: -9999px;
+    width: 150px;
+}

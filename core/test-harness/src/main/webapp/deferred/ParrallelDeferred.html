@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+<head>
+<title>ParrallelDeferred Example</title>
+
+<script type="text/javascript">
+
+    dojo.require("stratus.RiaHub");
+    dojo.require("stratus.geometry.Point");
+    dojo.require("stratus.async.SingleDeferred");
+    dojo.require("stratus.async.ParallelDeferred");
+    dojo.require("stratus.async.Deferred");
+    dojo.require("stratus.async.CancelFailedException");
+    dojo.require("stratus.UnknownSrsException");
+    dojo.require("stratus.GeometryServices");
+    
+    dojo.addOnLoad(function() { 
+
+    });
+    
+    function changeCursorToWait()
+    {
+        document.body.style.cursor = 'wait';
+    }
+    
+    function changeCursorToDefault()
+    {
+        document.body.style.cursor = 'auto';
+    }
+    
+    // Method called of the single deferred thread completed successfully
+    function successfulCoordinateConversion(resultSetCallBack)
+    {
+        var resultsContainer = dojo.byId("convertedCoordinates");
+        
+        var result = 
+                "X: " + resultSetCallBack.result.getX() + " " +
+                "Y: " + resultSetCallBack.result.getY() + " " +
+                "Projection: " + resultSetCallBack.result.getProjection();   
+
+        resultsContainer.innerHTML += "<p>" + result + "</p>";
+        resultSetCallBack.release();
+        changeCursorToDefault();
+    }
+    
+    // Method called of the parrallel deferred operation completed successfully
+    function successfulCoordinatesConversion(resultSetCallBack)
+    {        
+        resultSetCallBack.release();
+        changeCursorToDefault();
+    }
+    
+    // Operation did not complete    
+    function errorCallBack(errorCallBack)
+    {  
+        dojo.byId("errorMessage").innerHTML = errorCallBack.error.message;
+        errorCallBack.release();
+        changeCursorToDefault();
+    }
+    
+    function transformCoordinates()
+    {       
+        
+        var transformationProjection = dojo.byId("post_projection").value;
+        var geometryServices = new stratus.GeometryServices();
+        var deferreds = [];
+        
+        dojo.byId("convertedCoordinates").innerHTML = "";
+        
+        for (var index = 0; index < 4; index++)
+        {
+            var x = dojo.byId("pre_easting" + index).value;
+            var y = dojo.byId("pre_northing" + index).value;
+            var currentProjection = dojo.byId("pre_projection" + index).value;
+        
+            var pointParameters = 
+            {
+                x: x,
+                y: y,
+                srs: currentProjection
+            };
+            
+            var point = new stratus.geometry.Point(pointParameters);
+            
+            var singleDeferred = geometryServices.transformPoint(point, transformationProjection);
+            singleDeferred.addSuccessCallback(successfulCoordinateConversion);
+            singleDeferred.addErrorCallback(errorCallBack);
+            
+            deferreds.push(singleDeferred);
+        }
+        
+        var parallelDeferred = new stratus.async.ParallelDeferred(deferreds);
+        parallelDeferred.addSuccessCallback(successfulCoordinatesConversion);
+        parallelDeferred.addErrorCallback(errorCallBack);
+        
+        changeCursorToWait();
+    }          
+    
+</script>
+</head>
+<body>
+
+<h1>stratus.async.ParallelDeferred Example</h1>
+ 
+<h2>
+    <p>
+        This sample page transforms coordinates from one projection to another by 
+        using the geometry service as a asynchronous request operation using the stratus.async.SingleDeferred and 
+        stratus.async.ParallelDeferred objects.  For each coordinate transformation, a stratus.async.SingleDeferred
+        is used to handle the asynchronous operation and the stratus.async.ParallelDeferred is used to manage each of the SingleDeferred
+        objects.
+    </p>
+
+    <p>
+        The SingleDeferred and ParallelDeferred objects provides listeners for when the asynchronous request is successful and
+        when the request fails.  These listeners are passed to the stratus.async.SingleDeferred when the request is created.
+    </p>
+
+    <p>
+        The stratus.async.ParallelDeferred handles multiple stratus.async.SingleDeferred operations and once the async operation
+        has been completed, resources used by stratus.async.ParallelDeferred need to be released.
+    </p>
+</h2>
+
+<h2>Target Coordinates</h2>
+<p>
+    Easting <input type="text" id="pre_easting0" value="527812"/>
+    Northing <input type="text" id="pre_northing0" value="184228"/>
+    Projection <input type="text" id="pre_projection0" value="epsg:27700"/>
+    <br/>
+    Easting <input type="text" id="pre_easting1" value="527812"/>
+    Northing <input type="text" id="pre_northing1" value="184228"/>
+    Projection <input type="text" id="pre_projection1" value="epsg:27700"/>
+    <br/>
+    Easting <input type="text" id="pre_easting2" value="527812"/>
+    Northing <input type="text" id="pre_northing2" value="184228"/>
+    Projection <input type="text" id="pre_projection2" value="epsg:27700"/>
+    <br/>
+    Easting <input type="text" id="pre_easting3" value="527812"/>
+    Northing <input type="text" id="pre_northing3" value="184228"/>
+    Projection <input type="text" id="pre_projection3" value="epsg:27700"/>
+    <br/><br/>
+    Tranformation Projection <input type="text" id="post_projection" value="epsg:4326"/>
+</p>
+
+<h2>Transformed Coordinates</h2>
+<p>
+    <div id="convertedCoordinates"></div>
+</p>
+
+<p>
+<label id="errorMessage" />
+</p>
+
+<div id="spinner" style="position:absolute; left: 700px; top: 200px; display: none; border: 1px solid black; padding: 3px">
+    Working .....
+</div>
+
+<input type="button" name="convert" value="Convert Coordinates" onclick="transformCoordinates()" />
+
+</body>
+</html>

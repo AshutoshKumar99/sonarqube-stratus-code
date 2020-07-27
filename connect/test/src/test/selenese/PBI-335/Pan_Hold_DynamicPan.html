@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8081" />
+<title>Pan_Hold_DynamicPan.html</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Pan_Hold_DynamicPan.html</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the dynamic pan when holding down any pan button-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<!--Check for the existence of pan controls-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[1]</td>
+	<td>North</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[2]</td>
+	<td>South</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[3]</td>
+	<td>West</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[4]</td>
+	<td>East</td>
+</tr>
+<!--SCROLL TOP (Pan button [1] - North)-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalNorth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${North}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${North}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollNorth</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalNorth']&lt;storedVars['AfterScrollNorth']</td>
+	<td>true</td>
+</tr>
+<!--SCROLL BOTTOM (Pan button [2] - South)-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalSouth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${South}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${South}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollSouth</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalSouth']&gt;storedVars['AfterScrollSouth']</td>
+	<td>true</td>
+</tr>
+<!--SCROLL LEFT (Pan button [3] - West)-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalWest</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollWest</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalWest']&lt;storedVars['AfterScrollWest']</td>
+	<td>true</td>
+</tr>
+<!--SCROLL RIGHT (Pan button [4] - East)-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>OriginalEast</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${East}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${East}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>AfterScrollEast</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>storedVars['OriginalEast']&gt;storedVars['AfterScrollEast']</td>
+	<td>true</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

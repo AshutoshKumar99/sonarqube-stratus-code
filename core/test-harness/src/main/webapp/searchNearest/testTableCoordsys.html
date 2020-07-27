@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+<head>
+<title>Search Nearest</title>
+<link rel="stylesheet" type="text/css" href="/test-harness/common/sample.css"></link>
+
+
+<script type="text/javascript">
+
+    dojo.require("stratus.core");
+    dojo.require("stratus.MapControl");
+    dojo.require("stratus.search.FeatureSearch");
+    dojo.require("stratus.geometry.Point");
+    dojo.require("stratus.Marker");
+    dojo.require("stratus.GeometryServices");
+
+    dojo.addOnLoad(function()
+    {
+        var myMap = new stratus.MapControl({configFile: "map.xml", callBackFunction: function(){}}, dojo.byId('samplemap'));
+        if(window.badmapconfig && window.badmapconfig == true)
+        {
+            alert('Bad MapConfigFile or something else went wrong');
+        }
+        window.map = myMap;
+
+        window.featureSearch = new stratus.search.FeatureSearch();
+    });
+
+    /*
+     * moves the map according to the values in the input boxes
+     */
+    function moveToLocation()
+    {
+        var xloc = dojo.byId("xloc").value;
+        var yloc = dojo.byId("yloc").value;
+
+        window.map.moveTo({x:xloc,y:yloc});
+    }
+
+    function addMarker(point,image,title,description)
+    {
+        var xloc= point.getX();
+        var yloc= point.getY();
+        var point = new stratus.geometry.Point({x:xloc, y:yloc, srs:point.getProjection().getCode()});
+        var marker = new stratus.Marker({point:point,title:title,content:description,deleteLinkMessage:"Clear this marker",deleteLinkSwitch:false});
+        var icon = new stratus.catalog.Icon(image,0,0,34,20 );
+        marker.setLayerIcon(icon);
+
+        var geometryService = new stratus.GeometryServices();
+        var deferred = marker.transform(geometryService, window.map.configuration.getProjectionSystem());
+        deferred.addSuccessCallback(function(deferred){
+            window.map.getMarkerManager().addMarker(deferred.getResult());});
+    }
+
+    function showAjaxLoader()
+    {
+        var resultstable = dojo.byId("resultslist");
+        resultstable.innerHTML = "<div class='ajaxloader'><img src='ajax-loader.gif' alt='Loading'/></div>";
+    }
+
+    function createResultsTable()
+    {
+        var resultstable = dojo.byId("resultslist");
+        resultstable.innerHTML = "";
+    }
+
+    function insertResultInTable(resultname, point)
+    {
+        var x = point.getX();
+        var y = point.getY();
+        var srs = point.getProjection().getCode();
+        var resultstable = dojo.byId("resultslist");
+        //window.map.moveTo({x:-0.140784,y:51.550663,crs:epsg:4326});
+        var movetolink = "<a href='javascript:{}' onclick='window.map.moveTo({x:" + x + ",y:" + y + ",crs:\"" + srs + "\"});'>";
+        resultstable.innerHTML = resultstable.innerHTML + "<li class='resultitem'>" + movetolink + resultname + "</a></li>";
+    }
+
+    function mapSearchNearest(point,maxresults,maxdistance)
+    {
+        var f = {
+                    "point" : point,
+                    "tableName": ["TubeStationsEPSG4326"],
+                    "attributeFields": ["Title", "LiveDepartureBoard"],
+                    "includeGeometry": true,
+                    "maxResults": maxresults,
+                    "maxDistance": maxdistance,
+                    "distanceUnit": "mile",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+        window.featureSearch.searchNearest(f);
+    }
+
+    function searchNearestFromInput()
+    {
+        window.map.getMarkerManager().removeAllMarkers();
+        showAjaxLoader();
+
+        var xloc = dojo.byId("xloc").value;
+        var yloc = dojo.byId("yloc").value;
+        var srsproj = "epsg:27700";
+
+        mapSearchNearest({x:xloc,y:yloc,srs:srsproj},dojo.byId("noofresults").value,dojo.byId("distance").value);
+
+        moveToLocation();
+        addMarker(new stratus.geometry.Point({x:xloc,y:yloc, srs:'epsg:27700'}),"images/house.png","Starting point","This is the centre point of the search");
+    }
+
+    function roundNumber(numToRound, decPlaces)
+    {
+        return Math.round(numToRound * Math.pow(10, decPlaces)) / Math.pow(10, decPlaces);
+    }
+
+    function processResults(results)
+    {
+        createResultsTable();
+        console.debug(results);
+
+        for(layer in results)
+        {
+            for(var i = 0; i < results[layer].length; i++)
+            {
+                 insertResultInTable(results[layer][i].properties.Title + ' (' + roundNumber(results[layer][i].properties.Distance, 1) +' miles)',
+                                     results[layer][i].markerPosition);
+
+                 addMarker(results[layer][i].markerPosition,
+                          "images/yellowsquare.png",
+                          results[layer][i].properties.Title,
+                          results[layer][i].properties.LiveDepartureBoard);
+            }
+        }
+
+        if(results[layer].length == 0)
+        {
+            var resultstable = dojo.byId("resultslist");
+            resultstable.innerHTML = "No results found";
+        }
+    }
+
+    function handleException(x)
+    {
+        var resultstable = dojo.byId("resultslist");
+        resultstable.innerHTML = "There was an error with the Service:" + x.message;
+    }
+
+</script>
+<style>
+body
+{
+    margin: 0px;
+}
+
+.toolbar
+{
+    background-image: url('titlebarbg.png');
+    background-repeat: repeat-x;
+    width:100%;
+    height:25px;
+    color:white;
+    font-weight:bold;
+    padding-top:2px;
+    text-align:center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.mainpanel
+{
+    float:left;
+    display:block;
+    height:650px;
+    width:320px;
+    border:1px solid black;
+    margin-left: 5px;
+    margin-right:5px;
+    background-color:white;
+}
+
+.resultlist
+{
+    border:1px solid #CCCCCC;
+    height: 420px;
+    width:260px;
+    overflow-y:auto;
+}
+
+.resultitem
+{
+    list-style-type:decimal;
+}
+
+.resultitem a
+{
+    text-decoration:none;
+}
+
+.ajaxloader
+{
+    width:80%;
+    text-align:center;
+    margin-top: 60px;
+}
+</style>
+</head>
+<body style="margin:0px;">
+<img src="findmynearest.png" style="margin:0px;"/><br />
+<br />
+<div style="" class="mainpanel">
+    <div style="" class="toolbar">Find My Nearest: Tube Stations</div>
+        <div style="width:80%; padding: 10px;text-align:left;">
+            <br />
+            x:<input id="xloc" type="text" style="width:70px;" value="527990.5"/>
+            <br />y:<input id="yloc" type="text" style="width:70px;" value="184086.25" />
+            <br /><br />Max no. of results:<input id="noofresults" value="10" style="width:30px;"/>
+            <br /><br />Distance (miles):<input id="distance" value="1" style="width:40px;"/>
+            <br /><br />
+            <button onclick="searchNearestFromInput();">Search</button>
+
+            <div id="resultsTableDiv">
+                <ol class="resultlist" id="resultslist" />
+            </div>
+        </div>
+    </div>
+
+    <div id="mapContainer" style="float:left;display:block;width:800px;height:650px;border:1px solid blue;">
+        <div id="samplemap" style="width:100%;height:100%;"></div>
+    </div>
+</body>
+</html>

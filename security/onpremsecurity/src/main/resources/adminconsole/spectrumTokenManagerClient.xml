@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="spectrumTokenManagerClient" factory-bean="tokenManagerServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="tokenManagerServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.pb.spectrum.platform.server.common.security.token.TokenManagerService"/>
+        <property name="address" value="${spectrumserver.tokenmanagement.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://token.security.common.server.platform.spectrum.pb.com/}TokenManagerServiceImplService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://token.security.common.server.platform.spectrum.pb.com/}TokenManagerServiceImplPort"/>
+            </bean>
+        </property>
+        <property name="wsdlLocation" value="${spectrumserver.tokenmanagement.wsdl}"/>
+        <property name="properties">
+            <map>
+                <entry key="set-jaxb-validation-event-handler" value="false" />
+            </map>
+        </property>
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+        </property>
+    </bean>
+
+</beans>

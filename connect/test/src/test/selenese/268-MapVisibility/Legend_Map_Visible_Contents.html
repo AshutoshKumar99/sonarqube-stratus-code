@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.199.180:8080/" />
+<title>Legend_Map_Visible_Contents</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Legend_Map_Visible_Contents</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the display and contents of the legend control maps, confirming those checked are visible & those not checked align with configuration.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>connect/?mapConfigLocation=/connect/config/legendcontrol_mapVisibility.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='OpenLayers.Layer.Watermark_24']/div[1]/img</td>
+	<td>Watermark</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${Watermark}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Facilities NOT Checked as per configuration-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSCuluralCommunityFacilities']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSCuluralCommunityFacilities']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSCuluralCommunityFacilities']</td>
+	<td>Facilities</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSCuluralCommunityFacilities']/../div[2]/input[@type='checkbox']</td>
+	<td>FacilitiesCheckbox</td>
+</tr>
+<tr>
+	<td>verifyNotChecked</td>
+	<td>${FacilitiesCheckbox}</td>
+	<td></td>
+</tr>
+<!--Layer descriptions and maps should not be visible-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id='Existing Outdoor Playing Space']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSCuluralCommunityFacilities&quot;)]</td>
+	<td>FacilitiesMap</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${FacilitiesMap}</td>
+	<td></td>
+</tr>
+<!--Economy NOT Checked as per configuration-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSEconomy']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSEconomy']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSEconomy']</td>
+	<td>Economy</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSEconomy']/../div[2]/input[@type='checkbox']</td>
+	<td>EconomyCheckbox</td>
+</tr>
+<tr>
+	<td>verifyNotChecked</td>
+	<td>${EconomyCheckbox}</td>
+	<td></td>
+</tr>
+<!--Layer descriptions and maps should not be visible-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id='Hotel Development']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSEconomy&quot;)]</td>
+	<td>EconomyMap</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${EconomyMap}</td>
+	<td></td>
+</tr>
+<!--Environment NOT Checked as per configuration-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSEnvironmentCuluralHeritage']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSEnvironmentCuluralHeritage']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSEnvironmentCuluralHeritage']</td>
+	<td>Environment</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSEnvironmentCuluralHeritage']/../div[2]/input[@type='checkbox']</td>
+	<td>EnvironmentCheckbox</td>
+</tr>
+<tr>
+	<td>verifyNotChecked</td>
+	<td>${EnvironmentCheckbox}</td>
+	<td></td>
+</tr>
+<!--Layer descriptions and maps should not be visible-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id='Amenity']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSEnvironmentCuluralHeritage&quot;)]</td>
+	<td>EnvironmentMap</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${EnvironmentMap}</td>
+	<td></td>
+</tr>
+<!--General Dev IS Checked as per configuration-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSGeneralDevelopmentPrinciples']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSGeneralDevelopmentPrinciples']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSGeneralDevelopmentPrinciples']</td>
+	<td>General Development</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSGeneralDevelopmentPrinciples']/../div[2]/input[@type='checkbox']</td>
+	<td>GeneralDevelopmentCheckbox</td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${GeneralDevelopmentCheckbox}</td>
+	<td></td>
+</tr>
+<!--Confirm the layer descriptions and map image are visible.-->
+<tr>
+	<td>verifyVisible</td>
+	<td>//*[@id='Floodplain']</td>
+	<td></td>
+</tr>
+<!-- Bug found where we get 2 images from Envinsa Mapping Service & only 1 is visible - Further investigation needed -->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div[7]/div[1]/img</td>
+	<td>GeneralDevelopmentMap</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${GeneralDevelopmentMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>${GeneralDevelopmentMap}</td>
+	<td></td>
+</tr>
+<!--Housing NOT Checked as per configuration-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSHousing']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSHousing']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSHousing']</td>
+	<td>Housing</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSHousing']/../div[2]/input[@type='checkbox']</td>
+	<td>HousingCheckbox</td>
+</tr>
+<tr>
+	<td>verifyNotChecked</td>
+	<td>${HousingCheckbox}</td>
+	<td></td>
+</tr>
+<!--Layer descriptions and maps should not be visible-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id='Proposed Site for New Residential Development AH']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSHousing&quot;)]</td>
+	<td>HousingMap</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${HousingMap}</td>
+	<td></td>
+</tr>
+<!--Rural Dev IS Checked - configuration has no "visible" attribute, so should default to visible="true".-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSRuralDevelopment']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSRuralDevelopment']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSRuralDevelopment']</td>
+	<td>Rural Development</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSRuralDevelopment']/../div[2]/input[@type='checkbox']</td>
+	<td>RuralDevelopmentCheckbox</td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${RuralDevelopmentCheckbox}</td>
+	<td></td>
+</tr>
+<!--Confirm the layer descriptions and map image are visible.-->
+<tr>
+	<td>verifyVisible</td>
+	<td>//*[@id='Green Belt']</td>
+	<td></td>
+</tr>
+<!-- Bug found where we get 2 images from Envinsa Mapping Service & only 1 is visible - Further investigation needed -->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div[5]/div[1]/img</td>
+	<td>RuralDevelopmentMap</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${RuralDevelopmentMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyVisible</td>
+	<td>${RuralDevelopmentMap}</td>
+	<td></td>
+</tr>
+<!--Town Centres NOT Checked as per configuration-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSTownCentresRetailing']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSTownCentresRetailing']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSTownCentresRetailing']</td>
+	<td>Town Centres</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSTownCentresRetailing']/../div[2]/input[@type='checkbox']</td>
+	<td>TownCentresCheckbox</td>
+</tr>
+<tr>
+	<td>verifyNotChecked</td>
+	<td>${TownCentresCheckbox}</td>
+	<td></td>
+</tr>
+<!--Layer descriptions and maps should not be visible-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id='Town or District Centre']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSTownCentresRetailing&quot;)]</td>
+	<td>TownCentresMap</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${TownCentresMap}</td>
+	<td></td>
+</tr>
+<!--Transport NOT Checked as per configuration-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='NSTransport']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='NSTransport']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='NSTransport']</td>
+	<td>Transport</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='NSTransport']/../div[2]/input[@type='checkbox']</td>
+	<td>TransportCheckbox</td>
+</tr>
+<tr>
+	<td>verifyNotChecked</td>
+	<td>${TransportCheckbox}</td>
+	<td></td>
+</tr>
+<!--Layer descriptions and maps should not be visible-->
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//*[@id='Railway Station']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSTransport&quot;)]</td>
+	<td>TransportMap</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${TransportMap}</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

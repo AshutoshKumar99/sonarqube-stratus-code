@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<map-config
+     max-bounds-left="522000"
+    max-bounds-bottom="179000"
+    max-bounds-right="533000"
+    max-bounds-top="190000"
+    max-zoom-levels="20"
+    max-resolution="42.96875"
+    units="meters"
+    projection="epsg:27700"
+    initial-zoom="8"
+    initial-x="527880.5"
+    initial-y="184196.25"
+    disable-drag-pan="false"
+    disable-pan-control="true"
+    disable-slider-control="true"
+    disable-double-click-zoom="true"
+    disable-mouse-wheel-zoom="false"
+    show-all-info-fields="true">
+
+
+    <ZoomLevels>
+        <ZoomLevel Value="1" Name="Entire District"></ZoomLevel>
+        <ZoomLevel Value="3" Name="Locality"></ZoomLevel>
+        <ZoomLevel Value="5" Name="Street"></ZoomLevel>
+        <ZoomLevel Value="10" Name="Property"></ZoomLevel>
+    </ZoomLevels>
+
+    <summary-fields>
+       <title-column value="Title1"></title-column>
+       <image-column value="Image1"></image-column>
+       <link-column value="Link1"></link-column>
+       <keyvalue-column value="KeyValue1"></keyvalue-column>
+       <description-column value="Description1"></description-column>
+    </summary-fields>
+
+    <map 
+        service="Envinsa-Mapping"
+        friendly-name="Planning Map"
+        map-name="Development Map"  
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"/>
+
+    <map 
+        service="Envinsa-Tile"
+        friendly-name="Conservation Map"
+        map-name="Conservation Map" 
+        show-as="business"
+        tile-width="256"
+        tile-height="256"
+        opacity="0.5"
+        copyright="&#169; Camden Crown Copyright 2008" 
+        alpha="false"/>
+        
+</map-config>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>LocatorResults_Cookies</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorResults_Cookies</td></tr>
+</thead><tbody>
+<!--Purpose: to ensure that recent addresses displayed on the map are stored correctly in the cached Results List.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='locatorContainer']/div[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='locatorContainer']/div[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button[1]</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>city road</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Wait for result element to be displayed and select the first five results-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//*[@id=&quot;resultsContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='cacheResultContainer']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>9000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='result']/table/tbody/tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody/tr[1]</td>
+	<td>Record1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='result']/table/tbody/tr[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody/tr[2]</td>
+	<td>Record2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='result']/table/tbody/tr[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody/tr[3]</td>
+	<td>Record3</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='result']/table/tbody/tr[4]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody/tr[4]</td>
+	<td>Record4</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='result']/table/tbody/tr[5]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody/tr[5]</td>
+	<td>Record5</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='cachedAddressContainer']/div[1]</td>
+	<td></td>
+</tr>
+<!-- Click on the Recently selected addresses accordion -->
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[1]</td>
+	<td>cache5</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[2]</td>
+	<td>cache4</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[3]</td>
+	<td>cache3</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[4]</td>
+	<td>cache2</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[5]</td>
+	<td>cache1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='cachedAddressContainer']/div[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Record1}</td>
+	<td>${cache1}</td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Record2}</td>
+	<td>${cache2}</td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Record3}</td>
+	<td>${cache3}</td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Record4}</td>
+	<td>${cache4}</td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Record5}</td>
+	<td>${cache5}</td>
+</tr>
+<!--Click on the 6th record of Search results now and verify that it is displayed as 1st record of cache -->
+<tr>
+	<td>click</td>
+	<td>//div[@id='result']/table/tbody/tr[6]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='result']/table/tbody/tr[6]</td>
+	<td>Record6</td>
+</tr>
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[1]</td>
+	<td>cache6</td>
+</tr>
+<tr>
+	<td>assertExpression</td>
+	<td>${Record6}</td>
+	<td>${cache6}</td>
+</tr>
+<!--Verify that first record has vanished from cache results-->
+<tr>
+	<td>storeText</td>
+	<td>//div[@id='cacheResultContainer']/table/tbody/tr[5]</td>
+	<td>cache1</td>
+</tr>
+<tr>
+	<td>assertNotExpression</td>
+	<td>${Record1}</td>
+	<td>${cache1}</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>ContextMenu_ZoomIn</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ContextMenu_ZoomIn</td></tr>
+</thead><tbody>
+<!--Purpose : Test the behaviour of the right click context menu zoom in option.-->
+<!--Open the page again to get back to the default zoom level after running the ZoomOutContextValidation-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<!--Store the Center Tile position to :Center Tile"-->
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>CenterTileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${CenterTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>contextMenuAt</td>
+	<td>${CenterTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_1']/td[2]</td>
+	<td>ContextMenuZoomIn</td>
+</tr>
+<!--Select the Zoom In option-->
+<tr>
+	<td>click</td>
+	<td>${ContextMenuZoomIn}</td>
+	<td></td>
+</tr>
+<!--Verify no longer default zoom level.-->
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//img[contains(@src, &quot;level=8&quot;)]</td>
+	<td></td>
+</tr>
+<!--Verify increased by 1 zoom level - this is THE validation of the zoom in functionality.-->
+<!--Later (when we have a better idea how!) we'll do more image / pixel comparisons to verify the zoom has changed, but for now that part is a manual test.-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//img[contains(@src, &quot;level=9&quot;)]</td>
+	<td></td>
+</tr>
+<!--PASS expected-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winyellow:8082" />
+<title>CallOut_Alt_AllInfoCallout.html</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_AllInfoCallout.html</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check configuration of data populating the Call Out elements.-->
+<!--show-all-info-fields="true" is configured so we expect lots of data to be displayed in the call out.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-761-map-callout/Verify_AllInfoCallOut_Config/verify_AllInfoCallOut_Config.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=MasterMap&amp;level=8&amp;row=69&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan south & open the callout for Chamberlain Street (ListedBuildings data has all configured data fields)-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${tileLocator}</td>
+	<td>0,-500</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDownAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>mouseUpAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>3</td>
+</tr>
+<!--Check for ListedBuildings Chamberlain Street contains our configured data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ListedBuildings</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>ListedBuildingsElement</td>
+</tr>
+<!--Verify Title & Link-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>CHAMBERLAIN STREET</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle heavyFont&quot;]/a</td>
+	<td></td>
+</tr>
+<!--Image confirmation - confirm an image is displayed for the ListedBuilding-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${ListedBuildingsElement}/img[@class='infoImage']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${ListedBuildingsElement}/img[@class='infoImage']@src</td>
+	<td>http://mycamden.camden.gov.uk/LPGSearch/ListedBuildingPhoto/thumbnails/195.jpg</td>
+</tr>
+<!--KeyValue confirm - configured to point to Boro_Ref data column-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class='infoKey lightFont']</td>
+	<td>Grade II</td>
+</tr>
+<!--All other fields displayed in the order they appear in the tab file.-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][1]/span</td>
+	<td>LB_No</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][1]/span[2]</td>
+	<td>195</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][2]/span</td>
+	<td>Grade</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][2]/span[2]</td>
+	<td>II</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][3]/span</td>
+	<td>Street</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][3]/span[2]</td>
+	<td>CHAMBERLAIN STREET</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][4]/span</td>
+	<td>Location</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][4]/span[2]</td>
+	<td>(South side) Nos.1-8 (Consecutive) and attached railings</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][5]/span</td>
+	<td>Short_Description</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][5]/span[2]</td>
+	<td>Symmetrical terrace of 8 houses. Mid C19. Yellow stock brick with blue brick bands and stucco dressings. Slated roofs with overhanging bracketed eaves. Nos 1 &amp; 11 have pediments and slightly project. 3 storeys and basements. 2 windows each. Prostyle port</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][6]/span</td>
+	<td>Boro_Ref</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][6]/span[2]</td>
+	<td>798-1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][7]/span</td>
+	<td>Sheet_Ref</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][7]/span[2]</td>
+	<td>63</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][8]/span</td>
+	<td>OS_Sheet</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][8]/span[2]</td>
+	<td>TQ2784SE</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][9]/span</td>
+	<td>GV</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][9]/span[2]</td>
+	<td>GV</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][10]/span</td>
+	<td>DateListed</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][10]/span[2]</td>
+	<td>30/12/1999 00:00</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][11]/span</td>
+	<td>NoOfShapes</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][11]/span[2]</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][12]/span</td>
+	<td>ShapeStyle</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoAdditionalfields&quot;][12]/span[2]</td>
+	<td>Region</td>
+</tr>
+<!--Check for Conservation Areas contains our configured data-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][2]</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_1']</td>
+	<td>ConservationAreasElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoTitle heavyFont&quot;]//a</td>
+	<td>Primrose Hill</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>1971-10-01Z</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][1]/span</td>
+	<td>Name</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][1]/span[2]</td>
+	<td>Primrose Hill</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][2]/span</td>
+	<td>PACIS_CODE</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][2]/span[2]</td>
+	<td>PRM</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][3]/span</td>
+	<td>Designated_Date</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][3]/span[2]</td>
+	<td>1971-10-01Z</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][4]/span</td>
+	<td>Dwg_No</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ConservationAreasElement}//div[@class=&quot;infoAdditionalfields&quot;][4]/span[2]</td>
+	<td>111-30-A1</td>
+</tr>
+<!--Check for PlanningApplications 3 Chamberlain Street contains our configured data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][3]</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_2']</td>
+	<td>PlanningApplicationsElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>3 Chamberlain Street NW1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>No: 9300501</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>Grant Full or Outline Perm. with Condit.: The erection of rear extension at first floor level and rear roof extension as shown on drawing no. LCG/02....</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][1]/span</td>
+	<td>AppNumber</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][1]/span[2]</td>
+	<td>9300501</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][2]/span</td>
+	<td>Proposal01</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][2]/span[2]</td>
+	<td>The erection of rear extension at first floor level and</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][3]/span</td>
+	<td>Proposal02</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][3]/span[2]</td>
+	<td>rear roof extension as shown on drawing no. LCG/02.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][4]/span</td>
+	<td>Address03</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][4]/span[2]</td>
+	<td>3 Chamberlain Street NW1</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][5]/span</td>
+	<td>RegisterDate</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][5]/span[2]</td>
+	<td>26/4/93 00:00:00</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][6]/span</td>
+	<td>ApplicationType</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][6]/span[2]</td>
+	<td>Full planning inc Council's Own</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][7]/span[1]</td>
+	<td>ApplicationTypeCode</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][7]/span[2]</td>
+	<td>ZF</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][8]/span</td>
+	<td>DOECode</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][8]/span[2]</td>
+	<td>HOUS</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][9]/span</td>
+	<td>DecisionDate</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][9]/span[2]</td>
+	<td>7/10/93 00:00:00</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][10]/span</td>
+	<td>Decision</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][10]/span[2]</td>
+	<td>Grant Full or Outline Perm. with Condit.</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][11]/span</td>
+	<td>DecisionCode</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][11]/span[2]</td>
+	<td>ZAC</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][12]/span</td>
+	<td>DecisionLevel</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][12]/span[2]</td>
+	<td>P</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][13]/span</td>
+	<td>CommitteeCode</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][13]/span[2]</td>
+	<td>ZZZZ</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][14]/span</td>
+	<td>DecisionDoE</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][14]/span[2]</td>
+	<td>GRTD</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][15]/span</td>
+	<td>UpdUser</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${PlanningApplicationsElement}//div[@class=&quot;infoAdditionalfields&quot;][15]/span[2]</td>
+	<td>DO/Mus</td>
+</tr>
+<!--Check the callout parameters sent.-->
+<!--Point selected verify the co-ordinates are those we expect (British National Grid, not screen co-ordinates)-->
+<!--Slight pixel differences between IE7 & FF hence the use of regexp-->
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;result&quot;]/table/tbody</td>
+	<td>resultsTable</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[2]/td[1]</td>
+	<td>Point:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[2]/td[2]</td>
+	<td>regexp:X: 52784.* Y: 18407.*SRS: epsg:27700</td>
+</tr>
+<!--Tables used.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[3]/td[1]</td>
+	<td>Tables:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[3]/td[2]</td>
+	<td>OpenSpaces,ListedBuildings,ConservationAreas,PlanningApplications,ProposedDevelopmentSites</td>
+</tr>
+<!--Table columns that are to be selected from.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[4]/td[1]</td>
+	<td>Properties:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[4]/td[2]</td>
+	<td>Title,Image,Link,KeyValue,Description</td>
+</tr>
+<!--The width/buffer around the point selected.-->
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[5]/td[1]</td>
+	<td>Width:</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${resultsTable}/tr[5]/td[2]</td>
+	<td>0.335693359375</td>
+</tr>
+<!--Ensure that the geometry bug (CONN-1306) doesn't reappear-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>com.mapinfo.midev.service.featurecollection.v1.GeometryValue</td>
+	<td></td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

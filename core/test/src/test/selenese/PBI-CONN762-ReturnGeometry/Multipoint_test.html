@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Multipoint_test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Multipoint_test</td></tr>
+</thead><tbody>
+<!--verifing the MultiPoint Button-->
+<!--setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-762-feature-search-geometry/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='multiPoint' and @onclick='searchMultiPoint();']</td>
+	<td>MultiPoint</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${MultiPoint}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td>Result</td>
+</tr>
+<!--waiting for the result table-->
+<tr>
+	<td>waitForText</td>
+	<td>${Result}/div/table/tbody/tr/td[1]</td>
+	<td>OpenLayers.Geometry.MultiPoint</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${Result}/div/table/tbody/tr/td[2]/table/tbody/tr/td</td>
+	<td>geometries</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${geometries}[1]</td>
+	<td>POINT(529781.4914476589 183854.5014516348)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${geometries}[2]</td>
+	<td>POINT(529883.3839127462 184119.42561788112)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${geometries}[3]</td>
+	<td>POINT(529924.1474948301 183660.8968703691)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${geometries}[4]</td>
+	<td>POINT(529964.9028318528 183925.83103375416)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${geometries}[5]</td>
+	<td>POINT(530209.4513441115 183864.68853561208)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${geometries}[6]</td>
+	<td>POINT(530280.7793676971 184099.05144992564)</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

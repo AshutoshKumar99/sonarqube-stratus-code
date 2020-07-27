@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Copyright_Config_Modified</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Copyright_Config_Modified</td></tr>
+</thead><tbody>
+<!--Tests for changed copyright messages in configuration file-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-modified_copyright.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//*[@id=&quot;stratus_CopyrightControl_0&quot;]</td>
+	<td></td>
+</tr>
+<!--Verify the changed copyright message-->
+<tr>
+	<td>store</td>
+	<td>© LB of Camden License 100019726</td>
+	<td>CopyrightText</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='masterCopyRight']</td>
+	<td>${CopyrightText}</td>
+</tr>
+<!--Store away some reused values. In FF (and possibly other browsers) //div[@class='baseMapPickerControl']//button[2] doesn't work so we use the descendant:: axis (see XPath spec for more details)-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>landLineButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>aerialButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>masterMapButtonLocator</td>
+</tr>
+<!--Verify the changed copyright text for MasterMap-->
+<tr>
+	<td>store</td>
+	<td>© Spice world</td>
+	<td>copyrightMasterMap</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>${copyrightMasterMap}</td>
+</tr>
+<!--Now let's click on Aerial and verify the copyright text  -->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<tr>
+	<td>click</td>
+	<td>${aerialButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>© abc limited</td>
+	<td>copyrightAerial</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>${copyrightAerial}</td>
+</tr>
+<!--And finally, the same for LandLine-->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<!--Verify copyright message appears for landline-->
+<tr>
+	<td>click</td>
+	<td>${landLineButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>© ADLABS</td>
+	<td>copyrightLandLine</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>${copyrightLandLine}</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

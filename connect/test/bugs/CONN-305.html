@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8081" />
+<title>CONN-305</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CONN-305</td></tr>
+</thead><tbody>
+<!--Purpose:Bug 305; Confirm that directly clicking on search gives No Result Found Error-->
+<tr>
+    <td>open</td>
+    <td>/connect</td>
+    <td></td>
+</tr>
+<tr>
+    <td>pause</td>
+    <td></td>
+    <td>10000</td>
+</tr>
+<tr>
+    <td>store</td>
+    <td>//div[@id='locator']//input[1]</td>
+    <td>SearchInputBox</td>
+</tr>
+<tr>
+    <td>store</td>
+    <td>//div[@id='locator']//button</td>
+    <td>SubmitButton</td>
+</tr>
+<tr>
+    <td>waitForElementPresent</td>
+    <td>${SearchInputBox}</td>
+    <td></td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>${SubmitButton}</td>
+    <td></td>
+</tr>
+<!--Error message displayed if nothing is used in search-->
+<tr>
+    <td>store</td>
+    <td>//*[@id=&quot;resultsContainer&quot;]/div[@id=&quot;error&quot;]</td>
+    <td>ResultsError</td>
+</tr>
+<tr>
+    <td>waitForElementPresent</td>
+    <td>${ResultsError}</td>
+    <td></td>
+</tr>
+<tr>
+    <td>verifyText</td>
+    <td>${ResultsError}</td>
+    <td>Please enter a search term</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

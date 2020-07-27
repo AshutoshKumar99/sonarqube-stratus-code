@@ -1,0 +1,33 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountManagerClient" factory-bean="accountManagerServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="accountManagerServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.g1.dcg.managers.access.AccountManagerService"/>
+        <property name="address" value="${spatialserver.accountmanager.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://access.managers.dcg.g1.com/}AccountManagerService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://access.managers.dcg.g1.com/}AccountManagerServicePortType"/>
+            </bean>
+        </property>
+        <property name="wsdlLocation" value="${spatialserver.accountmanager.wsdl}"/>
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+        </property>
+        <property name="properties">
+            <map>
+                <entry key="set-jaxb-validation-event-handler" value="false" />
+            </map>
+        </property>
+    </bean>
+
+
+</beans>

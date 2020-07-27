@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Default Appearance</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Default Appearance</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the default appearance of the Map Control-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>75000</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']</td>
+	<td>MapDisplay</td>
+</tr>
+<!--First we check the map contains the tiles and map layers.-->
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=71&amp;output=png')]</td>
+	<td>MiddleRightTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=70&amp;output=png')]</td>
+	<td>CenterTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=69&amp;output=png')]</td>
+	<td>MiddleLeftTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, 'name=Conservation Map')]</td>
+	<td>CamdenMapLayer</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, 'name=Development Map')]</td>
+	<td>PlanningMapLayer</td>
+</tr>
+<!--wait for an image attribute (class) to be available, then we know we have something to test!-->
+<tr>
+	<td>waitForAttribute</td>
+	<td>${MiddleLeftTile}@class</td>
+	<td>olTileImage</td>
+</tr>
+<!--Ensure the map control is visible.-->
+<tr>
+	<td>assertVisible</td>
+	<td>${MapDisplay}</td>
+	<td></td>
+</tr>
+<!--Tests fail if any of the 3 tile images or the 2 map layers are missing-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${MiddleLeftTile}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CenterTile}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${MiddleRightTile}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CamdenMapLayer}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${PlanningMapLayer}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>30000</td>
+</tr>
+<!--Confirm the default base map is MasterMap and confirm default zoom level of tiles is 8-->
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;myMap&quot;]//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png&quot;)]</td>
+	<td>master</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${master}</td>
+	<td></td>
+</tr>
+<!--Then check for the controls.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;stratus_ZoomSliderControl_0&quot;]</td>
+	<td>SliderContainer</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SliderContainer}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']</td>
+	<td>PanControl</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${PanControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_BaseMapPickerControl_0']</td>
+	<td>MapPicker</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${MapPicker}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='slider']/button[1]</td>
+	<td>SliderButton</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>${SliderButton}</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

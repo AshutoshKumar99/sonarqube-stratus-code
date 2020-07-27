@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>validmap</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">validmap</td></tr>
+</thead><tbody>
+<!--Purpose: Check for default appearance of the Map Control through Admin Console and verify the changes done on Connect page.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=StreetProMM&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>75000</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']</td>
+	<td>MapDisplay</td>
+</tr>
+<!--Ensure the map control is visible.-->
+<tr>
+	<td>assertVisible</td>
+	<td>${MapDisplay}</td>
+	<td></td>
+</tr>
+<!--Then check for the controls, will remove base mappicker in below script from adminconsole.-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;stratus_ZoomSliderControl_0&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='stratus_PanControl_0']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='stratus_BaseMapPickerControl_0']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id='slider']/button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td></td>
+</tr>
+<!--Store away some reused values. In FF (and possibly other browsers) //div[@class='baseMapPickerControl']//button[2] doesn't work so we use the descendant:: axis (see XPath spec for more details)-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>roadsButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>satelliteButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>masterMapButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td>streetButtonLocator</td>
+</tr>
+<!--Verify the buttons exists and have the right labels. We use a regexp to ignore the first character-->
+<tr>
+	<td>verifyText</td>
+	<td>${masterMapButtonLocator}</td>
+	<td>regexp:.MasterMap</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${satelliteButtonLocator}</td>
+	<td>regexp:.Satellite</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${roadsButtonLocator}</td>
+	<td>regexp:.Roads</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${streetButtonLocator}</td>
+	<td>regexp:.Street Pro</td>
+</tr>
+<!--Log on to adminconsole as super user and uncheck the base map picker.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:9080/adminconsole/</td>
+	<td></td>
+</tr>
+<!--Storing the Username and Password text boxes to a variable-->
+<tr>
+	<td>store</td>
+	<td>//input[@id=&quot;usernameInput&quot;]</td>
+	<td>usernameBox</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${usernameBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//input[@id=&quot;passwordInput&quot;]</td>
+	<td>passwordBox</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${passwordBox}</td>
+	<td></td>
+</tr>
+<!--Check for the correct user credentials-->
+<tr>
+	<td>type</td>
+	<td>${usernameBox}</td>
+	<td>super</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${passwordBox}</td>
+	<td>super</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@id=&quot;loginButton&quot;]</td>
+	<td></td>
+</tr>
+<!--Checks for Connect Settings tab and Connect settings title on that page and Default settings tab!!-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>dijit_layout__TabButton_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>dijit_layout__TabButton_0</td>
+	<td>Connect Settings</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;connecttitle&quot;]</td>
+	<td>Stratus Connect Settings</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>dijit_layout__TabButton_1</td>
+	<td>Default Settings</td>
+</tr>
+<!--Inside Default Settings, Check for Map Navigation Options and uncheck the box for  Enable Basemap Picker!!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//label[@id=&quot;mapnavigationlabel&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//label[@id=&quot;mapnavigationlabel&quot;]</td>
+	<td>Map Navigation Options</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//label[@id=&quot;enablemappickerlabel&quot;]</td>
+	<td>Enable Map Picker</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class=&quot;dijitReset dijitInline dijitCheckBox dijitCheckBoxChecked dijitChecked&quot;]/../div[1]/input[@type='checkbox']</td>
+	<td>MapPickerCheckbox</td>
+</tr>
+<!--checking that box is initially checked.-->
+<tr>
+	<td>assertChecked</td>
+	<td>${MapPickerCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${MapPickerCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertNotChecked</td>
+	<td>${MapPickerCheckbox}</td>
+	<td></td>
+</tr>
+<!--Submit the changes and log out !!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//button[@id=&quot;submitdefault&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@id=&quot;submitdefault&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;defaultmessagesbox&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;logout&quot;]/a</td>
+	<td>Logout super</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id=&quot;logout&quot;]/a</td>
+	<td></td>
+</tr>
+<!--Re-open the connect page and check for Map Picker removed after submitting the changes.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:8080/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td></td>
+</tr>
+<!--After verification of map picker removed, again enable them in admin console, otherwise rest of the connect test will fail.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>http://localhost:9080/adminconsole/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;usernameInput&quot;]</td>
+	<td>super</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;passwordInput&quot;]</td>
+	<td>super</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@id=&quot;loginButton&quot;]</td>
+	<td></td>
+</tr>
+<!--Checks for Connect Settings tab and Connect settings title on that page and Default settings tab!!-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>dijit_layout__TabButton_0</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>dijit_layout__TabButton_0</td>
+	<td>Connect Settings</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;connecttitle&quot;]</td>
+	<td>Stratus Connect Settings</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>dijit_layout__TabButton_1</td>
+	<td>Default Settings</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//label[@id=&quot;enablemappickerlabel&quot;]</td>
+	<td>Enable Map Picker</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class=&quot;dijitReset dijitInline dijitCheckBox dijitCheckBoxChecked dijitChecked&quot;]/../div[1]/input[@type='checkbox']</td>
+	<td>MapPickerCheckbox</td>
+</tr>
+<!--assert that now initially the checkbox is unchecked and now we select it so that it can be enabled.-->
+<tr>
+	<td>assertNotChecked</td>
+	<td>${MapPickerCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${MapPickerCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>${MapPickerCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//button[@id=&quot;submitdefault&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[@id=&quot;submitdefault&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;defaultmessagesbox&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;logout&quot;]/a</td>
+	<td>Logout super</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id=&quot;logout&quot;]/a</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED !!-->
+
+</tbody></table>
+</body>
+</html>

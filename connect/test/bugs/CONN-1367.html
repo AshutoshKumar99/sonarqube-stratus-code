@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>CONN-1367</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CONN-1367</td></tr>
+</thead><tbody>
+<!--Purpose: Bug fix for bug CONN-1367.-->
+<!--CONN-1367: Bug raised for right click on zoom slider control causing context menu to be displayed.-->
+<!--THIS TEST IS NOT TO BE RUN - SELENIUM CANNOT INTERACT CORRECTLY WITH THE SLIDER CONTROL.-->
+<!--Test has been checked in, in case we can find someway to work around the limitations of Selnium in the future.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1216,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Next line should be /connect only, revert once merged.-->
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<!--Is the map displaying our expected tile?-->
+<tr>
+	<td>storeExpression</td>
+	<td>//img[contains(@src, 'name=StreetProMM&amp;level=8&amp;row=68&amp;col=69')]</td>
+	<td>centreTile</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${centreTile}</td>
+	<td></td>
+</tr>
+<!--Store the zoom context menu object, pause 30 seconds and check it has not appeared.-->
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_0']</td>
+	<td>zoomContextMenu</td>
+</tr>
+<!--Rightclick on the zoom slider on the corner of the underlying property that will produce a call out.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_ZoomSliderControl_0']</td>
+	<td>SliderControl</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>${SliderControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDownRightAt</td>
+	<td>${SliderControl}</td>
+	<td>29,204</td>
+</tr>
+<tr>
+	<td>mouseUpRight</td>
+	<td>${SliderControl}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${zoomContextMenu}</td>
+	<td></td>
+</tr>
+<!--Test Passed !! :)-->
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

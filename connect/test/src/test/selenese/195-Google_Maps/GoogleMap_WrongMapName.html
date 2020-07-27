@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://lon01323:8180" />
+<title>GoogleMap_WrongMapName</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GoogleMap_WrongMapName</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the wrong configuration of Google Maps. -->
+<!--Uses the config file map-google-WrongMapName.xml which configures 1 badly formed Google map-name and 1 properly formed.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-google-WrongMapName.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!--Confirm the Google default Google Base Map (Streets) is loaded and both Picker buttons are available.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap&quot;]/div/div[3]/div[2]/a</td>
+	<td>GoogleMaps</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${GoogleMaps}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForXpathCount</td>
+	<td>//div[@class='baseMapPickerControl']//button</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td></td>
+</tr>
+<!--Confirm the text of the picker buttons and that Google Street button is selected.-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>googleStreetButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>googleTerrainButtonLocator</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${googleStreetButtonLocator}</td>
+	<td>regexp:.Google Street</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${googleTerrainButtonLocator}</td>
+	<td>regexp:.Google Terrain</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${googleStreetButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleTerrainButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${GoogleMaps}@href</td>
+	<td>regexp:(.1*&amp;z=13*)</td>
+</tr>
+<!--Select the Google Terrain button & confirmation map is NOT available.-->
+<tr>
+	<td>click</td>
+	<td>${googleTerrainButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${googleTerrainButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleStreetButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>assertNotAttribute</td>
+	<td>${GoogleMaps}@href</td>
+	<td>regexp:(.*t=p.*)</td>
+</tr>
+<!--PASS expected - should see 2 buttons, Google Street renders base map, Google Terrain provides only a blank base.-->
+
+</tbody></table>
+</body>
+</html>

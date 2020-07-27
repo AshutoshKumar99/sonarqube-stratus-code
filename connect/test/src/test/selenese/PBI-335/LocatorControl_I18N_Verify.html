@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8180" />
+<title>LocatorControl_I18N_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorControl_I18N_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the text of the Locator Control in Swedish locale-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?locale=sv</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locatorContainer']</td>
+	<td>LocatorSearch</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SearchButton</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>${LocatorSearch}</td>
+	<td></td>
+</tr>
+<!--Check the Adress Search Header appears in Swedish locale as 'Adress SÖk'-->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='locatorContainer']//div[contains(@class, 'panelHeader')]</td>
+	<td>glob:*Sök efter en Adress</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<!--Check the 'Submit' button appears in Swedish locale as 'Soka'-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SearchButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SearchButton}</td>
+	<td>regexp:.*Söka</td>
+</tr>
+<!--Make sure the results container contains no results (it is always there and always "visible")-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id=&quot;result&quot;]/table</td>
+	<td></td>
+</tr>
+<!--Confirm Recent Selected Addresses is present and appears in Swedish locale as 'Nyligen valda adresser'-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='cachedAddressContainer']</td>
+	<td>RecentAddresses</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${RecentAddresses}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='cachedAddressContainer']//div[contains(@class, 'panelHeader')]</td>
+	<td>glob:*Nyligen Valda Adresser</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id=&quot;cacheResultsContainer&quot;]/table</td>
+	<td></td>
+</tr>
+<!--Confirm 'No Results Found'is present and appears in Swedish locale as 'Nyligen valda adresser'-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>askldjfhasd89fa8sdgfa98sdgf9a8sdgfasidgfasdf</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SearchButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td>Results</td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${Results}</td>
+	<td>Inga resultat hittades.</td>
+</tr>
+<!--Insert blank value and click submit -->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SearchButton}</td>
+	<td></td>
+</tr>
+<!--Confirm error message appears in Swedish locale as 'Ange sokord'-->
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id=&quot;error&quot;]</td>
+	<td>Ange sokord</td>
+</tr>
+<!--Verify that 'Map Legend' appears in swedish locale as 'Karta Inskription'-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='legendContainer']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='legendContainer']//div[contains(@class, 'panelHeader')]</td>
+	<td>glob:*Karta Inskription</td>
+</tr>
+<!--Pass Expected-->
+
+</tbody></table>
+</body>
+</html>

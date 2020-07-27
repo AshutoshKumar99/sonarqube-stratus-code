@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Double Click</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Double Click</td></tr>
+</thead><tbody>
+<!--This test verifies if a mouse double-click zooms in  one level and moves the position under the mouse pointer to the centre-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--We expect the following config: initial-zoom="7" initial-x="527880.5" initial-y="184196.25"-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=8&amp;row=68&amp;col=69&amp;output=png&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<!--I couldn't find a way to avoid the following pause. We need to wait until OpenLayers is done-->
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<!-- 
+    Click on the centre of the zero in 20 King Henry's Road. We click on 
+    the WMS layer above the tiles, because that seems to receive the mouse
+    events
+-->
+<tr>
+	<td>doubleClickAt</td>
+	<td>//div[@id='myMap']/div/div/div[2]/div/img</td>
+	<td>192,44</td>
+</tr>
+<!--Wait for the tile with the zero of 20 King Henry's Road for the next zoomlevel and check it's position-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>5000</td>
+</tr>
+<!--I couldn't find a way to avoid the following pause. We need to wait until OpenLayers is done-->
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>myMap</td>
+	<td>mapControlLeft</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>myMap</td>
+	<td>mapControlWidth</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>tileLeft</td>
+</tr>
+
+<!-- 
+    Check if the point we clicked on is roughly in the centre of the map. We 
+    allow for a tolerance of +-20pixels. That's in fact how much OpenLayers 
+    differs between browsers, so we can't provide any higher precision.
+-->
+<!--
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileLeft} - ${mapControlLeft} + 4 - ${mapControlWidth} / 2)</td>
+	<td>0</td>
+</tr>
+-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileLeft} - ${mapControlLeft} + 4 - ${mapControlWidth} / 2) &lt; 20</td>
+	<td>true</td>
+</tr>
+
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>myMap</td>
+	<td>mapControlTop</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>myMap</td>
+	<td>mapControlHeight</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>tileTop</td>
+</tr>
+<!--
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileTop} - ${mapControlTop} + 219 - ${mapControlHeight} / 2)</td>
+	<td>0</td>
+</tr>
+-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileTop} - ${mapControlTop} + 219 - ${mapControlHeight} / 2) &lt; 20</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

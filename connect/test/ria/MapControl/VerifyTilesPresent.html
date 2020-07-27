@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05VM4:8080/" />
+<title>VerifyTilesPresent</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">VerifyTilesPresent</td></tr>
+</thead><tbody>
+<!--Make sure the middle tiles are available and visible-->
+<!--This confirms that the images have been received from Envinsa Tile Server-->
+<!--Timeout set high to avoid test failing when Connect is initialising the MapComponent page.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Use sensible short names to identify each of the middle 3 tiles instead of their xpaths-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div/div[1]/img</td>
+	<td>MiddleLeftTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div/div[2]/img</td>
+	<td>CenterTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div/div[3]/img</td>
+	<td>MiddleRightTile</td>
+</tr>
+<!--wait for an image attribute (class) to be available, then we know we have something to test!-->
+<tr>
+	<td>waitForAttribute</td>
+	<td>${MiddleLeftTile}@class</td>
+	<td>olTileImage</td>
+</tr>
+<!--Test fails if leftmost tile is missing-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${MiddleLeftTile}&quot;, window.document); img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<!--Test fails if center tile is missing-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CenterTile}&quot;, window.document); img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<!--Test fails if rightmost tile is missing.-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${MiddleRightTile}&quot;, window.document); img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>CONN-34</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CONN-34</td></tr>
+</thead><tbody>
+<!--CONN-34 = Initial Config level is NOT the level which maps are coming from Envinsa.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--We expect the default config: initial-zoom="8"-->
+<tr>
+	<td>store</td>
+	<td>&quot;level=8&quot;</td>
+	<td>defaultZoomLevel</td>
+</tr>
+<!--This test is waiting for the tiles to be complete but uses the incorrect zoom level-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//img[contains(@src, ${defaultZoomLevel})]</td>
+	<td></td>
+</tr>
+<!--Then check the same thing for the Connect Application too.-->
+<tr>
+	<td>open</td>
+	<td>/connect/index.jsp</td>
+	<td></td>
+</tr>
+<!--This test is waiting for the tiles to be complete but uses the incorrect zoom level-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//img[contains(@src, ${defaultZoomLevel})]</td>
+	<td></td>
+</tr>
+<!--PASS expected - this is verifying that the default configuration of initial-zoom-level matches that returned by Envinsa Tile Server-->
+
+</tbody></table>
+</body>
+</html>

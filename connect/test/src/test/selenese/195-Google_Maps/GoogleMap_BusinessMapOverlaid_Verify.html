@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>GoogleMap_BusinessMapOverlaid_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GoogleMap_BusinessMapOverlaid_Verify</td></tr>
+</thead><tbody>
+<!--Purpose:To Verify that the google maps and business maps are overlaid correctly.-->
+<!--This is a amount of time that Selenium will wait for open to complete !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-PBI277.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!--Check the Google Maps are available-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap&quot;]/div/div[3]/div/a</td>
+	<td>GoogleMaps</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${GoogleMaps}</td>
+	<td></td>
+</tr>
+<!--Check for the presence and initial state of Legend Control. Conservation Map and Development Map only.-->
+<!--Checks for all Business maps listed under Legend Control and checkboxes are checked. -->
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<!--Verify that the Conservation business layer is available.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td>Conservation Map</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Conservation Map']/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<!--Verify that the Development business layer is available.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='Development Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Development Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='Development Map']</td>
+	<td>Development Map</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Development Map']/../div[2]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<!--Check for the 'on' state of the checkbox-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Conservation Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>ConservationMapCheckbox</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>${ConservationMapCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Development Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>DevelopmentMapCheckbox</td>
+</tr>
+<tr>
+	<td>assertChecked</td>
+	<td>${DevelopmentMapCheckbox}</td>
+	<td></td>
+</tr>
+<!--Click in the middle of the map to get a call out which ensures that the business layers are functional.-->
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>374,349</td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Checks for Call Out Information Box, and its X (close) button-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>${CallOut}//div[@class=&quot;olPopupCloseBox&quot;]</td>
+	<td>closeButton</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${closeButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${closeButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Test Passed !!!-->
+
+</tbody></table>
+</body>
+</html>

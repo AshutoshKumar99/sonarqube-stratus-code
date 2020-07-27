@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.28:8080/" />
+<title>Base Map Picker Buttons Without Watermark</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Base Map Picker Buttons Without Watermark</td></tr>
+</thead><tbody>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!--Purpose: Verify the base map picker control default appearance. It assumes three base maps to be configured: Roads, Satellite,MasterMap, Street Pro-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td></td>
+</tr>
+<!--Store away some reused values. In FF (and possibly other browsers) //div[@class='baseMapPickerControl']//button[2] doesn't work so we use the descendant:: axis (see XPath spec for more details)-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>roadsButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>satelliteButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>masterMapButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>streetProButtonLocator</td>
+</tr>
+<!--Verify that watermark tile name is not present in any of the buttons labels-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>${masterMapButtonLocator}</td>
+	<td>regexp:.?Watermark</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>${aerialButtonLocator}</td>
+	<td>regexp:.?Watermark</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>${landLineButtonLocator}</td>
+	<td>regexp:.?Watermark</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>${streetProButtonLocator}</td>
+	<td>regexp:.?Watermark</td>
+</tr>
+<!--Verify that watermark is displayed on the map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, 'images/PBLogo512256.png')]</td>
+	<td>watermarkTileLocator</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${watermarkTileLocator}</td>
+	<td></td>
+</tr>
+<!--Verifying that water mark text (Pitney Bowes) is not displayed anywhere on the Connect page (it should only be part of the image).-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Pitney Bowes</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

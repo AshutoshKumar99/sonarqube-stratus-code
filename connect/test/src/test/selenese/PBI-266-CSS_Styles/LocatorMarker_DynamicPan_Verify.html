@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>LocatorMarker_DynamicPan_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorMarker_DynamicPan_Verify</td></tr>
+</thead><tbody>
+<!--PBI122:Locator Marker - Test for the marker to continue to be open/visible on dynamically panning the map-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<!--Insert a searchable value-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>Flat 7 20 King Henry's Road Adelaide London NW3 3RP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Click on first row displaying address 20 KING HENRY'S ROAD LONDON NW3 3RP-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}//table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Initial Check-->
+<!--Check for the presence of marker - use the markerframe div, not the image (comes from CSS)-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='Info_contentDiv']</td>
+	<td>markerframe</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${markerframe}</td>
+	<td></td>
+</tr>
+<!--Verify marker callout contents-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${markerframe}/div/label[@class=&quot;markerLabel&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${markerframe}/div/label[@class=&quot;markerLabel&quot;]</td>
+	<td>Flat 7 20 King Henry's Road Adelaide London NW3 3RP</td>
+</tr>
+<!--Pan to the west-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[3]</td>
+	<td>West</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<!--Second Check :Assuming callout is not closed, ensure that callout displays same address after panning West-->
+<!--Verify marker callout contents-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${markerframe}/div/label[@class=&quot;markerLabel&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${markerframe}/div/label[@class=&quot;markerLabel&quot;]</td>
+	<td>Flat 7 20 King Henry's Road Adelaide London NW3 3RP</td>
+</tr>
+<!--PASS EXPECTED-->
+<!---->
+
+</tbody></table>
+</body>
+</html>

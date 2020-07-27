@@ -1,0 +1,77 @@
+Stratus™ Connect 2.0
+Release Notes
+
+About Stratus Connect
+---------------------
+Stratus Connect enables you to add mapping and geocoding capabilities to your website. With Stratus Connect, you can place maps on your Web site that display your business data. Stratus Connect makes use of the Stratus RIA Controls. They allow you to rapidly build Web-mapping applications that are easy to use for end users. The maps are fully embeddable, scriptable and skinnable using JavaScript. 
+
+Specifications
+---------------------
+* The caching for maps and configuration files has been set to 60 minutes. After this period, the files expire from the cache and will be refreshed on reload.
+* The caching for images in the Legend has been set to one minute. After this period, the images will expire from the client cache and will be refreshed on reload.
+* Stratus Connect can be internationalised. This includes tool tips and the user interface. Texts defined in configuration files, for example map names, must be localised in the configuration file itself. All data, for example map data, is displayed as is.
+
+Configuring Connect
+---------------------
+* You can speed up the rendering of images in IE6 if you choose to use GIF transparency. IE6 does not fully support the normal PNG transparency, but it does support GIF transparency. You configure the use of the IE6 GIF transparency fix in the Administration Console on Map Configs > Settings. Select the Enable GIF Support option. To be able to use the GIF transparency fix, you must also clear the Alpha Channel option on Map Configs > Maps.
+
+What’s New in Connect 2.0
+---------------------
+
+Connect 2.0 has a number of new and improved features as follows
+
+* Find My Nearest functionality with administration support.
+* Connect 2.0 and the administration console support searching for and configuring layers for Find My Nearest.
+	* Any number of layers can be setup for find nearest searches
+	* Layers can be categorised
+	* Nearest results shown on map as clickable markers
+	* An extensive range of graphic map markers are provided
+	* Custom markers can be added by customers
+	* Interactivity between map markers and find nearest results list
+
+* Scheduled update to gazetteer indexes
+* In connect 2.0 GIS Administrators can schedule updates to the gazetteer index on a daily, weekly or custom basis. 
+* Updates are reflected in Connect without needing to stop or start the service and without needing to copy the index file to the connect server.
+* New branding and look and feel
+* A number of usability and branding improvements have been made
+	* Professionally designed map call outs with bevelled edge.
+	* Vertically aligned base map buttons to save space and aid usability
+	* Better graphic treatment of accordion control. 
+	* Use of flat colours – makes it easier to modify to corporate branding standards.
+
+* Web Vulnerability Scanning
+* The connect application has been tested and passed for all major web application vulnerabilities
+* Localisation support
+	* This version of Connect 2.0 includes Welsh localisation recourses. To see Connect in Welsh use this URL http://servername/connect/?locale=cy
+
+* Bug fixes/improvements
+
+The following major issues have been fixed
+	* The order of fields in tables is respected when data is displayed in a call out
+	* A new tile caching mechanism using Squid server improves stability and allows individual maps to be regenerated in a cache without the need to delete the whole cache for all maps.
+	* Individual value thematic maps are supported in the map and legend
+	* Per row styling in Oracle tables is supported
+	* Basic support for label definitions in maps (font style is fixed)
+	* Improved usability of admin console – maps dialog lists maps alphabetically by service and then map name
+	* Supports Internet Explorer 8 (through IE7 compatibility mode) without the need for end users to modify their browser settings
+	* In Admin console the copyright and watermark settings are correctly saved
+	* The admin console allows the login password to be changed.
+	* The add maps dialog lists maps ordered alphabetically per map service
+	* A large number of other minor improvements and bug fixes have been made.
+
+Known Issues
+* IE6 does not display any hover images (images with a highlighted colour to indicate something is selected). This is the case for the hover state of accordion headers, Search button, Pan Control, Zoom Slider buttons, handle, Base Map Picker buttons, Zoom Slider marks nor for the chevrons on accordions. 
+* Right-clicking on the Pan Control drags the map continuously. Right-clicking on the Pan Control also opens the Windows right-click menu and the Zoom menu.
+* Feature Service requests are not terminated if there is a timeout error.
+* Connect shows a blank white box if no copyright information is configured.
+* Long text without spaces does not wrap in the Find My Nearest results pane and the callouts in Internet Explorer 7.
+* Internet Explorer 6 sometimes launches a new callout in find my nearest, when "Clear this marker" link is clicked on the existing callout.
+* Base map button sizes change when clicked if the text on the button is long.
+* On a 64 bit Windows2003, Tile Service installer creates 2 entries of Stratus Tile Service under All Programs
+* Connect shows ‘locate service not found’ error if search term includes special characters.
+* Base map buttons do not accommodate long map names
+* If a new find my nearest serch does not produce any results, the old serch markers are retained on the map.
+* Connect does not display the geometries of type ‘Text’ and a geometry composed of heterogeneous geometries (e.g. point and line)
+* In the Admin console, map config and locator config can be saved with invalid values.
+* Admin console does not let you have a find my nearest category name same as a map name for map config
+

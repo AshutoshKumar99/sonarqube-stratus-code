@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8082/" />
+<title>CallOut_Alt_WrongURLs</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_WrongURLs</td></tr>
+</thead><tbody>
+<!--Purpose : Check wrong configuration of image and link columns - no URLs available means image and link are not displayed.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/wrongURLS_summaryFields.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=StreetProMM&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan twice & open the callout for Chamberlain Street (ListedBuildings data has all configured data fields)-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[contains(@class, 'south')]</td>
+	<td>panSouth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>//*[@id='myMap']</td>
+	<td>190,370</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check for our expected results : Conservation Area and Listed Buildings  -->
+<!--1 item for Chamberlain Street (Title, KeyValue and Description displayed, Image and Link not displayed)-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>2</td>
+</tr>
+<!--Check for ListedBuildings Chamberlain Street contains our configured data - only 3 columns are valid, no URLS in data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ListedBuildings</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>ListedBuildingsElement</td>
+</tr>
+<!--title-column confirmation - configured to point to Title data column-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>CHAMBERLAIN STREET</td>
+</tr>
+<!--Link confirmation - no URL therefore expect no hyperlink.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ListedBuildingsElement}/div[2]/a</td>
+	<td></td>
+</tr>
+<!--Image confirmation - no URL specified therefore no Image container should be created.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${SecondInfoElement}/img[@class=&quot;infoImage&quot;]</td>
+	<td></td>
+</tr>
+<!--KeyValue confirm - configured to point to KeyValue data column-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>Grade II</td>
+</tr>
+<!--Description confirm-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>(South side) Nos.1-8 (Consecutive) and attached railings</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

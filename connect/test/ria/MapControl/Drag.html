@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Drag</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Drag</td></tr>
+</thead><tbody>
+<!--This is a amount of time that Selenium will wait for open to complete !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--This command opens the MapComponent Page !!-->
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--Verify the map is present or not !!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//body/div</td>
+	<td></td>
+</tr>
+<!--We are storing the position of Middle Leftmost tile to the variable !!-->
+<tr>
+	<td>store</td>
+	<td>//body/div/div/div/div/div/img</td>
+	<td>MiddleLeftTile</td>
+</tr>
+<!--This command drags the current position and drop it to another location by a distance of 650 pixels-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>dragAndDrop</td>
+	<td>${MiddleLeftTile}</td>
+	<td>+500,+500</td>
+</tr>
+<!--Test Passed !! :)-->
+
+</tbody></table>
+</body>
+</html>

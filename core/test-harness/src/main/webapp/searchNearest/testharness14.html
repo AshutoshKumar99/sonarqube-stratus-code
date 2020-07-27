@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <title>Search Nearest</title>
+        <script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+
+            dojo.addOnLoad(function() {
+                window.featureSearch = new stratus.search.FeatureSearch();
+            });
+
+           function showAjaxLoader()
+           {
+            var resultstable = dojo.byId("resultsTableDiv");
+            resultstable.innerHTML = "<div class='ajaxloader'><img src='ajax-loader.gif' alt='Loading'/></div>";
+           }
+
+
+            function roundNumber(numToRound, decPlaces) {
+              return Math.round(numToRound * Math.pow(10, decPlaces)) / Math.pow(10, decPlaces);
+            }
+
+
+            function processResults(results)
+            {
+                var resultstable = dojo.byId("resultsTableDiv");
+                resultstable.innerHTML = "";
+
+                for(layer in results)
+                {
+                   for(var i = 0; i < results[layer].length; i++)
+                   {
+                     var roundedDistance = roundNumber(results[layer][i].
+                                 properties.Distance, 1);
+                         var distance = new stratus.search.Distance
+                         ({
+                             unit: stratus.util.DistanceUnits.METER,
+                                     distance : roundedDistance
+                         });
+                         var distanceConverter = new stratus.search.DistanceConverter();
+                         var tempdistance=distanceConverter.convert(distance,
+                                 stratus.util.DistanceUnits.MILE);
+                         var message = results[layer][i].properties.Title 
+                                 + ' (' + dojo.number.format(tempdistance.distance
+                                             ,2) +' miles)';
+                     resultstable.innerHTML = resultstable.innerHTML + "<li class='resultitem'>" + message + "</li>";
+                   }
+                }
+
+                if(results[layer].length == 0)
+                {
+                    resultstable.innerHTML = "No results found";
+                }
+            }
+
+
+            function handleException(x)
+            {
+                var resultstable = dojo.byId("resultsTableDiv");
+                resultstable.innerHTML = "There was an error with the Service:" + x.message;
+            }
+
+            function searchNearestFromInputNull()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:527990.5, y:184086.25, srs:'epsg:27700'},
+                    "tableName": "ListedBuildings",
+                    "attributeFields": ["Title"],
+                    "includeGeometry": false,
+                    "maxResults": 10,
+                    "maxDistance": null,
+                    "distanceUnit": "mile",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+
+            function searchNearestFromInputBlank()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:527990.5, y:184086.25, srs:'epsg:27700'},
+                    "tableName": "ListedBuildings",
+                    "attributeFields": ["Title"],
+                    "includeGeometry": false,
+                    "maxResults": 10,
+                    "maxDistance": "",
+                    "distanceUnit": "mile",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+        </script>
+
+    </head>
+    <body>
+
+        <p>This page tests the searchNearest function by calling it with null or blank max distance paramater.  This page should return results.
+        </p>
+
+        <div id="searchButtonDiv">
+            <button onclick="searchNearestFromInputNull();">Search Null</button>
+            <button onclick="searchNearestFromInputBlank();">Search Blank</button>
+        </div>
+
+        <div id="resultsTableDiv">
+            <ol class="resultlist" id="resultslist" />
+        </div>
+
+    </body>
+</html>

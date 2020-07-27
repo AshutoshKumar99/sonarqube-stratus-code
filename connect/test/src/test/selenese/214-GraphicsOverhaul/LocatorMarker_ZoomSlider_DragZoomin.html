@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm8:8080/" />
+<title>LocatorMarker_ZoomSlider_DragZoomin</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorMarker_ZoomSlider_DragZoomin</td></tr>
+</thead><tbody>
+<!--Purpose: Checks for the presence of marker after dragging the ZoomSlider, the address is verified manually-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SearchButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>leather lane</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SearchButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//*[@id=&quot;resultsContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>//div[@id='MapMarker']</td>
+	<td></td>
+</tr>
+<!--Purpose : Verify dragging the Slider zooms in-->
+<!--Verify the map is present or not !!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='myMap']</td>
+	<td></td>
+</tr>
+<!--Store the element containing the value of the slider control-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;stratus_ZoomSliderControl_0&quot;]//input[@type=&quot;hidden&quot;]</td>
+	<td>SliderHiddenInput</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>${SliderHiddenInput}</td>
+	<td></td>
+</tr>
+<!--initial zoom should be level 8-->
+<tr>
+	<td>verifyAttribute</td>
+	<td>${SliderHiddenInput}@value</td>
+	<td>8</td>
+</tr>
+<!--Store a variable to identify the Slider handle-->
+<tr>
+	<td>store</td>
+	<td>//table[@id='dijit_form_VerticalSlider_0']//div[@class=&quot;dijitSliderImageHandle dijitSliderImageHandleV&quot;]</td>
+	<td>SliderHandle</td>
+</tr>
+<!--Drag the handle up 10 pixels - zooming in about one level-->
+<tr>
+	<td>mouseOver</td>
+	<td>${SliderHandle}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${SliderHandle}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseMoveAt</td>
+	<td>${SliderHandle}</td>
+	<td>0,-2.5</td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${SliderHandle}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Checking zoom level is either 9 OR 10 because of slight differences in IE and FF.... its not the number which is important, this test is to confirm the slider works & does Zoom In.-->
+<tr>
+	<td>verifyAttribute</td>
+	<td>${SliderHiddenInput}@value</td>
+	<td>regexp:(.*9.*)|(.*10.*)</td>
+</tr>
+<!--Checks for the presence of marker after zoomin-->
+<tr>
+	<td>verifyVisible</td>
+	<td>//div[@id='MapMarker']</td>
+	<td></td>
+</tr>
+<!--Test Passed !! :)-->
+
+</tbody></table>
+</body>
+</html>

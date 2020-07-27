@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-config>
+  <tableName>PlanningApplications</tableName>
+   <desc>SampleQueryOnTime</desc>
+  <column id="0">
+    <columnName>DeliveryTime</columnName>
+    <columnType>TIME</columnType>
+    <operator>=</operator>
+    <displayType>Pick List</displayType>
+    <label>Enter Delivery time</label>
+  </column>
+</query-config>

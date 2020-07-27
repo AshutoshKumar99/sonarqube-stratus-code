@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<map-config
+    max-bounds-left="522000"
+    max-bounds-bottom="179000"
+    max-bounds-right="533000"
+    max-bounds-top="190000"
+    max-zoom-levels="20"
+    max-resolution="42.96875"
+    units="meters"
+    projection="epsg:27700"
+    initial-zoom="8"
+    initial-x="527880.5"
+    initial-y="184196.25"
+    legend-control-named-maps=""
+    disable-locator-marker="false"
+    disable-map-picker="false"
+    disable-pan-control="true"
+    disable-zoom-menu="true"  
+    disable-slider-control="true" 
+    default-copyright ="© LB of Camden License 100019726"
+    gif-images-for-ie6 ="true">
+
+    <ZoomLevels>
+        <ZoomLevel Value="1" Name="Entire District"></ZoomLevel>
+        <ZoomLevel Value="3" Name="Locality"></ZoomLevel>
+        <ZoomLevel Value="5" Name="Street"></ZoomLevel>
+        <ZoomLevel Value="10" Name="Property"></ZoomLevel>
+    </ZoomLevels>
+
+    <summary-fields>
+      <title-column value="OS_Sheet"></title-column>
+      <image-column value="Image"></image-column>
+      <keyvalue-column value="DateListed"></keyvalue-column>
+   </summary-fields>
+    
+    <map 
+        service="Envinsa-Mapping"
+        friendly-name="Development Map"
+        map-name="Development Map" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="0.5"
+        copyright="&#169; Camden Crown Copyright 2008"
+        alpha="false"/>
+
+    <map 
+        service="Envinsa-Tile"
+        friendly-name="Conservation Map"
+        map-name="Conservation Map" 
+        show-as="business"
+        tile-width="256"
+        tile-height="256"
+        opacity="0.5"
+        copyright="&#169; Camden Crown Copyright 2008" 
+        alpha="false"/>
+
+</map-config>

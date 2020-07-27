@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>CallOut_Alt_IncorrectSummaryValues</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_IncorrectSummaryValues</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check configuration of wrong data values for the Summary Fields does not present Call Out.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/incorrectSummaryFields.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=StreetProMM&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class=&quot;emptyCallPanel&quot;]</td>
+	<td>noInformationCallOut</td>
+</tr>
+<!--Pan twice & click on Chamberlain Street-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[contains(@class, 'south')]</td>
+	<td>panSouth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>//*[@id='myMap']</td>
+	<td>190,370</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for No Information Call Out to pop up.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${noInformationCallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${noInformationCallOut}</td>
+	<td></td>
+</tr>
+<!--Check we get the correct message.-->
+<tr>
+	<td>verifyText</td>
+	<td>${noInformationCallOut}//div[@class=&quot;emptyCallout&quot;]</td>
+	<td>No information found at this location.</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

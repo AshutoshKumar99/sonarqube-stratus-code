@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.204.182:8080" />
+<title>GoogleMap_Type_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GoogleMap_Type_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the correct configuration of Google Maps. Uses the config file map-google-FourBaseMap.xml which configures 4 Google Base Maps: Street,Terrain,Hybrid and Satellite.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-PBI277.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap&quot;]/div/div[3]/div/a</td>
+	<td>GoogleMaps</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${GoogleMaps}</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>waitForXpathCount</td>
+	<td>//div[@class='baseMapPickerControl']//button</td>
+	<td>4</td>
+</tr>
+<!--Verify 4 buttons are available in the Base Map Picker Control. -->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td></td>
+</tr>
+<!--Store away some reused values. In FF (and possibly other browsers) //div[@class='baseMapPickerControl']//button[2] doesn't work so we use the descendant:: axis (see XPath spec for more details)-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>googleSatelliteButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>googleHybridButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>googleTerrainButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td>googleStreetButtonLocator</td>
+</tr>
+<!--Verify the buttons have the right labels. Dijit adds a checkmark somewhere into a ToggleButton. Although you can't see it, verifyText returns it. We use a regexp to ignore the first character-->
+<tr>
+	<td>verifyText</td>
+	<td>${googleSatelliteButtonLocator}</td>
+	<td>regexp:.Google Satellite</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${googleHybridButtonLocator}</td>
+	<td>regexp:.Google Hybrid</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${googleTerrainButtonLocator}</td>
+	<td>regexp:.Google Terrain</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${googleStreetButtonLocator}</td>
+	<td>regexp:.Google Street</td>
+</tr>
+<!--Verify which button is pressed, and confirm the others aren't. The relevant CSS class is set on the parent div of the actual button. Then confirm the relevant map is displayed.-->
+<!--Google Street button & map confirmation-->
+<tr>
+	<td>verifyAttribute</td>
+	<td>${googleStreetButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleTerrainButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleHybridButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleSatelliteButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--All Google Maps are contained within a single div and a single reference controls the call made through the API - a very different approach to the one we see in Envinsa.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap&quot;]/div/div[3]/div[2]/a</td>
+	<td>GoogleMaps</td>
+</tr>
+<!--The only unique identifier for any of the Google Map Types is buried within the href attribute.-->
+<!--Google Street only has the "z=13" parameter.-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${GoogleMaps}@href</td>
+	<td>regexp:(.1*&amp;z=13*)</td>
+</tr>
+<!--Google Terrain button & map confirmation-->
+<tr>
+	<td>click</td>
+	<td>${googleTerrainButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${googleTerrainButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleStreetButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleHybridButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleSatelliteButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--Google Terrain has the "t=p" parameter.-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${GoogleMaps}@href</td>
+	<td>regexp:(.*t=p*)</td>
+</tr>
+<!--Google Hybrid button & map confirmation-->
+<tr>
+	<td>click</td>
+	<td>${googleHybridButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${googleHybridButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleStreetButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleTerrainButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleSatelliteButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--Google Hybrid has the "t=h" parameter.-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${GoogleMaps}@href</td>
+	<td>regexp:(.*t=h*)</td>
+</tr>
+<!--Google Satellite button & map confirmation-->
+<tr>
+	<td>click</td>
+	<td>${googleSatelliteButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${googleSatelliteButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleStreetButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleTerrainButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<tr>
+	<td>verifyNotAttribute</td>
+	<td>${googleHybridButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--Google Satellite has the "t=k" parameter.-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${GoogleMaps}@href</td>
+	<td>regexp:(.*t=k*)</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

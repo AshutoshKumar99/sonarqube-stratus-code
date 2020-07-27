@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeoCoder>
+  <name>GeocodeAddressGBR</name>
+  <url>http://stratusopwin2k8:8080/rest/GeocodeAddressGBR/</url>
+  <geoCoderService>EGM</geoCoderService>
+  <username>admin</username>
+  <password>admin</password>
+</GeoCoder>

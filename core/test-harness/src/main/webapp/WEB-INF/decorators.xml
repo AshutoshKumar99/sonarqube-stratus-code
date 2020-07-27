@@ -1,0 +1,26 @@
+<decorators defaultdir="/decorators">
+    <decorator name="main" page="main.jsp">
+          <pattern>/api-search-by-column/*</pattern>
+          <pattern>/baseMapPicker/*</pattern>
+          <pattern>/deferred/*</pattern>
+          <pattern>/featureCallout/*</pattern>
+          <pattern>/feature-search/*</pattern>
+          <pattern>/feature-search-geometry/*</pattern>
+          <pattern>/feature-search-object/*</pattern>
+          <pattern>/find-my-nearest-control/*</pattern>
+          <pattern>/locator/*</pattern>
+          <pattern>/map-callout/*</pattern>
+          <pattern>/map-click-event/*</pattern>
+          <pattern>/mapcomponent/*</pattern>
+          <pattern>/mapMarker/*</pattern>
+          <pattern>/mapMoveToAndZoom/*</pattern>
+          <pattern>/pan/*</pattern>
+          <pattern>/searchNearest/*</pattern>
+          <pattern>/searchResultsControl/*</pattern>
+          <pattern>/all2ControlsOnPage/*</pattern>
+    </decorator>
+    <excludes>
+        <pattern>/controller/*</pattern>
+    </excludes>
+    
+</decorators>

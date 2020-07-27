@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winsandra2:8082" />
+<title>CallOut_Alt_DisabledCallOut_Verify.html</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_DisabledCallOut_Verify.html</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check configuration of data populating the Call Out elements.-->
+<!--Call out is disabled in configuration so no parameters should be sent.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>test-harness/conn-761-map-callout/Disable_Callout_Verify/disable_Callout_Verify.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=MasterMap&amp;level=8&amp;row=69&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan south & open the callout for Chamberlain Street (ListedBuildings data has all configured data fields)-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${tileLocator}</td>
+	<td>0,-500</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDownAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>mouseUpAt</td>
+	<td>${mapLocator}</td>
+	<td>220,237</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check callout parameters are not sent.-->
+<!--Start with parameter types.-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Point:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Tables:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Properties:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Width:</td>
+	<td></td>
+</tr>
+<!--And now the parameters that were sent.-->
+<!--Point selected. Should match with co-ordinates clicked on above.-->
+<!--Some interesting differences between IE7 & FF hence the use of regexp and no xpaths!-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>regexp:X: 52784*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>regexp:.Y: 18407*</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>regexp:.SRS: epsg:27700</td>
+	<td></td>
+</tr>
+<!--Tables used.-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>OpenSpaces,ListedBuildings,ConservationAreas</td>
+	<td></td>
+</tr>
+<!--Table columns that are to be selected from.-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>Title,Image,Link,KeyValue,Description</td>
+	<td></td>
+</tr>
+<!--The width/buffer around the point selected.-->
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>0.335693359375</td>
+	<td></td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

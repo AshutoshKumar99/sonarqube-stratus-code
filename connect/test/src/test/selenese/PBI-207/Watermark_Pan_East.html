@@ -1,0 +1,100 @@
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Watermark_Pan_East</title>
+    </head>
+    <body>
+        <table cellpadding="1" cellspacing="1" border="1">
+            <thead>
+                <tr>
+                    <td rowspan="1" colspan="3">Watermark_Pan_East</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>setTimeout</td>
+                    <td>75000</td>
+                    <td></td>
+                </tr>
+                <!-- Open the application -->
+                <tr>
+                    <td>open</td>
+                    <td>/connect/</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>resizeWindow</td>
+                    <td>800,600</td>
+                </tr>
+                <!-- Store a reference to the east pan control button -->
+                <tr>
+                    <td>waitForElementPresent</td>
+                    <td>//div[@id='stratus_PanControl_0']/button[4]</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>store</td>
+                    <td>//div[@id='stratus_PanControl_0']/button[4]</td>
+                    <td>East</td>
+                </tr>
+                <!-- Store a reference to a watermark tile -->
+                <tr>
+                    <td>waitForElementPresent</td>
+                    <td>//div[@id='OpenLayers.Layer.Watermark_18']/div[7]/img</td>
+                    <td></td>
+                </tr>
+                <!-- Wait until page settles after resize -->
+                <tr>
+                    <td>pause</td>
+                    <td>3000</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>store</td>
+                    <td>//div[@id='OpenLayers.Layer.Watermark_18']/div[7]/img</td>
+                    <td>Tile</td>
+                </tr>
+                <!-- Store the left value for the tile -->
+                <tr>
+                    <td>storeElementPositionLeft</td>
+                    <td>${Tile}</td>
+                    <td>TileLeft</td>
+                </tr>
+                <!-- Pan East -->
+                <tr>
+                    <td>mouseDown</td>
+                    <td>${East}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>click</td>
+                    <td>${East}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>mouseUp</td>
+                    <td>${East}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>pause</td>
+                    <td>3000</td>
+                    <td></td>
+                </tr>
+                <!-- Check that the left position of the tile is now less than before -->
+                <tr>
+                    <td>storeElementPositionLeft</td>
+                    <td>${Tile}</td>
+                    <td>TileLeftAfterScroll</td>
+                </tr>
+                <tr>
+                    <td>verifyEval</td>
+                    <td>storedVars['TileLeftAfterScroll'] &lt; storedVars['TileLeft']</td>
+                    <td>true</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
+

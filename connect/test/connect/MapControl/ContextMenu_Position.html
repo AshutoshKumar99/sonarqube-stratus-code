@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>ContextMenu_Position</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ContextMenu_Position</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check for Context Menu Position.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>200</td>
+	<td>menuPositionX</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>150</td>
+	<td>menuPositionY</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=70&amp;output=png')]</td>
+	<td>CenterTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']</td>
+	<td>mapControl</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CenterTile}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>contextMenuAt</td>
+	<td>${mapControl}</td>
+	<td>${menuPositionX},${menuPositionY}</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapControl}</td>
+	<td>mapLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${mapControl}</td>
+	<td>mapTop</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//table[@id='map_menu_div_myMap']</td>
+	<td>menuTable</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${menuTable}</td>
+	<td>menuLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${menuTable}</td>
+	<td>menuTop</td>
+</tr>
+<!-- This bit calculates difference between screen xy with map+menu location. IE returns 1 FF return 0 -->
+<tr>
+	<td>verifyEval</td>
+	<td>eval(${menuLeft}-${mapLeft}-${menuPositionX})</td>
+	<td>regexp:0|1</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>eval(${menuTop}-${mapTop}-${menuPositionY})</td>
+	<td>regexp:0|1</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

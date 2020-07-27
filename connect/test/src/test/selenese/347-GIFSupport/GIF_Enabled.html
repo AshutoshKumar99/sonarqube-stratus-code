@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>GIF_Enabled</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">GIF_Enabled</td></tr>
+</thead><tbody>
+<!--Purpose: Verify PNG images are used for FF3 & IE7 when gif-images-for-ie6="true" (ONLY IE6 should display .GIF images & this is manually checked)-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Open Connect with our required configuration file.-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/GIF-enabled-NSmap.xml</td>
+	<td></td>
+</tr>
+<!--Wait for the North Somerset base map to be available-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='myMap']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;name=StreetProNS&amp;level=2&quot;)]</td>
+	<td>NSBaseMap</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${NSBaseMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${NSBaseMap}</td>
+	<td></td>
+</tr>
+<!--Verify Base map is retrieved from Envinsa as a .PNG-->
+<tr>
+	<td>verifyAttribute</td>
+	<td>${NSBaseMap}@src</td>
+	<td>regexp:output=png</td>
+</tr>
+<!--Verify Business maps are retrieved from Envinsa as a .PNG (from the Envinsa Mapping Service in this configuration)-->
+<!--Facilities Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSCuluralCommunityFacilities&quot;)]</td>
+	<td>FacilitiesMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${FacilitiesMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--Economy Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSEconomy&quot;)]</td>
+	<td>EconomyMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${EconomyMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--Environment Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSEnvironmentCuluralHeritage&quot;)]</td>
+	<td>EnvironmentMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${EnvironmentMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--General Development Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSGeneralDevelopmentPrinciples&quot;)]</td>
+	<td>GeneralDevelopmentMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${GeneralDevelopmentMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--Housing Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSHousing&quot;)]</td>
+	<td>HousingMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${HousingMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--Rural Development Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSRuralDevelopment&quot;)]</td>
+	<td>RuralDevelopmentMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${RuralDevelopmentMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--Town Centres Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSTownCentresRetailing&quot;)]</td>
+	<td>TownCentresMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${TownCentresMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--Transport Business Map-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=NSTransport&quot;)]</td>
+	<td>TransportMap</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${TransportMap}@src</td>
+	<td>regexp:output=image/png</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

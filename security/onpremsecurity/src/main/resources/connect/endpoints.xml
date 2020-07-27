@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <!--  to be revisited for clear cache endpont configuration
+    <jaxws:endpoint id="clearCache"
+                    serviceName="ClearCacheService"
+                    endpointName="ClearCacheServiceSoapBinding"
+                    address="/ClearCacheService"
+                    implementor="com.pb.stratus.connect.services.soap.clearcache.ClearCacheServiceImpl">
+        <jaxws:inInterceptors>
+            <bean class="com.pbinsight.cxf.ws.security.service.saml.MessageSignatureWithSamlReferenceInInterceptor"/>
+            <ref bean="wss4jInInterceptor"/>
+            <ref bean="samlAssertionInInterceptor"/>
+            <ref bean="serviceSecurityInInterceptor"/>
+        </jaxws:inInterceptors>
+        <jaxws:outInterceptors>
+            <ref bean="wss4jOutInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="wss4jOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+        <jaxws:properties>
+            <entry key="ws-security.timestamp.futureTimeToLive" value="300"/>
+        </jaxws:properties>
+    </jaxws:endpoint>
+
+    <jaxws:endpoint id="tenantInformation"
+                    serviceName="TenantInformationService"
+                    endpointName="TenantInformationServiceSoapBinding"
+                    implementor="#tenantInformationServiceImpl"
+                    address="/TenantInformationService">
+        <jaxws:inInterceptors>
+            <bean class="com.pbinsight.cxf.ws.security.service.saml.MessageSignatureWithSamlReferenceInInterceptor"/>
+            <ref bean="wss4jInInterceptor"/>
+            <ref bean="samlAssertionInInterceptor"/>
+            <ref bean="serviceSecurityInInterceptor"/>
+        </jaxws:inInterceptors>
+        <jaxws:outInterceptors>
+            <ref bean="wss4jOutInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="wss4jOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+        <jaxws:properties>
+            <entry key="ws-security.timestamp.futureTimeToLive" value="300"/>
+        </jaxws:properties>
+    </jaxws:endpoint> -->
+
+    <!-- CONN-17070 : Add version parameter: separated the bean definition to inject the  uploader version-->
+<!--    <bean id="tenantInformationServiceImpl" class="com.pb.stratus.saassecurity.services.soap.tenant.TenantInformationServiceImpl">
+        <property name="minUploaderVersion" ref="uploaderVersion"/>
+    </bean>
+
+    &lt;!&ndash; Stratus Uploader supported  minimum version&ndash;&gt;
+    <bean id="uploaderVersion" class="com.pb.stratus.saassecurity.services.soap.tenant.UploaderVersionImpl">
+        <property name="major" value="40"/>
+        <property name="majorRevision" value="0"/>
+        <property name="minor" value="0"/>
+        <property name="minorRevision" value="0"/>
+    </bean>-->
+</beans>

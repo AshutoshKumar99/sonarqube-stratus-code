@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>mapMoveTo_Button_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">mapMoveTo_Button_Verify</td></tr>
+</thead><tbody>
+<!--To verify the sample page for Ria Samples for a simple mapMoveTo Control from the user input textbox-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapMoveTo</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Map moveTo Demo</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//a[@id=&quot;mappanlink&quot;]</td>
+	<td>Click here to Pan Map</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@onclick='manualPanMap();']</td>
+	<td>moveTo</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;samplemap_OpenLayers_Container&quot;]</td>
+	<td>mapLocator</td>
+</tr>
+<!--Store the Initial left position of Map-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>mapLeft</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//img[contains(@src, &quot;row=68&quot;)]</td>
+	<td></td>
+</tr>
+<!--Scenario 1 : Enter the unacceptable values in textbox, so map does not move.-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>200</td>
+</tr>
+<!--Click on moveTo button to move the Map.-->
+<tr>
+	<td>click</td>
+	<td>${moveTo}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>mapLeftNew</td>
+</tr>
+<!--Verify that the map has not moved to a new location. -->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//img[contains(@src, &quot;row=68&quot;)]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${mapLeft}</td>
+	<td>${mapLeftNew}</td>
+</tr>
+<!--Scenario 2 : Enter the valid values in textbox, so map moves accordingly.-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>524781</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>185641</td>
+</tr>
+<!--Click on moveTo button to move the Map.-->
+<tr>
+	<td>click</td>
+	<td>${moveTo}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>mapLeftNew</td>
+</tr>
+<!--Verify that the map has moved to a new location. -->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//img[contains(@src, &quot;row=51&quot;)]</td>
+	<td></td>
+</tr>
+<!--Test Passed !!-->
+
+</tbody></table>
+</body>
+</html>

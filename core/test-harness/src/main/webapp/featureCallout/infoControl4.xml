@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<map-config 
+    max-bounds-left="-20037508"
+    max-bounds-bottom="-20037508" 
+    max-bounds-right="20037508" 
+    max-bounds-top="20037508" 
+    max-zoom-levels="18" 
+    max-resolution="156543.0339" 
+    units="meters" 
+    projection="EPSG:3857"
+    initial-zoom="15" 
+    initial-x="-17342"
+    initial-y="6717575" 
+    legend-control-named-maps=""
+    disable-locator-marker="false"
+    disable-map-picker="false" 
+    disable-pan-control="true" 
+    disable-zoom-menu="true" 
+    disable-slider-control="true"
+    default-copyright="© LB of Camden License 100019726">
+
+    <summary-fields>
+        <title-column value="Title" />
+        <description-column value="Description" />
+    </summary-fields>
+
+    <ZoomLevels>
+        <ZoomLevel Value="1" Name="Entire District"></ZoomLevel>
+        <ZoomLevel Value="3" Name="Locality"></ZoomLevel>
+        <ZoomLevel Value="5" Name="Street"></ZoomLevel>
+        <ZoomLevel Value="10" Name="Property"></ZoomLevel>
+    </ZoomLevels>
+
+    <api-keys>
+        <key service="Google-Map">ABQIAAAA0lMTKruPuFcayEifzBgmTxRB9-PkKJqRs23SWydrfFUPq4RNAxTtiTgsFnQg_SmWum3M7O-44YuRLA</key>
+    </api-keys>
+
+    <map service="Envinsa-Mapping" friendly-name="Development Map" map-name="Development Map" url="/test-harness/controller/mapping/getmap" show-as="business" tile-width="512" tile-height="512" opacity="1" copyright="&#169; Camden Crown Copyright 2008"/>
+    <map service="Google-Map" friendly-name="Google Normal Map" map-name="G_NORMAL_MAP" show-as="base" opacity="1.0" copyright="&amp;#169; Google Copyright 2009" alpha="false" visible="true" />
+    <map service="Google-Map" friendly-name="Google Satellite Map" map-name="G_SATELLITE_MAP" show-as="base" opacity="1.0" copyright="&amp;#169; Google Copyright 2009" alpha="false" visible="true" />
+    <map service="Google-Map" friendly-name="Google Physical Map" map-name="G_PHYSICAL_MAP" show-as="base" opacity="1.0" copyright="&amp;#169; Google Copyright 2009" alpha="false" visible="true" />
+    <map service="Google-Map" friendly-name="Google Hybrid Map" map-name="G_HYBRID_MAP" show-as="base" opacity="1.0" copyright="&amp;#169; Google Copyright 2009" alpha="false" visible="true" />
+
+</map-config>

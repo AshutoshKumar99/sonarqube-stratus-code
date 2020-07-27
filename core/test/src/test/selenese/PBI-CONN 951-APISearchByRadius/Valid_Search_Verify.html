@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.195:8082/" />
+<title>Valid_Search_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Valid_Search_Verify</td></tr>
+</thead><tbody>
+<!--Verifying the Search result for valid co-ordinates-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/searchNearest/index.html</td>
+	<td></td>
+</tr>
+<!--Enter the x & y co-ord -->
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;xloc&quot;]</td>
+	<td>527990.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;yloc&quot;]</td>
+	<td>184086.25</td>
+</tr>
+<!--Restrict results to 10-->
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;noofresults&quot;]</td>
+	<td>10</td>
+</tr>
+<!--Enter distance as 1000 meters-->
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;distance&quot;]</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@onclick='searchNearestFromInput();']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${Search}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<!--Verify the table contains 10 results-->
+<tr>
+	<td>storeXpathCount</td>
+	<td>//ol[@id='resultslist']/li</td>
+	<td>ResultList</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>//*[@id=&quot;noofresults&quot;]</td>
+	<td>${ResultList}</td>
+</tr>
+<!--Verify few results-->
+<tr>
+	<td>verifyText</td>
+	<td>//ol[@id='resultslist']/li[1]</td>
+	<td>CHALCOT SQUARE (15.3 meters)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ol[@id='resultslist']/li[5]</td>
+	<td>CHALCOT CRESCENT (51.5 meters)</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//ol[@id='resultslist']/li[6]</td>
+	<td>SHARPLESHALL STREET (59.7 meters)</td>
+</tr>
+<!--Manual tests to verify markers on the Map-->
+<!--Test Passed!!-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+Stratus™ RIA Controls 1.0
+Release Notes
+
+About the Stratus RIA Controls
+------------------------------
+The Stratus RIA Controls allow you to rapidly build web-mapping applications that are easy to use. Maps are fully embeddable, scriptable and skinnable using JavaScript. 
+
+Specifications
+--------------
+* The caching for maps and configuration files has been set to 60 minutes. After this period, the files expire from the cache and will be refreshed on reload.
+* The Stratus RIA Controls can be internationalised. This includes tool tips and the user interface. Texts defined in configuration files, for example map names, must be localised in the configuration file itself. All data, for example map data, is displayed as is.
+
+Known Issues
+------------
+* Internet Explorer 6 display images of type PNG (Portable Network Graphics) but does not support transparency natively. An open source "IE PNG Fix" solution has been added that makes the image from the Mapping Service transparent so that the Tile Service tiles are visible underneath. This reduces performance in IE6 when using PNG files.
+* Internet Explorer 6 does not display any hover images (images with a highlighted colour to indicate something is selected). This is the case for the hover state of accordion headers, Search button, Pan Control, Zoom Slider buttons, handle, Base Map Picker buttons, Zoom Slider marks nor for the chevrons on accordions. 
+* Right-clicking on the Pan Control drags the map continuously. Right-clicking on the Pan Control also opens the Windows right-click menu and the Zoom menu.
+* Feature Service requests are not terminated if there is a timeout error.
+* Long text without spaces does not wrap in the Find My Nearest results pane and the callouts in Internet Explorer 7.
+* Internet Explorer 6 sometimes launches a new callout in find my nearest, when "Clear this marker" link is clicked on the existing callout.
+* Base map button sizes change when clicked if the text on the button is long.
+* On a 64 bit Windows2003, Tile Service installer creates 2 entries of Stratus Tile Service under All Programs
+* Searches using the Locate Service will return a ‘locate service not found’ error if search term includes special characters.
+* Base map buttons do not accommodate long map names
+* If a new find my nearest search does not produce any results, the old search markers are retained on the map.
+* Geometries of type ‘Text’ and a geometry composed of heterogeneous geometries (e.g. point and line) cannot be displayed in maps.
+* In the Admin console, map config and locator config can be saved with invalid values.
+* Admin console does not let you have a find my nearest category name the same as a map name for map config
+
+

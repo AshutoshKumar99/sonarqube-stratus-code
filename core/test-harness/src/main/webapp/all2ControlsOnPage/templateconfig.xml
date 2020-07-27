@@ -1,0 +1,4 @@
+<template-config>
+    <template name="Portrait"/>
+    <template name="Landscape"/>
+</template-config>

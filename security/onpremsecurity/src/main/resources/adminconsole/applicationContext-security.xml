@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans         http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/security      http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="springSecurityFilterChain"
+          class="org.springframework.security.web.FilterChainProxy">
+        <sec:filter-chain-map path-type="ant">
+            <sec:filter-chain pattern="/**/login/*" filters="
+                securityContextPersistenceFilter,
+                exceptionTranslationFilter,
+                requestCacheFilter
+                "/>
+            <sec:filter-chain pattern="/*/logout/*" filters="
+                securityContextPersistenceFilter,
+                exceptionTranslationFilter,
+                logoutFilter
+                "/>
+            <sec:filter-chain pattern="/*/security-check" filters="
+                securityContextPersistenceFilter,
+                exceptionTranslationFilter,
+                targetRequestCacheFilter,
+                spectrumSessionTokenFilter,
+                sessionTokenAuthenticationFilter
+                "/>
+            <sec:filter-chain pattern="/**" filters="
+                securityContextPersistenceFilter,
+                exceptionTranslationFilter,
+                UsernamePasswordAuthenticationFilter,
+                adminIdentityFilter,
+                anonymousAuthenticationFilter,
+                filterSecurityInterceptor
+                "/>
+        </sec:filter-chain-map>
+    </bean>
+    <bean id="adminIdentityFilter"
+          class="com.pb.stratus.onpremsecurity.adminconsole.identity.AdminConsoleIdentityFilter">
+        <property name="staticResourceAuthenticationBypassStrategy" ref="staticResourceAuthenticationBypassStrategy"/>
+    </bean>
+    <bean id="staticResourceAuthenticationBypassStrategy"
+          class="com.pb.stratus.security.core.authentication.StaticResourceAuthenticationBypassStrategy">
+        <property name="disableControllerCallBypassStrategy" value="true"/>
+        <property name="urlPatterns">
+            <list>
+                <value>/**/favicon.ico</value>
+                <value>/**/*.css</value>
+                <value>/**/*.png</value>
+                <value>/**/*.gif</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="securityContextPersistenceFilter"
+          class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/>
+
+    <bean id="UsernamePasswordAuthenticationFilter" class=
+            "org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
+          parent="commonProcessesUrlConfig">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="authenticationSuccessHandler">
+            <bean class="com.pb.stratus.onpremsecurity.handlers.TargetResourceAuthenticationSuccessRedirectHandler"/>
+        </property>
+        <property name="authenticationFailureHandler">
+            <bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+                <property name="defaultFailureUrl" value="/login/?login_error=1"/>
+                <property name="redirectStrategy" ref="tenantRedirectStrategy"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="tenantRedirectStrategy"
+          class="com.pb.stratus.onpremsecurity.adminconsole.identity.TenantRedirectStrategy">
+        <constructor-arg name="redirectStrategy" ref="springRedirectStrategy"/>
+    </bean>
+
+    <bean id="springRedirectStrategy" class="org.springframework.security.web.DefaultRedirectStrategy"/>
+
+    <bean id="commonProcessesUrlConfig" abstract="true">
+        <property name="filterProcessesUrl" value="/j_spring_security_check"/>
+    </bean>
+
+    <bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+        <property name="providers">
+            <list value-type="org.springframework.security.authentication.AuthenticationProvider">
+                <ref bean="analystAuthenticationProvider"/>
+                <ref bean="sessionTokenAuthenticationProvider"/>
+            </list>
+        </property>
+        <property name="eraseCredentialsAfterAuthentication" value="false"></property>
+    </bean>
+
+    <bean id="analystAuthenticationProvider"
+          class="com.pb.stratus.onpremsecurity.authentication.AnalystAuthenticationProvider">
+        <constructor-arg ref="analystAuthenticator"/>
+    </bean>
+
+    <bean id="analystAuthenticator" class="com.pb.stratus.onpremsecurity.authentication.AnalystAuthenticatorImpl">
+        <property name="jwtAuthorizationHandler" ref="jwtAuthorizationHandler"/>
+        <property name="securityProductService" ref="securityProductServiceInterface"/>
+    </bean>
+    <bean id="jwtAuthorizationHandler" class="com.pb.stratus.onpremsecurity.util.JWTAuthorizationHandler"/>
+
+    <bean id="exceptionTranslationFilter"
+          class="com.pb.stratus.security.core.connect.identity.filter.ExceptionTranslationFilter">
+        <property name="authenticationEntryPoint">
+            <bean class="com.pb.stratus.onpremsecurity.adminconsole.identity.AdminAnalystAuthenticationEntryPoint">
+                <property name="redirectHelper" ref="redirectHelper"/>
+                <property name="messageSource" ref="messageSource"/>
+            </bean>
+        </property>
+        <property name="accessDeniedHandler">
+            <bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+                <property name="errorPage" value="/*/insufficientPrivilege/show"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="redirectHelper"
+          class="com.pb.stratus.onpremsecurity.adminconsole.identity.AnalystSsoRedirectHelper">
+        <property name="ssoStartUrl" value="${auth.sso.start.url}"/>
+        <property name="adminConsoleExternalUrl" value="${adminconsole.externalUrl}"/>
+    </bean>
+
+    <bean id="authorizationUtils" class="com.pb.stratus.security.core.util.AuthorizationUtilsImpl">
+        <property name="authoritiesMapper" ref="authoritiesMapper"/>
+        <property name="administratorRole" value="ROLE_admin"/>
+    </bean>
+    <bean id="authoritiesMapper"
+          class="com.pb.stratus.onpremsecurity.authority.mapping.TenantGrantedAuthoritiesMapperImpl">
+        <property name="ADMIN_ROLES">
+            <list>
+                <value>ROLE_superuser</value>
+                <value>ROLE_admin</value>
+            </list>
+        </property>
+        <property name="mappedAdminRole" value="ROLE_admin"/>
+        <property name="roleAnonymous" value="#{'ROLE_' + '${anonymousRoleName}'}"/>
+    </bean>
+
+    <bean id="authorizer" class="com.pb.stratus.onpremsecurity.authorization.AuthorizerImpl">
+        <constructor-arg ref="aclManagerServiceClient"/>
+        <property name="authorizationHelper">
+            <bean class="com.pb.stratus.onpremsecurity.authorization.AnalystAuthorizationHelper"/>
+        </property>
+        <property name="securityProductService" ref="securityProductServiceInterface"/>
+    </bean>
+
+
+    <bean id="iHttpRequestExecutor" class="com.pb.stratus.onpremsecurity.http.HttpRequestExecutorImpl">
+        <property name="authorizer" ref="jwtAuthorizer"/>
+    </bean>
+
+    <bean id="anonymousAuthenticationFilter"
+          class="org.springframework.security.web.authentication.AnonymousAuthenticationFilter">
+        <property name="key" value="stratus"/>
+        <property name="userAttribute" value="Guest,ROLE_ANONYMOUS"/>
+    </bean>
+    <bean id="jwtAuthorizer" class="com.pb.stratus.onpremsecurity.http.JWTRequestAuthorizerImpl">
+        <property name="jwtAuthorizationHandler" ref="jwtAuthorizationHandler"/>
+    </bean>
+    <bean id="requestContextFilter" class="org.springframework.web.filter.RequestContextFilter">
+        <property name="threadContextInheritable" value="false"/>
+    </bean>
+
+    <bean id="filterSecurityInterceptor"
+          class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="accessDecisionManager" ref="accessDecisionManager"/>
+        <property name="securityMetadataSource">
+            <sec:filter-security-metadata-source>
+                <sec:intercept-url pattern="/**/favicon.ico" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/**/css/**" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/help/**" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/**/images/**" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/js/**" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/watermark/**" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/error/**" access="ROLE_Public"/>
+                <sec:intercept-url pattern="/**" access="ROLE_admin"/>
+            </sec:filter-security-metadata-source>
+        </property>
+    </bean>
+
+    <bean id="roleVoterStratus" class="com.pb.stratus.security.core.adminconsole.authorization.StratusRoleVoter">
+        <property name="supportedRoles">
+            <list>
+                <value>ROLE_admin</value>
+                <value>ROLE_Public</value>
+            </list>
+        </property>
+        <property name="publicRole" value="ROLE_Public"/>
+        <property name="authoritiesMapper" ref="authoritiesMapper"/>
+    </bean>
+
+    <bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+            <list>
+                <ref bean="roleVoterStratus"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="requestCacheFilter" class="com.pb.stratus.onpremsecurity.authentication.filter.RequestCacheFilter"
+          parent="commonProcessesUrlConfig">
+        <property name="targetResourceParameterName" value="TargetResource"/>
+    </bean>
+
+    <bean id="basicAuthHeaderAuthorizer"
+          class="com.pb.stratus.onpremsecurity.http.BasicAuthenticationRequestAuthorizerImpl">
+        <property name="anonymousUsername" value="${anonymousUsername}"/>
+        <property name="anonymousPassword" value="${anonymousPassword}"/>
+    </bean>
+
+    <bean id="httpRequestExecutorFactoryWithBasicAuthn"
+          class="com.pb.stratus.onpremsecurity.http.HttpRequestExecutorFactoryImpl">
+        <property name="requestAuthorizer" ref="basicAuthHeaderAuthorizer"/>
+    </bean>
+
+    <bean id="httpRequestExecutorFactory" class="com.pb.stratus.onpremsecurity.http.HttpRequestExecutorFactoryImpl">
+        <property name="requestAuthorizer" ref="jwtAuthorizer"/>
+    </bean>
+
+    <bean id="httpRequestExecutorWithTokenAuthn" factory-bean="httpRequestExecutorFactory"
+          factory-method="create"/>
+
+    <bean id="httpRequestExecutorWithBasicAuthn" factory-bean="httpRequestExecutorFactoryWithBasicAuthn"
+          factory-method="create"/>
+
+    <bean id="clientHttpRequestFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory"/>
+
+    <bean id="spectrumTokenService" class="com.pb.stratus.onpremsecurity.authentication.SpectrumTokenService">
+        <constructor-arg index="0" type="java.lang.String" value="${spectrumserver.token.url}"/>
+        <constructor-arg index="1" type="java.lang.String" value="${spectrumserver.token.logout.url}"/>
+        <constructor-arg index="2" type="java.lang.Integer" value="${spectrumserver.token.ttl}"/>
+        <constructor-arg index="3" ref="httpRequestExecutorWithBasicAuthn"/>
+        <constructor-arg index="4" ref="httpRequestExecutorWithTokenAuthn"/>
+        <constructor-arg index="5" ref="clientHttpRequestFactory"/>
+    </bean>
+
+    <bean id="simpleClientHttpRequestFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory"/>
+
+    <bean id="logoutFilter" class="com.pb.stratus.onpremsecurity.adminconsole.identity.LogoutFilter">
+        <constructor-arg name="handlers">
+            <list value-type="org.springframework.security.web.authentication.logout.LogoutHandler">
+                <ref bean="logoutHandler"></ref>
+                <bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+            </list>
+        </constructor-arg>
+        <property name="logoutRequestMatcher" ref="logoutRequestMatcher"></property>
+    </bean>
+
+    <bean id="logoutHandler" class="com.pb.stratus.onpremsecurity.handlers.SecurityTokenLogoutHandler">
+        <constructor-arg ref="spectrumTokenService"></constructor-arg>
+    </bean>
+
+    <bean id="logoutRequestMatcher" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+        <constructor-arg value="/**/logout/*"></constructor-arg>
+    </bean>
+
+    <!--  SSO Specific beans-->
+    <bean id="spectrumSessionTokenFilter"
+          class="com.pb.stratus.onpremsecurity.connect.identity.SpectrumSessionTokenFilter"></bean>
+
+    <bean id="sessionTokenAuthenticationFilter"
+          class="com.pb.stratus.onpremsecurity.authentication.SessionTokenAuthenticationFilter">
+        <property name="requiresAuthenticationRequestMatcher" ref="antPathRequestMatcher"/>
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="authenticationSuccessHandler">
+            <bean class="com.pb.stratus.onpremsecurity.handlers.TargetResourceAuthenticationSuccessRedirectHandler"/>
+        </property>
+        <property name="authenticationFailureHandler">
+            <bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+                <property name="defaultFailureUrl" value="/login/?login_error=1"/>
+                <property name="redirectStrategy" ref="tenantRedirectStrategy"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="sessionTokenAuthenticationProvider"
+          class="com.pb.stratus.onpremsecurity.authentication.SessionTokenAuthenticationProvider">
+        <constructor-arg ref="securityProductServiceInterface"></constructor-arg>
+    </bean>
+
+    <bean id="targetRequestCacheFilter" class="com.pb.stratus.onpremsecurity.authentication.filter.RequestCacheFilter">
+        <property name="targetResourceParameterName" value="TargetResource"/>
+        <property name="filterProcessesUrl" value="/security-check"/>
+    </bean>
+
+    <bean id="antPathRequestMatcher" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+        <constructor-arg value="/**/security-check"></constructor-arg>
+    </bean>
+</beans>

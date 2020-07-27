@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:http="http://cxf.apache.org/transports/http/configuration"
+       xmlns:p="http://cxf.apache.org/policy"
+       xsi:schemaLocation=" http://www.springframework.org/schema/cache
+        http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd  http://cxf.apache.org/policy http://cxf.apache.org/schemas/policy.xsd">
+
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <import resource="applicationContext-security.xml"/>
+	<import resource="endpoints.xml"/>
+
+    <!-- CONN-19095: Fix the CSV export issue coming from CXF configuration -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.cxf.staxutils.StaxUtils.setInnerElementCountThreshold"/>
+        <property name="arguments" value="-1"/>
+    </bean>
+
+    <bean id="passThruRedirectStrategy" class="com.pb.stratus.security.core.connect.identity.ParameterPassThruRedirectStrategy">
+        <property name="redirectStrategy" ref="springRedirectStrategy"></property>
+    </bean>
+
+    <!-- A ServiceLocator that holds a reference to the App Context -->
+    <bean id="springApplicationContextLocator" class="com.pb.stratus.core.common.application.SpringApplicationContextLocator"/>
+
+    <!-- Causes the config files to get loaded.  Automatically detected and invoked by Spring. -->
+    <!--<bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:///${stratus.customer.config.dir}/_global_/shared.properties</value>
+            </list>
+        </property>
+    </bean>-->
+
+    <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+       <property name="locations" value="file:///${stratus.customer.config.dir}/_global_/shared.properties" />
+    </bean>
+
+</beans>

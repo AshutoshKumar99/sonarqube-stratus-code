@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Stratus Connect</display-name>
+    <distributable/>
+    <filter>
+        <filter-name>logging-filter</filter-name>
+        <filter-class>com.pb.stratus.controller.filter.StratusLoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>logging-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>NonStandardStatusCodeFilter</filter-name>
+        <filter-class>com.pb.stratus.core.component.HttpStatusCodeFilter</filter-class>
+        <init-param>
+            <param-name>triggerHeader</param-name>
+            <param-value>X-PB-custom_datapower_proxy</param-value>
+        </init-param>
+        <init-param>
+            <param-name>statusCodeHeader</param-name>
+            <param-value>X-PB-custom_http_code</param-value>
+        </init-param>
+        <init-param>
+            <param-name>convertClientErrorCodesTo</param-name>
+            <param-value>400</param-value>
+        </init-param>
+        <init-param>
+            <param-name>convertServerErrorCodesTo</param-name>
+            <param-value>500</param-value>
+        </init-param>
+        <init-param>
+            <param-name>acceptableClientErrorCodes</param-name>
+            <param-value>400,401,402,403,404,405,406,407,408,409,410,411,412,413</param-value>
+        </init-param>
+        <init-param>
+            <param-name>acceptableServerErrorCodes</param-name>
+            <param-value>500,503</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>NonStandardStatusCodeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>OriginalRequestUrlFilter</filter-name>
+        <filter-class>com.pb.stratus.controller.filter.OriginalRequestUrlFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OriginalRequestUrlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>application-filter</filter-name>
+        <filter-class>com.pb.stratus.controller.application.ApplicationStartupFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>application-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.pb.stratus.controller.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>no-cache-filter</filter-name>
+        <filter-class>com.pb.stratus.filter.NoCacheFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>locale-filter</filter-name>
+        <filter-class>com.pb.stratus.controller.i18n.LocaleServletFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>locale-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>no-cache-filter</filter-name>
+        <url-pattern>*.xml</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>hour-cache-filter</filter-name>
+        <filter-class>com.pb.stratus.filter.HourCacheFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hour-cache-filter</filter-name>
+        <url-pattern>*.png</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>response-splitting-filter</filter-name>
+        <filter-class>com.pb.stratus.filter.HttpResponseSplittingProtectionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>response-splitting-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    <init-param>
+        <param-name>cors.allowed.origins</param-name>
+        <param-value>*</param-value>
+    </init-param>
+    <init-param>
+        <param-name>cors.allowed.headers</param-name>
+        <param-value>Content-Type,X-Requested-With,accept,authorization,Origin,Access-Control-Request-Method,Access-Control-Request-Headers</param-value>
+    </init-param>
+    <init-param>
+    <param-name>cors.allowed.methods</param-name>
+    <param-value>DELETE</param-value>
+</init-param>
+</filter>
+ <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/*NamedResourceService/*,/*FeatureService/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+    <filter>
+        <filter-name>error-handling-filter</filter-name>
+        <filter-class>com.pb.stratus.controller.filter.ErrorHandlingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>error-handling-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>UsageStatisticsLoggingFilter</filter-name>
+        <filter-class>com.pb.stratus.web.filter.UsageStatisticsLoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>UsageStatisticsLoggingFilter</filter-name>
+        <url-pattern>/controller/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <!--<listener>
+        <listener-class>net.bull.javamelody.SessionListener</listener-class>
+    </listener>-->
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml,/WEB-INF/applicationContext-wsClients.xml,/WEB-INF/applicationContext-rest.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <description></description>
+        <display-name>ControllerServlet</display-name>
+        <servlet-name>ControllerServlet</servlet-name>
+        <servlet-class>
+            com.pb.stratus.controller.ControllerServlet
+        </servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResourceServlet</servlet-name>
+        <servlet-class>com.pb.stratus.controller.util.ResourceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>logoutError</servlet-name>
+        <jsp-file>/logoutError.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <display-name>CXF Servlet</display-name>
+        <servlet-class>
+            org.apache.cxf.transport.servlet.CXFServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logoutError</servlet-name>
+        <url-pattern>/inerror</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/controller/*</url-pattern>
+
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResourceServlet</servlet-name>
+        <url-pattern>/resource/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/services/soap/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/AnalystService/services/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/LocateService/services/*</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

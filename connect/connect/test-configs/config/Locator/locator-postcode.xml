@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<locator>
+	<search type="stratus.PostcodeSearch">
+		<url>/connect/controller/locator/postcode</url>
+		<gazetteer-name>1</gazetteer-name>		
+		<coordsys>EPSG:27700</coordsys>		
+	</search>
+</locator>

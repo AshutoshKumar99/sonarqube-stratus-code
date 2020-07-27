@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<map-config
+    max-bounds-left="321000"
+    max-bounds-bottom="146000"
+    max-bounds-right="361000"
+    max-bounds-top="186000"
+    max-zoom-levels="12"
+    max-resolution="156.25"
+    units="meters"
+    projection="epsg:27700"
+    initial-zoom="5"
+    initial-x="341000"
+    initial-y="166000"
+    legend-control-named-maps=""
+    disable-locator-marker="false"
+    disable-map-picker="false"
+    default-copyright ="North Somerset 100019726"
+    disable-pan-control="true"
+    disable-zoom-menu="true"  
+    disable-slider-control="true" 
+    gif-images-for-ie6 ="false">
+
+<ZoomLevels>
+    <ZoomLevel Value="2" Name="Entire District"></ZoomLevel>
+    <ZoomLevel Value="5" Name="Locality"></ZoomLevel>
+    <ZoomLevel Value="8" Name="Street"></ZoomLevel>
+    <ZoomLevel Value="12" Name="Property"></ZoomLevel>
+</ZoomLevels>
+
+<summary-fields>
+  <title-column value="Suffix"></title-column>
+  <image-column value="Dataset_Char"></image-column>
+  <link-column value="Policy_Ref"></link-column>
+  <keyvalue-column value="Number"></keyvalue-column>
+  <description-column value="Description"></description-column>
+</summary-fields>
+
+<!--map 
+        service="Envinsa-Mapping"
+        friendly-name="Facilities"
+        map-name="NSCuluralCommunityFacilities" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="Economy"
+        map-name="NSEconomy" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="Environment"
+        map-name="NSEnvironmentCuluralHeritage" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="General Development"
+        map-name="NSGeneralDevelopmentPrinciples" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="Housing"
+        map-name="NSHousing" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="Rural Development"
+        map-name="NSRuralDevelopment" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="Town Centres"
+        map-name="NSTownCentresRetailing" 
+        url="/test-harness/controller/mapping/getmap" 
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+
+
+<map
+        service="Envinsa-Tile"
+        friendly-name="StreetPro" 
+        map-name="StreetProNS" 
+        show-as="base"
+        tile-width="256"
+        tile-height="256"
+        opacity=".66"
+        copyright="&#169; Pitney Bowes. All rights reserved."/>
+-->
+
+<map 
+        service="Envinsa-Mapping"
+        friendly-name="Transport"
+        map-name="NSTransport"  
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"
+        alpha="true"/>
+
+</map-config>

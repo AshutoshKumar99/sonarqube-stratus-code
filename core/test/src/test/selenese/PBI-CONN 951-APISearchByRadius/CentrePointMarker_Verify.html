@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>CentrePointMarker_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CentrePointMarker_Verify</td></tr>
+</thead><tbody>
+<!--Verifying the Centre point marker-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/searchNearest/index.html</td>
+	<td></td>
+</tr>
+<!--Enter the x & y co-ord -->
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;xloc&quot;]</td>
+	<td>527990.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;yloc&quot;]</td>
+	<td>184086.25</td>
+</tr>
+<!--Restrict results to 10-->
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;noofresults&quot;]</td>
+	<td>10</td>
+</tr>
+<!--Enter distance as 1000 meter -->
+<tr>
+	<td>type</td>
+	<td>//*[@id=&quot;distance&quot;]</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@onclick='searchNearestFromInput();']</td>
+	<td>Search</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${Search}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<!--Store the marker reference as a variable, InnerImage div's are used as, the earlier one's fails on ie browsers.-->
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;OL_Icon_119_innerImage&quot;]</td>
+	<td>marker</td>
+</tr>
+<!--check to see if it exists-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${marker}</td>
+	<td></td>
+</tr>
+<!--Click the marker-->
+<tr>
+	<td>click</td>
+	<td>${marker}</td>
+	<td></td>
+</tr>
+<!--Wait for a popup to be shown-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td></td>
+</tr>
+<!--Verify the contents of the popup to see if they are correct-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class=&quot;markerInfoPanel&quot;]/label[@class=&quot;markerLabel&quot;]</td>
+	<td>Starting point</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class=&quot;markerInfoPanel&quot;]/label[@class=&quot;markerLabelMoreInformation&quot;]</td>
+	<td>This is the centre point of the search</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class=&quot;markerInfoPanel&quot;]/div[@class=&quot;anchorPanel&quot;]/a</td>
+	<td>Clear this marker</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@id=&quot;Info_close&quot;]</td>
+	<td></td>
+</tr>
+<!--Test Passed!!-->
+
+</tbody></table>
+</body>
+</html>

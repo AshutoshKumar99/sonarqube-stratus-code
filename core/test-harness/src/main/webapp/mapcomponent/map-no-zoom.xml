@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<map-config
+    max-bounds-left="522000"
+    max-bounds-bottom="179000"
+    max-bounds-right="533000"
+    max-bounds-top="190000"
+    max-zoom-levels="20"
+    max-resolution="42.96875"
+    units="meters"
+    projection="epsg:27700"
+    initial-zoom="8"
+    initial-x="527880.5"
+    initial-y="184196.25"
+    disable-drag-pan="false"
+    disable-slider-control="true"
+    disable-double-click-zoom="true"
+    disable-mouse-wheel-zoom="false">
+    <map 
+        service="Envinsa-Mapping"
+        friendly-name="Planning Map"
+        map-name="ListedBuildings Map"  
+        show-as="business"
+        tile-width="512"
+        tile-height="512"
+        opacity="1"/>
+</map-config>

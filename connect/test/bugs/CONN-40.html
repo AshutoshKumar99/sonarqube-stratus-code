@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>CONN-40</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CONN-40</td></tr>
+</thead><tbody>
+<!--Ria-sample: Test for context menu click position for -->
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--Context menu zoom on the 0 of 20 King Henry's Road (copying DoubleClickZoom test)-->
+<tr>
+	<td>contextMenuAt</td>
+	<td>//div[@id='myMap']/div/div/div[2]/div/img</td>
+	<td>192,44</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//tr[@id='dijit_MenuItem_1']/td[2]</td>
+	<td>ContextMenuZoomIn</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMapORIGINAL&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${ContextMenuZoomIn}</td>
+	<td></td>
+</tr>
+<!--Verify the zoom level has increased by 1.-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//img[contains(@src, &quot;level=9&quot;)]</td>
+	<td></td>
+</tr>
+<!--Is the point we clicked roughly at the center of the map? Tolerance of 20 pixels included.-->
+<!--This is calculated by dividing the map control in 2 and working out that the 0 of 20 King Henry Road should be a known number of pixels from the left of the tile.-->
+<!--Figure out where the mapcontrol is located within the page - width may differ between connect app & RIA control-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>myMap</td>
+	<td>mapControlLeft</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>myMap</td>
+	<td>mapControlWidth</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>tileLeft</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileLeft} - ${mapControlLeft} + 4 - ${mapControlWidth} / 2) &lt; 20</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>myMap</td>
+	<td>mapControlTop</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>myMap</td>
+	<td>mapControlHeight</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>tileTop</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileTop} - ${mapControlTop} + 219 - ${mapControlHeight} / 2) &lt; 20</td>
+	<td>true</td>
+</tr>
+<!--PASS expected when bug fixed-->
+
+</tbody></table>
+</body>
+</html>

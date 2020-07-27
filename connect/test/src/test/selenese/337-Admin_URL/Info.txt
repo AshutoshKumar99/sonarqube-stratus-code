@@ -1,0 +1,1 @@
+These tests needs to be run on Selenium IDE, as RC does not takes two different ports @ command line input.

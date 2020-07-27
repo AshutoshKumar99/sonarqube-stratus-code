@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Search Results Control</title>
+
+<style>
+
+.myrow
+{
+    background-color:#DDDDDD;
+    border:1px solid #AAAAAA;
+}
+
+.myrow a
+{
+    text-decoration:none;
+    color:black;
+}
+
+</style>
+
+<script type="text/javascript">
+        dojo.require("stratus.SearchResultsRow");
+
+        dojo.addOnLoad(function()
+        {    
+            var row = new stratus.SearchResultsRow
+            (
+                {
+                    rowTitle: "Camden Park Road, (1.7 metres)",
+                    resultText1: "Grant Approval of details: Submission of" +
+                            "Submission of details of works of making good" +
+                            "associated  with the installation of a screen to" + 
+                            "plant and equipment.",
+                    callBack:function()
+                    {
+                        alert("clicked!");
+                    }
+                },
+                dojo.byId("searchresultsrowdiv"));
+                row.setStyleClass("myrow");
+            });
+</script>
+
+</head>
+<body>
+
+<p>
+    This page demos the SearchResultsRow on it's own.
+</p>
+
+<div id="searchresultsrowdiv">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm8:8080" />
+<title>MultiBusiness_MultiBase</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MultiBusiness_MultiBase</td></tr>
+</thead><tbody>
+<!--This test loads the default configuration in a different order and verifies the layers are displayed in that order not the default.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Multi Business and Base Map Config File-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-multiBusinessAndBase.xml</td>
+	<td></td>
+</tr>
+<!--These images are the those displayed when opening the connect app for this configuration.-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Conservation Map&quot;)]</td>
+	<td>CamdenPlan</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Development Map&quot;)]</td>
+	<td>PlanApps</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;getTile?name=LandLine&quot;)]</td>
+	<td>LandLineBase</td>
+</tr>
+<!--Aerial and MasterMap maps exist in the DOM hierarchy so can check the z-index, but the images are not displayed or cached so use a different DIV id.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]/div[7]</td>
+	<td>AerialBase</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]/div[3]</td>
+	<td>MasterMapBase</td>
+</tr>
+<!--Ensure that the main layer elements are loaded-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${LandLineBase}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CamdenPlan}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${PlanApps}</td>
+	<td></td>
+</tr>
+<!--Verify the map picker buttons are in the order we expect.-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>aerialButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>masterMapButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td>landLineButtonLocator</td>
+</tr>
+<!--Verify the buttons have the right labels.-->
+<tr>
+	<td>verifyText</td>
+	<td>${masterMapButtonLocator}</td>
+	<td>regexp:.?MasterMap</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${aerialButtonLocator}</td>
+	<td>regexp:.Satellite</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${landLineButtonLocator}</td>
+	<td>regexp:.LandLine</td>
+</tr>
+<!--Verify the last button is pressed (behaviour is to take the last configured base map as the default to display)-->
+<tr>
+	<td>verifyAttribute</td>
+	<td>${landLineButtonLocator}/parent::*/@class</td>
+	<td>regexp:.*dijitToggleButtonChecked.*</td>
+</tr>
+<!--Use the z-index to check the order of visibility of layers. Grandparent container div used for visible images.-->
+<!--Expect the Aerial map to have the highest z-index value (350) as it is the first in the map configuration list.-->
+<!--Z-index decreases by 5 for each map layer & follows the map configuration order (Aerial=first=highest, LandLine=last=lowest)-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${AerialBase}@style</td>
+	<td>regexp:(.*z-index:.*355.*)|(.*Z-INDEX:.*355.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${CamdenPlan}/../../@style</td>
+	<td>regexp:(.*z-index:.*350.*)|(.*Z-INDEX:.*350.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${PlanApps}/../../@style</td>
+	<td>regexp:(.*z-index:.*345.*)|(.*Z-INDEX:.*345.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${MasterMapBase}@style</td>
+	<td>regexp:(.*z-index:.*335.*)|(.*Z-INDEX:.*335.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${LandLineBase}/../../@style</td>
+	<td>regexp:(.*z-index:.*330.*)|(.*Z-INDEX:.*330.*)</td>
+</tr>
+<!--Verify the LegendControl is in the order we expect (Camden Mapping Service, then Planning map).-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;legend&quot;]</td>
+	<td>legendControl</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Conservation Map</td>
+	<td>Legend1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>Development Map</td>
+	<td>Legend2</td>
+</tr>
+<!--Waiting for the second legend to be available otherwise these tests run through too quickly & fail before the Legend is properly rendered!-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${Legend2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][1]/div@id</td>
+	<td>${Legend1}</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${legendControl}/div[@class=&quot;master&quot;][2]/div@id</td>
+	<td>${Legend2}</td>
+</tr>
+<!--Pass Expected !!!-->
+
+</tbody></table>
+</body>
+</html>

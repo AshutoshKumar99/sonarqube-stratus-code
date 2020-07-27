@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.mapinfo.com/stratus/security/common/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Role">
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string" />
+      <xs:element minOccurs="0" name="Product" type="xs:string" />
+      <xs:element minOccurs="0" name="Tenant" type="xs:string" />
+      <xs:element default="false" name="Admin" type="xs:boolean" />
+      <xs:element default="true" name="SystemRole" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element name="UserName" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" type="xs:string" />
+      <xs:element minOccurs="0" name="IDP" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayName" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element xmlns:q1="http://www.mapinfo.com/stratus/security/common/v1" minOccurs="1" maxOccurs="unbounded" name="Roles" type="q1:Role" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="StratusResourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration id="MapConfig" value="MapConfig" />
+      <xs:enumeration id="FMNConfig" value="FMNConfig" />
+      <xs:enumeration id="QueryConfig" value="QueryConfig" />
+      <xs:enumeration id="BaseMap" value="BaseMap" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="StratusResource">
+    <xs:sequence>
+      <xs:element name="ResourceName" type="xs:string" />
+      <xs:element name="ResourcePath" type="xs:string" />
+      <xs:element xmlns:q1="http://www.mapinfo.com/stratus/security/common/v1" name="ResourceType" type="q1:StratusResourceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="NamedResourceType">
+    <xs:restriction base="xs:string">
+        <xs:enumeration id="NamedMap" value="NamedMap" />
+        <xs:enumeration id="NamedLayer" value="NamedLayer" />
+        <xs:enumeration id="NamedTable" value="NamedTable" />
+        <xs:enumeration id="NamedStyle" value="NamedStyle" />
+        <xs:enumeration id="NamedTile" value="NamedTile" />
+	    <xs:enumeration id="NamedConnection" value="NamedConnection" />
+        <xs:enumeration id="NamedLabelLayer" value="NamedLabelLayer" />
+        <xs:enumeration id="NamedFeatureLayer" value="NamedFeatureLayer" />
+        <xs:enumeration id="NamedFeatureLabelSource" value="NamedFeatureLabelSource" />
+        <xs:enumeration id="NamedGroupLayer" value="NamedGroupLayer" />
+        <xs:enumeration id="NamedGraduatedSymbolLayer" value="NamedGraduatedSymbolLayer" />
+        <xs:enumeration id="NamedResourceMetadata" value="NamedResourceMetadata" />
+        <xs:enumeration id="NamedLineLinkageLayer" value="NamedLineLinkageLayer" />
+        <xs:enumeration id="NamedLineChartLayer" value="NamedLineChartLayer" />
+        <xs:enumeration id="NamedBarLayer" value="NamedBarLayer" />
+        <xs:enumeration id="NamedPieLayer" value="NamedPieLayer" />
+        <xs:enumeration id="NamedGridStyle" value="NamedGridStyle" />
+        <xs:enumeration id="NamedRasterStyle" value="NamedRasterStyle" />
+        <xs:enumeration id="NamedCompositeStyle" value="NamedCompositeStyle" />
+        <xs:enumeration id="NamedTextStyle" value="NamedTextStyle" />
+        <xs:enumeration id="NamedAreaStyle" value="NamedAreaStyle" />
+        <xs:enumeration id="NamedLineStyle" value="NamedLineStyle" />
+        <xs:enumeration id="NamedPointStyle" value="NamedPointStyle" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NamedResource">
+    <xs:sequence>
+      <xs:element name="ResourceName" type="xs:string" />
+      <xs:element name="ResourcePath" type="xs:string" />
+      <xs:element xmlns:q1="http://www.mapinfo.com/stratus/security/common/v1" name="ResourceType" type="q1:NamedResourceType" />
+      <xs:element xmlns:q1="http://www.mapinfo.com/stratus/security/common/v1" minOccurs="0" maxOccurs="unbounded" name="Roles" type="q1:Role" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

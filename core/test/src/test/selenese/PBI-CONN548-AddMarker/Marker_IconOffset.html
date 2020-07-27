@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Marker_IconOffset</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Marker_IconOffset</td></tr>
+</thead><tbody>
+<!--Verify that Icon image offsets work-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapMarker/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Sample Page for Marker API</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@id='mapContainer']</td>
+	<td></td>
+</tr>
+<!--Enter values of x,y coordinates in textboxes.-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='mapContainer']/table/tbody/tr[1]/td[1]</td>
+	<td>x:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>527990.5</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='mapContainer']/table/tbody/tr[2]/td[1]</td>
+	<td>y:</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>184086.25</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;markerlocation&quot;]</td>
+	<td>house.png</td>
+</tr>
+<!--Click on Add Marker to add the marker in the list and show on Map !-->
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<!--Verify that the marker shows on the map.-->
+<!--Store the marker reference as a variable, InnerImage div's are used as, the earlier one's fails on ie browsers.-->
+<tr>
+	<td>store</td>
+	<td>//img[@id=&quot;OL_Icon_86_innerImage&quot;]</td>
+	<td>markerImg1</td>
+</tr>
+<tr>
+	<td>verifyImageLoaded</td>
+	<td>${markerImg1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${markerImg1}</td>
+	<td>marker1left</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${markerImg1}</td>
+	<td>marker1top</td>
+</tr>
+<!--Add another marker at the same location, but change the offset-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;markerlocation&quot;]</td>
+	<td>yellow.png</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;offsetX&quot;]</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;offsetY&quot;]</td>
+	<td>1</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<!--Store the marker reference as a variable, InnerImage div's are used as, the earlier one's fails on ie browsers.-->
+<tr>
+	<td>store</td>
+	<td>//img[@id=&quot;OL_Icon_92_innerImage&quot;]</td>
+	<td>markerImage2</td>
+</tr>
+<tr>
+	<td>verifyImageLoaded</td>
+	<td>${markerImage2}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${markerImage2}</td>
+	<td>marker2left</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${markerImage2}</td>
+	<td>marker2top</td>
+</tr>
+<!--ensure that the locations of the 2 marker icons are not in the same place-->
+<tr>
+	<td>verifyNotExpression</td>
+	<td>${marker1left}</td>
+	<td>${marker2left}</td>
+</tr>
+<tr>
+	<td>verifyNotExpression</td>
+	<td>${marker1top}</td>
+	<td>${marker2top}</td>
+</tr>
+<!--add another marker with offset 0 and ensure that marker1 and 3 ARE in the same location-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;markerlocation&quot;]</td>
+	<td>yellowsquare.png</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;offsetX&quot;]</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;offsetY&quot;]</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<!--Store the marker reference as a variable, InnerImage div's are used as, the earlier one's fails on ie browsers.-->
+<tr>
+	<td>store</td>
+	<td>//img[@id=&quot;OL_Icon_98_innerImage&quot;]</td>
+	<td>markerImage3</td>
+</tr>
+<tr>
+	<td>verifyImageLoaded</td>
+	<td>${markerImage3}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${markerImage3}</td>
+	<td>marker3left</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${markerImage3}</td>
+	<td>marker3top</td>
+</tr>
+<!--Verify marker 1 left & top are not the same as marker 2, which has the offset-->
+<tr>
+	<td>verifyNotExpression</td>
+	<td>${marker1left}</td>
+	<td>${marker2left}</td>
+</tr>
+<tr>
+	<td>verifyNotExpression</td>
+	<td>${marker1top}</td>
+	<td>${marker2top}</td>
+</tr>
+<!--Verify that maker 1 and marker 3 left and top are the same as marker 3 has offset values to 0-->
+<tr>
+	<td>verifyExpression</td>
+	<td>${marker1left}</td>
+	<td>${marker3left}</td>
+</tr>
+<tr>
+	<td>verifyExpression</td>
+	<td>${marker1top}</td>
+	<td>${marker3top}</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

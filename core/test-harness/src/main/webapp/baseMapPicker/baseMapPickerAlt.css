@@ -1,0 +1,25 @@
+.alt .baseMapPickerControl input
+{
+    border-color: #888;
+    border-style: solid;
+    margin: 5px;
+}
+
+.alt .baseMapPickerControl .baseMapButton
+{
+    border-width: 2px;
+    font-weight: normal;
+    background-color: #ccc;
+    border-top-color: #eee;
+    border-left-color: #eee;
+}
+
+.alt .baseMapPickerControl .baseMapButtonClicked
+{
+    border-width: 2px;
+    font-weight: normal;
+    background-color: #999;
+    border-bottom-color: #eee;
+    border-right-color: #eee;
+    
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>invalidmap</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">invalidmap</td></tr>
+</thead><tbody>
+<!--Purpose: Check what happens when we call invalid nap Control through Admin Console.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Calling abc.xml which does not exists !!-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapcfg=abc</td>
+	<td></td>
+</tr>
+<!--It throws the error for invalid configuration file ......-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;badconfig&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id=&quot;badconfig&quot;]</td>
+	<td>An invalid or missing configuration file has been specified, please contact your administrator for assistance.</td>
+</tr>
+<!--PASS EXPECTED !!-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="geometryServiceClient" factory-bean="geometryServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="geometryServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.mapinfo.midev.service.geometry.ws.v1.GeometryServiceInterface"/>
+        <property name="address" value="${spatialserver.geometry.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://www.mapinfo.com/midev/service/geometry/ws/v1}GeometryService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://www.mapinfo.com/midev/service/geometry/ws/v1}GeometryServiceInterface"/>
+            </bean>
+        </property>
+        <property name="wsdlLocation" value="${spatialserver.geometry.wsdl}"/>
+        <property name="properties">
+            <map>
+                <entry key="set-jaxb-validation-event-handler" value="false" />
+            </map>
+        </property>
+         <!--<property name="features">
+            <list>
+                <bean class="org.apache.cxf.feature.LoggingFeature">
+                    <constructor-arg name="out" value="file:///C:/cxfmessagesGeometry.log"/>
+					<constructor-arg name="in" value="file:///C:/cxfmessagesGeometry.log"/>
+                </bean>
+
+            </list>
+        </property>-->
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+        </property>
+    </bean>
+</beans>

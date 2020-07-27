@@ -1,0 +1,36 @@
+<ns4:FeatureCollection>
+   <ns4:FeatureCollectionMetadata count="2">
+      <ns4:AttributeDefinitionList>
+         <ns4:AttributeDefinition xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="attribute1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+         <ns4:AttributeDefinition xsi:type="ns4:ScalarAttributeDefinition" dataType="String" name="attribute2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+      </ns4:AttributeDefinitionList>
+      <ns4:Envelope srsName="mapinfo:coordsys 8, 79, 7, -2.0, 49.0, 0.9996012717, 400000.0, -100000.0">
+         <ns2:Pos>
+            <ns2:X>525346.8028838212</ns2:X>
+            <ns2:Y>183929.49998352863</ns2:Y>
+         </ns2:Pos>
+         <ns2:Pos>
+            <ns2:X>528320.2027785887</ns2:X>
+            <ns2:Y>186120.41284124646</ns2:Y>
+         </ns2:Pos>
+      </ns4:Envelope>
+   </ns4:FeatureCollectionMetadata>
+   <ns4:FeatureList>
+      <ns4:Feature>
+         <ns4:AttributeValue xsi:type="ns4:StringValue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns4:Value>value-1.1</ns4:Value>
+         </ns4:AttributeValue>
+         <ns4:AttributeValue xsi:type="ns4:StringValue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns4:Value>value-1.2</ns4:Value>
+         </ns4:AttributeValue>
+      </ns4:Feature>
+      <ns4:Feature>
+         <ns4:AttributeValue xsi:type="ns4:StringValue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns4:Value>value-2.1</ns4:Value>
+         </ns4:AttributeValue>
+         <ns4:AttributeValue xsi:type="ns4:StringValue" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ns4:Value>value-2.2</ns4:Value>
+         </ns4:AttributeValue>
+      </ns4:Feature>
+   </ns4:FeatureList>
+</ns4:FeatureCollection>

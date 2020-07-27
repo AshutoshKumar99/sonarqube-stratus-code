@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-config>
+  <tableName>PlanningApplications</tableName>
+   <desc>SampleQueryOnDate</desc>
+  <column id="0">
+    <columnName>DeliveryDate</columnName>
+    <columnType>DATE</columnType>
+    <operator>=</operator>
+    <displayType>Pick List</displayType>
+    <label>Enter Delivery date</label>
+  </column>
+</query-config>

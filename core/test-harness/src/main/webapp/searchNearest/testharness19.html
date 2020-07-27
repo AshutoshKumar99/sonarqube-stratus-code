@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Search Nearest</title>
+        <script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+
+            dojo.addOnLoad(function() {
+                window.featureSearch = new stratus.search.FeatureSearch();
+            });
+
+           function showAjaxLoader()
+           {
+            var resultstable = dojo.byId("resultslist");
+            resultstable.innerHTML = "<div class='ajaxloader'><img src='ajax-loader.gif' alt='Loading'/></div>";
+           }
+
+
+            function roundNumber(numToRound, decPlaces) {
+              return Math.round(numToRound * Math.pow(10, decPlaces)) / Math.pow(10, decPlaces);
+            }
+
+
+            function processResults(results)
+            {
+                var resultstable = dojo.byId("resultslist");
+                resultstable.innerHTML = "";
+
+                for(layer in results)
+                {
+                   for(var i = 0; i < results[layer].length; i++)
+                   {
+                     var roundedDistance = roundNumber(results[layer][i].properties.Distance, 1);
+                     var message = results[layer][i].properties.Title + ' (' + roundedDistance +' miles)';
+                     resultstable.innerHTML = resultstable.innerHTML + "<li class='resultitem'>" + message + "</li>";
+                   }
+                }
+
+                if(results[layer].length == 0)
+                {
+                    resultstable.innerHTML = "No results found";
+                }
+            }
+
+
+            function handleException(x)
+            {
+                var resultstable = dojo.byId("resultslist");
+                if (x.declaredClass == "stratus.search.UnknownTableException")
+                {
+                   resultstable.innerHTML = 'Success: The table name "IncorrectTableName" was not recognised. (A "stratus.search.UnknownTableException" was caught)';
+                }
+                else
+                {
+                   resultstable.innerHTML = "There was an error with the Service: " + x.message;
+                }
+            }
+
+            function searchNearestFromInput()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:527990.5, y:184086.25, srs:'epsg:27700'},
+                    "tableName": ["IncorrectTableName"],
+                    "attributeFields": ["Title"],
+                    "includeGeometry": false,
+                    "maxResults": 10,
+                    "maxDistance": 1,
+                    "distanceUnit": "mile",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <p>
+        This page tests the searchNearest function by calling it with an invalid "tableName" parameter. <br />
+        This should return an error from the service, stating that the tablename "IncorrectTableName" was not recognised.
+        </p>
+
+        <div id="searchButtonDiv">
+            <button onclick="searchNearestFromInput();">Search</button>
+        </div>
+
+        <div id="resultsTableDiv">
+            <ol class="resultlist" id="resultslist" />
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geocoder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <name>GCMConfig</name>
+  <url>http://stratusopinstal:8080/rest/GeoComplete/</url>
+  <geocoderService>GCM</geocoderService>
+  <username>admin</username>
+  <password>admin</password>
+  <country></country>
+  <database></database>
+  <fallbackToPostal>false</fallbackToPostal>
+  <fallbackToGeographic>false</fallbackToGeographic>
+  <matchMode>STANDARD</matchMode>
+</Geocoder>

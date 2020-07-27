@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/connect/" />
+<title>MapControl_HideLeftColumn</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MapControl_HideLeftColumn</td></tr>
+</thead><tbody>
+<!--Check for the presence of a divider/column on the left of the map containing an arrow button. Clicking on the arrow button should expand/collapse the map -->
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<!-- follows on from MapControl Default Appearance test -->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=StreetProMM&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=StreetProMM&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='slider']</td>
+	<td>sliderLocator</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${sliderLocator}/button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${sliderLocator}/button[1]@class</td>
+	<td>sliderDefault</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${mapLocator}</td>
+	<td>MapWidthOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>MapLeftOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${tileLocator}</td>
+	<td>TileLeftOld</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${tileLocator}</td>
+	<td>TileWidth</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapWidthOld} + ${MapLeftOld}</td>
+	<td>MapRightOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${mapLocator}</td>
+	<td>MapTopOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>TileTopOld</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${TileLeftOld} + ${TileWidth}</td>
+	<td>TileRightOld</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapRightOld} - ${TileRightOld}</td>
+	<td>TileRightOffsetOld</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${sliderLocator}</td>
+	<td>SliderLeftOld</td>
+</tr>
+<!--Verify the collapse functionality-->
+<tr>
+	<td>click</td>
+	<td>${sliderLocator}/button[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${mapLocator}</td>
+	<td>MapWidthNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${mapLocator}</td>
+	<td>MapTopNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${mapLocator}</td>
+	<td>MapLeftNew</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapWidthNew} + ${MapLeftNew}</td>
+	<td>MapRightNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${tileLocator}</td>
+	<td>TileTopNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${tileLocator}</td>
+	<td>TileLeftNew</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${tileLocator}</td>
+	<td>TileWidthNew</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${TileLeftNew} + ${TileWidthNew}</td>
+	<td>TileRightNew</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapRightNew} - ${TileRightNew}</td>
+	<td>TileRightOffsetNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${sliderLocator}</td>
+	<td>SliderLeftNew</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${SliderLeftOld} - ${SliderLeftNew}</td>
+	<td>SliderOffset</td>
+</tr>
+<!--Verify that the map has expanded and map size has increased by the amount the slider was moved to the left-->
+<tr>
+	<td>verifyEval</td>
+	<td>${MapWidthNew} - (${MapWidthOld} + ${SliderOffset})</td>
+	<td>0</td>
+</tr>
+<!--Verify that the slider is now at the very left edge-->
+<tr>
+	<td>verifyEval</td>
+	<td>${SliderLeftNew} &lt; 3</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>//div[@id='slider']/button[1]@class</td>
+	<td>sliderDefault</td>
+</tr>
+<!--Verify the top of the tile is the same as when the map is maximized-->
+<tr>
+	<td>verifyEval</td>
+	<td>${TileTopOld} == ${TileTopNew}</td>
+	<td>true</td>
+</tr>
+<!--Test the old Map Settings-->
+<tr>
+	<td>storeEval</td>
+	<td>${TileLeftOld}+(${TileWidth} / 2)</td>
+	<td>TitleMid</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapLeftOld}+(${MapWidthOld}/2)</td>
+	<td>MapWithMid</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>(${TitleMid} - ${MapWithMid}) &lt; 20</td>
+	<td>true</td>
+</tr>
+<!--Verify the middle of the map is close to the middle of the title-->
+<tr>
+	<td>storeEval</td>
+	<td>${TileLeftNew}+(${TileWidthNew} / 2)</td>
+	<td>TitleMid</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${MapLeftNew}+(${MapWidthNew}/2)</td>
+	<td>MapWithMid</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>(${TitleMid} - ${MapWithMid}) &lt; 20</td>
+	<td>true</td>
+</tr>
+<!--Verify once the map has been maximised that the middle tile is now closer to the left than before -->
+<tr>
+	<td>verifyEval</td>
+	<td>${TileLeftOld} &gt; ${TileLeftNew}</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

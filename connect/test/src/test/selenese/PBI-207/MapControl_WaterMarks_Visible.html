@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.216:8080" />
+<title>MapControl_WaterMarks_Visible</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MapControl_WaterMarks_Visible</td></tr>
+</thead><tbody>
+<!--To verify that the watermark is  present-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--Open the connect page-->
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<!--waits for the watermark image to load-->
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>//img[contains(@src, &quot;PBLogo512256.png&quot;)]</td>
+	<td></td>
+</tr>
+<!--Verify that the image is present-->
+<tr>
+	<td>verifyVisible</td>
+	<td>//img[contains(@src, &quot;PBLogo512256.png&quot;)]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='OpenLayers.Layer.Watermark_18']//img[contains(@src,&quot;images/PBLogo512256.png&quot;)]</td>
+	<td></td>
+</tr>
+<!--stores the count as how many times the image is present-->
+<tr>
+	<td>storeXpathCount</td>
+	<td>//div[@id='OpenLayers.Layer.Watermark_18']//img[contains(@src,&quot;images/PBLogo512256.png&quot;)]</td>
+	<td>Number_of_images</td>
+</tr>
+<!--Checks that the watermark is present at least 10 times, can be more depending on the size of image-->
+<tr>
+	<td>verifyEval</td>
+	<td>${Number_of_images}&gt;10</td>
+	<td>true</td>
+</tr>
+<!--test passes!-->
+
+</tbody></table>
+</body>
+</html>

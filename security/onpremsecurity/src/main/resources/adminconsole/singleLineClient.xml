@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="singleLineAddressService" factory-bean="addressServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="addressServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.pb.gazetteer.webservice.SingleLineAddress"/>
+        <property name="address" value="${indexsearch.singleLineSearch.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://webservice.gazetteer.pb.com/}SingleLineAddressService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://webservice.gazetteer.pb.com/}SingleLineAddressPort"/>
+            </bean>
+        </property>
+        <property name="wsdlLocation" value="${indexsearch.singleLineSearch.wsdl}"/>
+        <property name="features">
+            <list>
+                <bean class="org.apache.cxf.ws.addressing.WSAddressingFeature"/>
+            </list>
+        </property>
+        <property name="properties">
+            <map>
+                <entry key="mtom-enabled" value="true"/>
+                <entry key="set-jaxb-validation-event-handler" value="false" />
+            </map>
+        </property>
+    </bean>
+</beans>

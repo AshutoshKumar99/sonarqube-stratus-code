@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Tileservice_Calloutinfo_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Tileservice_Calloutinfo_Verify</td></tr>
+</thead><tbody>
+<!--Purpose:To check the call out is displayed using the Tile service for the selected business layers.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Open the Corresponding xml file.-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/CallOut-byTiles.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<!--Checks for All Business layers available under Legend Control.-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>Conservation Map</td>
+	<td>Conservation Map</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>Development Map</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Development Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>Development Map</td>
+	<td>Development Map</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>Housing Thematic</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Housing Thematic']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>Housing Thematic</td>
+	<td>Housing Thematic</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>Post Code Map</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='Post Code Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>Post Code Map</td>
+	<td>Post Code Map</td>
+</tr>
+<!--Verify that Devleopment Map check box is checked.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Development Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>DevelopmentMapCheckbox</td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${DevelopmentMapCheckbox}</td>
+	<td></td>
+</tr>
+<!--Verify that Conservation Map check box is checked.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Conservation Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>ConservationMapCheckbox</td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${ConservationMapCheckbox}</td>
+	<td></td>
+</tr>
+<!--Verify that Housing Thematic Map check box is checked initially and then unchecked.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Housing Thematic&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>HousingThematicCheckbox</td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${HousingThematicCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${HousingThematicCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Verify that Post Code Map check box is checked initially and then unchecked.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Post Code Map&quot;]/../div[2]/input[@type='checkbox']</td>
+	<td>PostCodeMapCheckbox</td>
+</tr>
+<tr>
+	<td>verifyChecked</td>
+	<td>${PostCodeMapCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${PostCodeMapCheckbox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Click in the middle of the map to get a call out from Development and Conservation Map-->
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>374,349</td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Checks for Call Out Information Box, and its X (close) button-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>${CallOut}//div[@class=&quot;olPopupCloseBox&quot;]</td>
+	<td>closeButton</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${closeButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${closeButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Test Passed !!!-->
+
+</tbody></table>
+</body>
+</html>

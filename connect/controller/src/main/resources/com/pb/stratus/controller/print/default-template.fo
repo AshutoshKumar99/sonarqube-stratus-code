@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:stratus="http://stratus.pbinsight.com/print-template">
+
+    <fo:layout-master-set>
+    
+        <fo:simple-page-master master-name="A4" page-height="297mm" page-width="210mm" margin-top="2cm" margin-bottom="2cm" margin-left="1cm" margin-right="0.5cm">
+            <fo:region-body margin-top="1cm"/>
+        </fo:simple-page-master>
+                      
+    </fo:layout-master-set>
+    
+    <fo:page-sequence master-reference="A4">
+        <fo:flow flow-name="xsl-region-body">
+            <fo:block>
+                <fo:inline font-size="8pt">
+                    <stratus:address/>
+                </fo:inline>
+            </fo:block>
+            <fo:table>
+                <fo:table-column column-width="6.0cm"/>
+                <fo:table-column column-width="13.5cm"/>
+                <fo:table-body>
+                    <fo:table-row>
+                        <fo:table-cell>
+                            <fo:block>
+                            </fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell>
+                            <fo:block>
+                                <stratus:svgScale/> 
+                            </fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                    <fo:table-row>
+                        <fo:table-cell padding-right="0.5cm">
+                            <fo:block font-size="8pt">
+                                <stratus:legend/>
+                            </fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell>
+                            <fo:block border-style="solid" border-width="0.5mm">
+                                <stratus:map/>
+                            </fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                </fo:table-body>
+            </fo:table>
+
+        </fo:flow>
+    </fo:page-sequence>
+    
+    <stratus:fmn-results master-reference="A4" />
+    
+</fo:root>

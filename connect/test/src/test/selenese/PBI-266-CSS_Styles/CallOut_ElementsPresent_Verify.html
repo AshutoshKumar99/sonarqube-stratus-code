@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8082/" />
+<title>CallOut_ElementsPresent_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_ElementsPresent_Verify</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check Call Out elements and their contents are as expected.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Click on Erskine Road NW3-->
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>525,265</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check for our expected results : Hyperlink to Primrose Hill and 2 info item for Erskine Road (2 headings and 3 info rows)-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[contains(@class,&quot;infoRow&quot;)]</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>FirstInfoElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${FirstInfoElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>Primrose Hill</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${FirstInfoElement}/div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>1971-10-01Z</td>
+</tr>
+<!--Check there's an "a" element, this proves we have a hyperlink!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${FirstInfoElement}/div[2]/a</td>
+	<td></td>
+</tr>
+<!--Check for Planning Application's, 2nd address " Block 2 6 Erskine Road NW3 "-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_2']</td>
+	<td>SecondInfoElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][2]</td>
+	<td>PlanningApplications</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SecondInfoElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>Block 2 6 Erskine Road NW3</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SecondInfoElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>No: 9300545</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${SecondInfoElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>regexp:Withdrawn after Reg'n .*</td>
+</tr>
+<!--Check for Planning Application's, 1st address " 1st Floor Blocks 2 and 3 6 Erskine Road NW3"-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_1']</td>
+	<td>ThirdInfoElement</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ThirdInfoElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>1st Floor Blocks 2 and 3 6 Erskine Road NW3</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${ThirdInfoElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>No: 9300304</td>
+</tr>
+<!--Test Passed, All Elements and Content Verified !!!-->
+
+</tbody></table>
+</body>
+</html>

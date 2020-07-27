@@ -1,0 +1,51 @@
+﻿<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:http="http://cxf.apache.org/transports/http/configuration"
+       xmlns:cxfsec="http://cxf.apache.org/configuration/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://cxf.apache.org/configuration/security http://cxf.apache.org/schemas/configuration/security.xsd
+          http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+
+    <import resource="singleLineClient.xml"/>
+    <import resource="authorizationClient.xml"/>
+    <import resource="featureClient.xml"/>
+    <import resource="geometryClient.xml"/>
+    <import resource="mappingClient.xml"/>
+    <import resource="namedResourceClient.xml"/>
+    <import resource="productServiceClient.xml"/>
+    <import resource="spectrumTokenManagerClient.xml"/>
+    <import resource="productConfigurationServiceClient.xml"/>
+    <import resource="securityProductServiceClient.xml"/>
+    <import resource="spectrumTokenLogoutClient.xml"/>
+
+    <http:conduit name="http://.*">
+        <http:tlsClientParameters disableCNCheck="${auth.ssl.disableCNCheck}">
+        </http:tlsClientParameters>
+        <http:client AllowChunking="false" AutoRedirect="true" ReceiveTimeout="${ws.client.timeout}"/>
+    </http:conduit>
+
+    <http:conduit name="https://.*">
+        <http:tlsClientParameters disableCNCheck="${auth.ssl.disableCNCheck}">
+        </http:tlsClientParameters>
+        <http:client AllowChunking="false" AutoRedirect="true" ReceiveTimeout="${ws.client.timeout}"/>
+    </http:conduit>
+
+    <http:conduit name="{http://webservice.gazetteer.pb.com/}SingleLineAddressPort.http-conduit">
+        <http:tlsClientParameters disableCNCheck="${auth.ssl.disableCNCheck}">
+        </http:tlsClientParameters>
+        <http:client AllowChunking="false" AutoRedirect="true" ReceiveTimeout="${ws.client.timeout.singlelineaddressservice}"/>
+    </http:conduit>
+
+    <bean id="springApplicationContextLocator" class="com.pb.stratus.core.common.application.SpringApplicationContextLocator"/>
+
+    <!-- Uses any user name/ password from security context/ request parameters and adds basic authorisation header -->
+    <bean id="basicAuthentication" class="com.pb.stratus.onpremsecurity.interceptors.AdminAuthenticationOutInterceptor">
+        <property name="jwtAuthorizationHandler" ref="jwtAuthorizationHandler"/>
+    </bean>
+
+    <!-- Uses any given user name/ password and adds basic authorisation header -->
+    <bean id="basicAuthenticationOutInterceptor"
+          class="com.pb.stratus.onpremsecurity.interceptors.BasicAuthenticationOutInterceptor"/>
+</beans>

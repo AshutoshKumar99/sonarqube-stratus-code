@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>Copyrights_Layer_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Copyrights_Layer_Verify</td></tr>
+</thead><tbody>
+<!-- 
+    Test whether the copyright texts are updated accordingly upon base map
+    changes
+-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<!--Store away some reused values. In FF (and possibly other browsers) //div[@class='baseMapPickerControl']//button[2] doesn't work so we use the descendant:: axis (see XPath spec for more details)-->
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>landLineButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>aerialButtonLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>masterMapButtonLocator</td>
+</tr>
+<!--Store the copyright text for business layer,verify for each basemap the business layer copyright appears-->
+<tr>
+	<td>store</td>
+	<td>© Camden Crown Copyright 2008</td>
+	<td>copyRightBusinessLayer</td>
+</tr>
+<!--Verify the copyright text for MasterMap-->
+<tr>
+	<td>store</td>
+	<td>© Crown Copyright 2008</td>
+	<td>copyrightMasterMap</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>${copyrightMasterMap}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='businessLayerCopyRight']</td>
+	<td>${copyRightBusinessLayer}</td>
+</tr>
+<!--Now let's click on Aerial and verify the copyright text  -->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<tr>
+	<td>click</td>
+	<td>${aerialButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>© GetMapping Limited 2006</td>
+	<td>copyrightAerial</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>${copyrightAerial}</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='businessLayerCopyRight']</td>
+	<td>${copyRightBusinessLayer}</td>
+</tr>
+<!--Verify that no copyright message configured for landline hence layerCopyright is not present-->
+<!--Add /div to the end of the click event as this solves a internal problem with selenium-->
+<tr>
+	<td>click</td>
+	<td>${landLineButtonLocator}/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class='businessLayerCopyRight']</td>
+	<td>${copyRightBusinessLayer}</td>
+</tr>
+<!--click on the default basemap(MasterMap)-->
+<tr>
+	<td>click</td>
+	<td>${masterMapButtonLocator}/div</td>
+	<td></td>
+</tr>
+<!-- Verify the position of the layer copyright(bottom left of the map) -->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//*[@id=&quot;myMap&quot;]</td>
+	<td>mapTop</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>//*[@id=&quot;myMap&quot;]</td>
+	<td>mapHeight</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${mapTop}+${mapHeight}</td>
+	<td>mapBottom</td>
+</tr>
+<!--Verify that the layerCopyright text appears close to the map bottom
+XXX sufficiently checked in Copyright_Default_Verify.html
+<tr>
+	<td>verifyEval</td>
+	<td>${mapBottom} - ${layerCopyRightTop}&lt;=30</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>layerCopyRightLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//*[@id=&quot;myMap&quot;]</td>
+	<td>mapLeft</td>
+</tr>
+-->
+<!--Verify that the Copyright text appears  to the left of the map
+XXX sufficiently checked in Copyright_Default_Verify.html
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${mapLeft} - ${layerCopyRightLeft})&lt;=20</td>
+	<td>true</td>
+</tr>
+-->
+<!--Verify that the Copyright text appears in a separate line (top position of each copyright is different and difference is less)-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@class='masterCopyRight']</td>
+	<td>masterCopyRightTop</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@class='businessLayerCopyRight']</td>
+	<td>businessLayerCopyRightTop</td>
+</tr>
+
+<!-- Make sure that default and business map copyrights don't overlap-->
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@class='businessLayerCopyRight']</td>
+	<td>businessLayerCopyrightTop</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@class='masterCopyRight']</td>
+	<td>masterCopyrightTop</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@class='masterCopyRight']</td>
+	<td>masterCopyrightHeight</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${masterCopyRightTop} + ${masterCopyrightHeight}</td>
+	<td>masterCopyrightBottom</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${masterCopyrightBottom} &lt;= ${businessLayerCopyrightTop}</td>
+	<td>true</td>
+</tr>
+
+<!-- Make sure that business map and base map copyrights don't overlap-->
+<tr>
+	<td>storeElementHeight</td>
+	<td>//div[@class='businessLayerCopyRight']</td>
+	<td>businessLayerCopyrightHeight</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${businessLayerCopyrightTop} + ${businessLayerCopyrightHeight}</td>
+	<td>businessLayerCopyrightBottom</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@class='layerCopyRight']</td>
+	<td>layerCopyrightTop</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${businessLayerCopyrightBottom} &lt;= ${layerCopyrightTop}</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

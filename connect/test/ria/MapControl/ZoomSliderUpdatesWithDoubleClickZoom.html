@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ZoomSliderUpdatesWithDoubleClickZoom</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ZoomSliderUpdatesWithDoubleClickZoom</td></tr>
+</thead><tbody>
+<!--This is a amount of time that Selenium will wait for open to complete !!-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<!--This command opens the MapComponent Page !!-->
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo.html</td>
+	<td></td>
+</tr>
+<!--Verify the map is present or not !!-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//body/div</td>
+	<td></td>
+</tr>
+<!--Store the element containing the value of the slider control-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;sliderContainer_myMap&quot;]//input[@type=&quot;hidden&quot;]</td>
+	<td>SliderHiddenInput</td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>${SliderHiddenInput}</td>
+	<td></td>
+</tr>
+<!--initial zoom should be level 8-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${SliderHiddenInput}@value</td>
+	<td>8</td>
+</tr>
+<!--We are storing the position of the handle-->
+<tr>
+	<td>store</td>
+	<td>//div[@class=&quot;dijitSliderImageHandle dijitSliderImageHandleV&quot;]</td>
+	<td>SliderHandle</td>
+</tr>
+<!--double-click on the map-->
+<tr>
+	<td>doubleClick</td>
+	<td>//div[@id=&quot;myMap&quot;]</td>
+	<td></td>
+</tr>
+<!--verify that the zoom slider value has been upda-->
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${SliderHiddenInput}@value</td>
+	<td>9</td>
+</tr>
+<!--Test Passed !! :)-->
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>LocatorMarker_Delete_CallOut</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorMarker_Delete_CallOut</td></tr>
+</thead><tbody>
+<!--PBI122:Locator Marker - Test for  the marker callout to delete on clicking the Clear this marker link-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<!--Insert a searchable value-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>Flat 7 20 King Henry's Road Adelaide London NW3 3RP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Click on first row displaying address 20 KING HENRY'S ROAD LONDON NW3 3RP-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}//table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Check for the tile holding the selected address -->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;myMap&quot;]//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=68&amp;output=png&quot;)]</td>
+	<td></td>
+</tr>
+<!--Check for the presence of marker (not the image as it comes from CSS)-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>marker</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${marker}</td>
+	<td></td>
+</tr>
+<!--Verify marker callout contents-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='Info_contentDiv']</td>
+	<td>markerframe</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${markerframe}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${markerframe}/div/label[@class=&quot;markerLabel&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${markerframe}/div/label[@class=&quot;markerLabel&quot;]</td>
+	<td>Flat 7 20 King Henry's Road Adelaide London NW3 3RP</td>
+</tr>
+<!--Click on the Clear this marker link to close the marker and its callout-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;Info_close&quot;]</td>
+	<td>Clear this marker</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info_close&quot;]</td>
+	<td>closeCallOut</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${closeCallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${markerframe}</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+<!---->
+<!---->
+
+</tbody></table>
+</body>
+</html>

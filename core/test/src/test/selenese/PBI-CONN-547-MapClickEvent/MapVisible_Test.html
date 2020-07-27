@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.219:8082/" />
+<title>MapVisible_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MapVisible_Test</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the presence of Map on Sample Page-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>test-harness/conn-547-map-click-event/index.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=MasterMap&quot;)]</td>
+	<td>masterMap</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${masterMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='mapControl1']</td>
+	<td>MapDisplay</td>
+</tr>
+<!--First we check the map contains the tiles and map layers.-->
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=71&amp;output=png')]</td>
+	<td>RightTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=69&amp;output=png')]</td>
+	<td>LeftTile</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id='mapControl1']//img[contains(@src, 'name=Development Map')]</td>
+	<td>PlanningMapLayer</td>
+</tr>
+<!--wait for an image attribute (class) to be available, then we know we have something to test!-->
+<tr>
+	<td>waitForAttribute</td>
+	<td>${RightTile}@class</td>
+	<td>olTileImage</td>
+</tr>
+<!--Ensure the map control is visible.-->
+<tr>
+	<td>assertVisible</td>
+	<td>${MapDisplay}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${RightTile}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${LeftTile}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${PlanningMapLayer}</td>
+	<td></td>
+</tr>
+<!--Confirm the default base map is MasterMap and confirm default zoom level of tiles is 8-->
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;mapControl1&quot;]//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png&quot;)]</td>
+	<td>master</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${master}</td>
+	<td></td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

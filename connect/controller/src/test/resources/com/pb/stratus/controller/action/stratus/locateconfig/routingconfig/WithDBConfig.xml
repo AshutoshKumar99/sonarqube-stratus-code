@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Routing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <name>RoutingTest</name>
+  <url>http://testhost:8080/rest/GetTravelBoundary/</url>
+  <username>admin</username>
+  <password>admin</password>
+  <deployment>On-Premise</deployment>
+  <databases>
+    <database>
+      <name>Great Britain</name>
+      <checked>TRUE</checked>
+    </database>
+  </databases>	
+  <historicTrafficTimeBucket />
+</Routing>

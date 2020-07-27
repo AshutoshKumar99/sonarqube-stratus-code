@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>MultiLineString_Multiplesegments_test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MultiLineString_Multiplesegments_test</td></tr>
+</thead><tbody>
+<!--verifing the MultiLine Button-->
+<!--setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-762-feature-search-geometry/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='multiLine' and @onclick='searchMultiSegmentLine();']</td>
+	<td>MultiLine</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${MultiLine}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td>Result</td>
+</tr>
+<!--waiting for the result table-->
+<tr>
+	<td>waitForText</td>
+	<td>${Result}/div/table/tbody/tr/td</td>
+	<td>OpenLayers.Geometry.MultiLineString</td>
+</tr>
+<!--verifying the result-->
+<tr>
+	<td>verifyText</td>
+	<td>${Result}/div/table/tbody/tr/td[2]/table/tbody/tr/td[1]</td>
+	<td>glob:LINESTRING(528028.90476988?? 183253.32353702??,527774.17360716?? 183283.894786093??,527437.92352534?? 183426.543953194??,527172.99322204?? 183487.676454197??)</td>
+</tr>
+<tr>
+	<td>storeXpathCount</td>
+	<td>${Result}/div/table/tbody/tr/td[2]/table/tbody/tr/td</td>
+	<td>No_of_Linestring</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${No_of_Linestring}&gt;2</td>
+	<td>true</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

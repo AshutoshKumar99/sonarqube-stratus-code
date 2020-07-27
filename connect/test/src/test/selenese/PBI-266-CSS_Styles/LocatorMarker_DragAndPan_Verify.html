@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>LocatorMarker_DragAndPan_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorMarker_DragAndPan_Verify</td></tr>
+</thead><tbody>
+<!--PBI122:Locator Marker - Test for  the presence of marker -->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<!--Insert a searchable value-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>20 KING HENRY'S ROAD LONDON NW3 3RP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Click on first row displaying address 20 KING HENRY'S ROAD LONDON NW3 3RP-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}//table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Check for the presence of marker (not the image as its in the CSS)-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id='MapMarker']</td>
+	<td></td>
+</tr>
+<!--Check for the position of marker: that the marker is centered and visible against the address searched-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='MapMarker']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMapORIGINAL&amp;level=8&amp;row=67&amp;col=68&amp;output=png&quot;)]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;name=MasterMap&amp;level=8&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>30000</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<!--Insert a searchable value-->
+<tr>
+	<td>type</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>20 KING HENRY'S ROAD LONDON NW3 3RP</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td></td>
+</tr>
+<!--Click on first row displaying address 20 KING HENRY'S ROAD LONDON NW3 3RP-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@id='result']//table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//*[@id='result']//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Check for the tile holding the selected address -->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//div[@id=&quot;myMap&quot;]//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=68&amp;output=png&quot;)]</td>
+	<td></td>
+</tr>
+<!--Check for the presence of marker-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>marker</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;myMap&quot;]//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=67&amp;col=70&amp;output=png')]</td>
+	<td>MiddleRightInitialTile</td>
+</tr>
+<!--Waits till the Middle Right Tile is located !!-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${MiddleRightInitialTile}</td>
+	<td></td>
+</tr>
+<!--Store the Left and Top positions of the map container (not the tile)-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>ContainerLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id=&quot;myMap_OpenLayers_Container&quot;]</td>
+	<td>ContainerTop</td>
+</tr>
+<!--Store the Left and Top positions of the marker-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerLeft</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerTop</td>
+</tr>
+<!--This command drags the current position and drop it to another location by a distance of 650 pixels-->
+<tr>
+	<td>dragAndDrop</td>
+	<td>${MiddleRightInitialTile}</td>
+	<td>+650,+650</td>
+</tr>
+<!--Stores the new positions of the locator marker left and top-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerLeftNew</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>markerTopNew</td>
+</tr>
+<!--This compares the value of new left and top position of the marker-->
+<tr>
+	<td>verifyEval</td>
+	<td>${markerLeft}+650</td>
+	<td>${markerLeftNew}</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${markerTop}+650</td>
+	<td>${markerTopNew}</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

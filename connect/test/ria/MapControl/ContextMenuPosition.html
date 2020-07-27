@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://londev05vm4:8080" />
+<title>Position of the Context Menu</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Position of the Context Menu</td></tr>
+</thead><tbody>
+<!--MAY FAIL INTERMITTENTLY - Selenium Issue with contextMenuAt!-->
+<!--Context Menu at the Left of the Mouse Click somewhere within the middle tile -->
+<!--(Selenium doesn't do this very well so have fudged it a bit to allow for a greater tolerance than we'd normally have!)-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div/div[2]/img</td>
+	<td>CenterTile</td>
+</tr>
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath(&quot;${CenterTile}&quot;, window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>20000</td>
+</tr>
+<tr>
+	<td>contextMenuAt</td>
+	<td>${CenterTile}</td>
+	<td>50,50</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${CenterTile}</td>
+	<td>TileLeftEdge</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${CenterTile}</td>
+	<td>TileTopEdge</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${TileLeftEdge}+50</td>
+	<td>MousePositionClickedLeft</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${TileTopEdge}+50</td>
+	<td>MousePositionClickedTop</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<!--Check the position within a 40 pixel tolerance of what is expected-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>map_menu_div_myMap</td>
+	<td>menuLeftEdge</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>map_menu_div_myMap</td>
+	<td>menuTopEdge</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${menuLeftEdge}-${MousePositionClickedLeft}) &lt; 40</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${menuTopEdge}-${MousePositionClickedTop}) &lt; 40</td>
+	<td>true</td>
+</tr>
+<!--Context Menu at the RIGHT of the Mouse Click-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']/div/div/div/div[3]/img</td>
+	<td>MidRightTile</td>
+</tr>
+<tr>
+	<td>contextMenuAt</td>
+	<td>${MidRightTile}</td>
+	<td>50,50</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${MidRightTile}</td>
+	<td>TileLeftEdge</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${MidRightTile}</td>
+	<td>TileTopEdge</td>
+</tr>
+<!--Expected left corner will be the width of the context menu (120px) AWAY from the mouse click point-->
+<tr>
+	<td>storeEval</td>
+	<td>${TileLeftEdge}+50-120</td>
+	<td>ExpectedContextLeftCorner</td>
+</tr>
+<tr>
+	<td>storeEval</td>
+	<td>${TileTopEdge}+50</td>
+	<td>ExpectedContextTop</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>map_menu_div_myMap</td>
+	<td></td>
+</tr>
+<!--Check the position is as expected-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>map_menu_div_myMap</td>
+	<td>menuLeftEdge</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>map_menu_div_myMap</td>
+	<td>menuTopEdge</td>
+</tr>
+<!--(Selenium doesn't do this very well so have fudged it a bit to allow for a greater tolerance than we'd normally have!)-->
+<!--connect page currently overwriting control specific CSS, therefore the context menu appears wider than it should, hence the LARGE tolerance here!-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${menuLeftEdge}-${ExpectedContextLeftCorner}) &lt; 150</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${menuTopEdge}-${ExpectedContextTop}) &lt; 40</td>
+	<td>true</td>
+</tr>
+<!--PASS expected-->
+
+</tbody></table>
+</body>
+</html>

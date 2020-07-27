@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>index-search</display-name>
+    <listener>
+        <description>Initializes the LocateConfigProvider.</description>
+        <listener-class>com.pb.gazetteer.webservice.ApplicationContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>SingleLineAddressService</servlet-name>
+        <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        </servlet>
+    <servlet-mapping>
+        <servlet-name>SingleLineAddressService</servlet-name>
+        <url-pattern>/SingleLineAddressService</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CXFServlet</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CXFServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+<!--
+    <context-param>
+        <description>The path to the base tenant directory.</description>
+        <param-name>stratus.customer.config.dir</param-name>
+        <param-value>${stratus.customer.config.dir}</param-value>
+    </context-param>
+-->
+    <context-param>
+        <description>The time (in millis) to delay before cleaning up an old lucene index.</description>
+        <param-name>com.pb.gazetteer.lucene.LuceneIndexCleaner.delay</param-name>
+        <param-value>300000</param-value>
+    </context-param>
+    <context-param>
+        <description>The number of threads devoted to servicing index cleanup requests.</description>
+        <param-name>com.pb.gazetteer.lucene.LuceneIndexCleaner.threadPoolSize</param-name>
+        <param-value>2</param-value>
+    </context-param>
+
+    <context-param>
+        <description>Rest locate config xml</description>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>WEB-INF/rest-locate.xml</param-value>
+    </context-param>
+
+</web-app>

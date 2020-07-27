@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>EmptyCallOut_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">EmptyCallOut_Verify</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check Call Out appears on left click and closes.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<!--Click in the middle of the map to get a call out.-->
+<tr>
+	<td>clickAtImproved</td>
+	<td>${mapLocator}</td>
+	<td>345,120</td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Checks for Call Out Information Box, and its X (close) button-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Verify the text in the call out-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@class=&quot;emptyCallout&quot;]</td>
+	<td>No information found at this location.</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class=&quot;olPopupCloseBox&quot;]</td>
+	<td>closeButton</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${closeButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${closeButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Test Passed !!!-->
+
+</tbody></table>
+</body>
+</html>

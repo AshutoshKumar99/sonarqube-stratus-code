@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Map_DoubleClick_Zoom</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Map_DoubleClick_Zoom</td></tr>
+</thead><tbody>
+<!--Purpose: Verify if a mouse double-click zooms in  one level and moves the position under the mouse pointer to the centre-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<!--We expect the following config: initial-zoom="8" initial-x="527880.5" initial-y="184196.25"-->
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<!--I couldn't find a way to avoid the following pause. We need to wait until OpenLayers is done-->
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<!--Click on the centre of the zero in 20 King Henry's Road. Use the myMap container to click within as its easiest for co-ordinate pixel calculations.-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='myMap']</td>
+	<td>theMap</td>
+</tr>
+<tr>
+	<td>doubleClickAtImproved</td>
+	<td>${theMap}</td>
+	<td>245,145</td>
+</tr>
+<!--Wait for the tile with the zero of 20 King Henry's Road for the next zoomlevel and check it's position-->
+<tr>
+	<td>pause</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>ZoomedInTileLocator</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${ZoomedInTileLocator}</td>
+	<td></td>
+</tr>
+<!--I couldn't find a way to avoid the following pause. We need to wait until OpenLayers is done-->
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${theMap}</td>
+	<td>mapControlLeft</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${theMap}</td>
+	<td>mapControlWidth</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>tileLeft</td>
+</tr>
+<!--Check if the point we clicked on is roughly in the centre of the map. THIS IS VERY SUSCEPTIBLE TO FAIL IF MODIFICATIONS HAVE BEEN MADE IN THE MAP CONTROL!-->
+<!--
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileLeft} - ${mapControlLeft} + 4 - ${mapControlWidth} / 2)</td>
+	<td>0</td>
+</tr>
+-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileLeft} - ${mapControlLeft} + 4 - ${mapControlWidth} / 2) &lt; 20</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${theMap}</td>
+	<td>mapControlTop</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${theMap}</td>
+	<td>mapControlHeight</td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>//img[contains(@src, &quot;/MapTilingService/RESTService/getTile?name=MasterMap&amp;level=9&amp;row=134&amp;col=137&amp;output=png&quot;)]</td>
+	<td>tileTop</td>
+</tr>
+<!--
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileTop} - ${mapControlTop} + 219 - ${mapControlHeight} / 2)</td>
+	<td>0</td>
+</tr>
+-->
+<tr>
+	<td>verifyEval</td>
+	<td>Math.abs(${tileTop} - ${mapControlTop} + 235 - ${mapControlHeight} / 2) &lt; 20</td>
+	<td>true</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

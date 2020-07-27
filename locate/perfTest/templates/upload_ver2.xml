@@ -1,0 +1,18 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservice.gazetteer.pb.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:populateGazetteer>
+         <!--Optional:-->
+         <populateParameters>
+            <tenantName>{0}</tenantName>
+            <gazetteerName>{1}</gazetteerName>
+            <addressColumn>0</addressColumn>
+            <xColumn>1</xColumn>
+            <yColumn>2</yColumn>
+            <maxFailures>10</maxFailures>
+            <delimiter>,</delimiter>
+         </populateParameters>
+         <data><inc:Include href="cid:{2}" xmlns:inc="http://www.w3.org/2004/08/xop/include"/></data>
+      </web:populateGazetteer>
+   </soapenv:Body>
+</soapenv:Envelope>

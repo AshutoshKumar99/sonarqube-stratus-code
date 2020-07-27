@@ -1,0 +1,5 @@
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <uriSuffix uriSuffix="SingleLineAddressService_schema1.xsd" uri="classpath:wsdl/SingleLineAddressService_schema1.xsd"/>
+    <uriSuffix uriSuffix="SingleLineAddressService?xsd=1" uri="classpath:wsdl/SingleLineAddressService_schema1.xsd"/>
+    <system systemId="http://webservice.gazetteer.pb.com/" uri="classpath:wsdl/SingleLineAddressService_schema1.xsd"/>
+</catalog>

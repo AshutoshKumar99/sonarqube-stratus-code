@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/" />
+<title>MapControl_Tooltip_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">MapControl_Tooltip_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the Tooltips are present for the Base Map picker buttons and the Zoom Slider-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[1]</td>
+	<td>roadsLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[2]</td>
+	<td>satelliteLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td>mastermapLocator</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[4]</td>
+	<td>streetproLocator</td>
+</tr>
+<!--Verify the base map picker buttons are visible -->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${roadsLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${satelliteLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${mastermapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${streetproLocator}</td>
+	<td></td>
+</tr>
+<!--Verify the tool tip information is displayed for the base map picker.-->
+<tr>
+	<td>mouseOver</td>
+	<td>${roadsLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>//div[@class='baseMapPickerControl']/div/div[1]/@title</td>
+	<td>glob:*Roads</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>${satelliteLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>//div[@class='baseMapPickerControl']/div/div[2]/@title</td>
+	<td>glob:*Satellite</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>${mastermapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>//div[@class='baseMapPickerControl']/div/div[3]/@title</td>
+	<td>glob:*MasterMap</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>${streetproLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>//div[@class='baseMapPickerControl']/div/div[4]/@title</td>
+	<td>glob:*Street Pro</td>
+</tr>
+<!--Verify the zoom slider buttons are visible -->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;stratus_ZoomSliderControl_0&quot;]//div[@dojoattachpoint=&quot;incrementButton&quot;]</td>
+	<td>PlusButton</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${PlusButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;stratus_ZoomSliderControl_0&quot;]//div[@dojoattachpoint=&quot;decrementButton&quot;]</td>
+	<td>MinusButton</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${MinusButton}</td>
+	<td></td>
+</tr>
+<!--Verify the tool tip information is displayed for the Zoom Slider plus and minus buttons.-->
+<tr>
+	<td>mouseOver</td>
+	<td>${PlusButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${PlusButton}/@title</td>
+	<td>glob:*Zoom In</td>
+</tr>
+<tr>
+	<td>mouseOver</td>
+	<td>${MinusButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${MinusButton}/@title</td>
+	<td>glob:*Zoom Out</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

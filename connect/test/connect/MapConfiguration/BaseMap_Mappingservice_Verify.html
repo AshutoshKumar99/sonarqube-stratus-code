@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080" />
+<title>Basemap_Mappingservice_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Basemap_Mappingservice_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: To check whether the base map is coming from the Mapping service and Base map picker to display base maps coming from the Mapping service.-->
+<!--Since the Envinsa mapping service does not support raster maps & text objects only Road maps have been used.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Open the Corresponding xml file.-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/mapservice.xml</td>
+	<td></td>
+</tr>
+<!-- Expect there to be Map Picker buttons as only 1 base layer is configured.-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@class='baseMapPickerControl']/descendant::button[3]</td>
+	<td></td>
+</tr>
+<!--Verify the base map is coming from the Mapping service and Base map picker is present-->
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src, &quot;name=StreetProRoads&quot;)]</td>
+	<td>roadTileLocator</td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${roadTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${roadTileLocator}</td>
+	<td></td>
+</tr>
+<!--Using the verifyEval isElementPresent because selenium.isVisible doesn't work in IE7-->
+<tr>
+	<td>verifyEval</td>
+	<td>selenium.isElementPresent('${roadTileLocator}') || !selenium.isVisible('${roadTileLocator}')</td>
+	<td>true</td>
+</tr>
+<!--Check for the Legend Control header & verify there are no contents -->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<!--Verifying Business Maps are not present.-->
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='legendContainer']/div[1]/div</td>
+	<td>document.write(res.legendTitle)Legend Control</td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id=&quot;legend&quot;]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id='Development Map']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@id='Conservation Map']</td>
+	<td></td>
+</tr>
+<!--PASS expected.-->
+
+</tbody></table>
+</body>
+</html>

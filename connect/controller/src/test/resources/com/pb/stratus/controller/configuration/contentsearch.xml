@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<find-nearest-config>
+    <fn-category category-name="Environment">
+        <fn-layer layer-name="Open Spaces" title-field="Title" description-field="Description" link-field="URL"
+                  icon-url="http://server/icons/OS.png" icon-offset-x="10" icon-offset-y="10" icon-height="20"
+                  icon-width="20" />
+        <fn-layer layer-name="Leisure Centres" title-field="Title" description-field="Description" link-field="URL"
+                  icon-url="http://server/icons/LC.png" icon-offset-x="10" icon-offset-y="10" icon-height="20" 
+                  icon-width="20" />
+        <fn-layer layer-name="Recycling Centres" title-field="Title" description-field="Description" link-field="URL"
+                  icon-url="http://server/icons/RC.png" icon-offset-x="10" icon-offset-y="10" icon-height="20"
+                  icon-width="20" />
+    </fn-category>
+    <fn-category category-name="Education">
+        <fn-layer layer-name="Primary Schools" title-field="Title" description-field="Description" link-field="URL"
+                  icon-url="http://server/icons/PS.png" icon-offset-x="10" icon-offset-y="10" icon-height="20"
+                  icon-width="20" />
+        <fn-layer layer-name="Secondary Schools" title-field="Title" description-field="Description" link-field="URL"
+                  icon-url="http://server/icons/SS.png" icon-offset-x="10" icon-offset-y="10" icon-height="20"
+                  icon-width="20" />
+        <fn-layer layer-name="Nurseries" title-field="Title" description-field="Description" link-field="URL"
+                  icon-url="http://server/icons/N.png" icon-offset-x="10" icon-offset-y="10" icon-height="20"
+                  icon-width="20" />
+    </fn-category>
+</find-nearest-config>
+
+
+

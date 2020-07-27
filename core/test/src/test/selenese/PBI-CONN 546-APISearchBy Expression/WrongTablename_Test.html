@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>WrongTablename_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">WrongTablename_Test</td></tr>
+</thead><tbody>
+<!--To Verify Wrong Table name Exception-->
+<!--setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+	<td>setTimeout</td>
+	<td>30000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/conn-546-api-search-by-column/test.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//button[@id='exceptions' and @onclick='wrongTableName();']</td>
+	<td>WrongTableName</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${WrongTableName}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id='errorClass']</td>
+	<td>stratus.search.UnknownTableException</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//div[@id='errorMessage']</td>
+	<td>wrongTableName</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

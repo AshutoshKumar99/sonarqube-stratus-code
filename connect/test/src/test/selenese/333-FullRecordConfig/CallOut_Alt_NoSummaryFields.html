@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8082/" />
+<title>CallOut_Alt_NoSummaryFields</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_NoSummaryFields</td></tr>
+</thead><tbody>
+<!--Purpose : Test to check no configuration of Call Out elements - defaults applied.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-streetpro.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=StreetProMM&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan twice & open the callout for Chamberlain Street (ListedBuildings data has all 5 columns of data and includes images & links)-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[contains(@class, 'south')]</td>
+	<td>panSouth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>//*[@id='myMap']</td>
+	<td>200,360</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check for our expected results : Hyperlink to Primrose Hill and 1 item for Chamberlain Street (Title, Link, Image, KeyValue and Description)-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][2]</td>
+	<td>ConservationAreas</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;stratus_InfoRow_1&quot;]</td>
+	<td>FirstInfoElement</td>
+</tr>
+<!--Title confirmation-->
+<tr>
+	<td>verifyText</td>
+	<td>${FirstInfoElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>Primrose Hill</td>
+</tr>
+<!--Link confirmation-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${FirstInfoElement}/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${FirstInfoElement}/div[2]/a@href</td>
+	<td>http://www.camden.gov.uk/ccm/navigation/environment/planning-and-built-environment/conservation-and-design/conservation-areas/</td>
+</tr>
+<!--KeyValue confirmation-->
+<tr>
+	<td>verifyText</td>
+	<td>${FirstInfoElement}/div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>1971-10-01Z</td>
+</tr>
+<!--Check for ListedBuildings Chamberlain Street contains all expected data.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ListedBuildings</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>SecondInfoElement</td>
+</tr>
+<!--Title confirmation-->
+<tr>
+	<td>verifyText</td>
+	<td>${SecondInfoElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>CHAMBERLAIN STREET</td>
+</tr>
+<!--Link confirmation-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SecondInfoElement}/div[2]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${SecondInfoElement}/div[2]/a@href</td>
+	<td>http://mycamden.camden.gov.uk/gdw/T/ListedBuildingDetail?LbNo=195&amp;xsl=ListedBuildingDetail.xsl</td>
+</tr>
+<!--Image confirmation-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SecondInfoElement}/img[@class=&quot;infoImage&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${SecondInfoElement}/img[@class=&quot;infoImage&quot;]@src</td>
+	<td>http://mycamden.camden.gov.uk/LPGSearch/ListedBuildingPhoto/thumbnails/195.jpg</td>
+</tr>
+<!--KeyValue confirmation-->
+<tr>
+	<td>verifyText</td>
+	<td>${SecondInfoElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>Grade II</td>
+</tr>
+<!--Description confirmation-->
+<tr>
+	<td>verifyText</td>
+	<td>${SecondInfoElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td>(South side) Nos.1-8 (Consecutive) and attached railings*</td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

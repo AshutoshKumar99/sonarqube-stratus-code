@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="geometryServiceInterface" factory-bean="geometryServiceJaxWsProxyFactory" factory-method="create"/>
+
+    <bean id="geometryServiceJaxWsProxyFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+        <property name="serviceClass" value="com.mapinfo.midev.service.geometry.ws.v1.GeometryServiceInterface"/>
+        <property name="address" value="${spatialserver.geometry.url}"/>
+        <property name="serviceName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://www.mapinfo.com/midev/service/geometry/ws/v1}GeometryService"/>
+            </bean>
+        </property>
+        <property name="endpointName">
+            <bean class="javax.xml.namespace.QName" factory-method="valueOf">
+                <constructor-arg value="{http://www.mapinfo.com/midev/service/geometry/ws/v1}GeometryServiceInterface"/>
+            </bean>
+        </property>
+        <property name="wsdlLocation" value="${spatialserver.geometry.wsdl}"/>
+        <property name="features">
+            <list>
+                <bean class="org.apache.cxf.ws.addressing.WSAddressingFeature"/>
+            </list>
+        </property>
+        <property name="properties">
+            <map>
+                <entry key="ws-security.timestamp.futureTimeToLive" value="300"/>
+                <entry key="ws-security.cache.issued.token.in.endpoint" value="false"/>
+                <entry key="set-jaxb-validation-event-handler" value="false" />
+            </map>
+        </property>
+        <property name="outInterceptors">
+            <ref bean="basicAuthentication"/>
+        </property>
+    </bean>
+</beans>

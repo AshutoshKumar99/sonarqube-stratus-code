@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<find-nearest-config>
+  <categories>
+    <category>
+      <name>Conservation</name>
+      <layers>
+        <layer>
+          <name>ConservationAreas</name>
+          <alias>ConservationAreas</alias>
+          <marker>
+            <url>/controller/getmarker?name=yellow-parking.png</url>
+            <symbol-url />
+            <shadow-url />
+            <size>
+              <width>24.0</width>
+              <height>54.0</height>
+            </size>
+            <anchor-point>
+              <x>12.0</x>
+              <y>54.0</y>
+            </anchor-point>
+          </marker>
+          <summary-fields>
+            <title>Title</title>
+            <description>Description</description>
+            <image />
+            <link>URL</link>
+            <key />
+          </summary-fields>
+        </layer>
+      </layers>
+    </category>
+  </categories>
+</find-nearest-config>

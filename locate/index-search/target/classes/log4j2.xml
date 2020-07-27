@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="R" fileName="${sys:catalina.home}/logs/stratus-locate.log"
+                     filePattern="${filepattern:catalina.home}/logs/stratus-locate.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>%d{[yyyy-MMM-dd HH:mm:ss,SSS]} [tenant:%X{tenant}] [host:%X{host}] [%t] [%c] %x%n [%p] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="R"/>
+        </Root>
+    </Loggers>
+</Configuration>

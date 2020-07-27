@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<fop version="1.1">
+  <!-- Base URL for resolving relative URLs -->
+  <base>.</base>
+   
+  <renderers>
+    <renderer mime="application/pdf">
+
+     	<fonts>
+	 	  <font embed-url="msgothic.ttc" sub-font="MS Gothic">
+		  <font-triplet name="MS Gothic" style="normal" weight="normal"/>
+		</font>
+		
+      </fonts>
+    </renderer>
+   </renderers>
+
+</fop>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <RollingFile name="default" fileName="${sys:catalina.home}/logs/connect.log"
+                     filePattern="${filepattern:catalina.home}/logs/connect-%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss,SSS} [%C] [thread=%t] %n [%p] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="Connect" fileName="${sys:catalina.home}/logs/connect.log"
+                     filePattern="${filepattern:catalina.home}/logs/connect-%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss,SSS} [%C{1}] [tenant=%X{tenant}, host=%X{host}, thread=%t] %n [%p] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="MappingService" fileName="${sys:catalina.home}/logs/connect-mappingService.log"
+                     filePattern="${filepattern:catalina.home}/logs/connect-mappingService-%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss,SSS} [%C{1}] [%p] Transaction - [Tenant=%X{tenant}, Host=%X{host}, Thread=%t, Method=%X{ss.op}, ProcessTime=%X{invoke.t}, STSProcessTime=%X{sts.t}, Resources=%X{ss.op.args}] %n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="FeatureService" fileName="${sys:catalina.home}/logs/connect-featureService.log"
+                     filePattern="${filepattern:catalina.home}/logs/connect-featureService-%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss,SSS} [%C{1}] [%p] Transaction - [Tenant=%X{tenant}, Host=%X{host}, Thread=%t, Method=%X{ss.op}, ProcessTime=%X{invoke.t}, STSProcessTime=%X{sts.t}, Resources=%X{ss.op.args}] %n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        <RollingFile name="GeometryService" fileName="${sys:catalina.home}/logs/connect-geometryService.log"
+                     filePattern="${filepattern:catalina.home}/logs/connect-geometryService-%d{MM-dd-yyyy}.log">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MMM-dd HH:mm:ss,SSS} [%C{1}] [%p] Transaction - [Tenant=%X{tenant}, Host=%X{host}, Thread=%t, Method=%X{ss.op}, ProcessTime=%X{invoke.t}, STSProcessTime=%X{sts.t}] %n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <AsyncLogger name="UsageStatisticsLogger" level="info" additivity="false"/>
+        <Logger name="MappingTransactionMonitor" level="info" additivity="false">
+            <AppenderRef ref="MappingService"/>
+        </Logger>
+        <Logger name="FeatureTransactionMonitor" level="off" additivity="false">
+            <AppenderRef ref="FeatureService"/>
+        </Logger>
+        <Logger name="GeometryTransactionMonitor" level="off" additivity="false">
+            <AppenderRef ref="GeometryService"/>
+        </Logger>
+        <Logger name="com.pb.stratus" level="warn" additivity="false">
+            <AppenderRef ref="Connect"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="default"/>
+        </Root>
+    </Loggers>
+</Configuration>

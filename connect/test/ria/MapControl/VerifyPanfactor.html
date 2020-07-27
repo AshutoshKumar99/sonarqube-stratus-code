@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?xml version="1.0" encoding="UTF-8"?><HTML lang=en xml:lang="en" 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD 
+profile=http://selenium-ide.openqa.org/profiles/test-case><TITLE>VerifyPanfactor</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8"><LINK 
+href="http://localhost:8080/" rel=selenium.base>
+<META content="MSHTML 6.00.2900.3354" name=GENERATOR></HEAD>
+<BODY>
+<TABLE cellSpacing=1 cellPadding=1 border=1>
+  <THEAD>
+  <TR>
+    <TD colSpan=3>VerifyPanfactor</TD></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD>open</TD>
+    <TD>/test-harness/mapcomponent/mapcomponentdemo_panfactor.html</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>setTimeout</TD>
+    <TD>75000</TD>
+    <TD></TD></TR><!--Check for the existence of pan controls-->
+  <TR>
+    <TD>assertElementPresent</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[1]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>assertElementPresent</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[2]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>assertElementPresent</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[3]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>assertElementPresent</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[4]</TD>
+    <TD></TD></TR><!--This stores the Left element position of the container as  'OriginalPositionLeft'-->
+  <TR>
+    <TD>storeElementPositionLeft</TD>
+    <TD>//div[@id="myMap_OpenLayers_Container"]</TD>
+    <TD>OriginalPositionLeft</TD></TR><!--Pan to the east-->
+  <TR>
+    <TD>clickAt</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[4]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>pause</TD>
+    <TD>5000</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>storeElementPositionLeft</TD>
+    <TD>//div[@id="myMap_OpenLayers_Container"]</TD>
+    <TD>PanEastPosition</TD></TR>
+  <TR>
+    <TD>verifyEval</TD>
+    <TD>${PanEastPosition} - ${OriginalPositionLeft}</TD>
+    <TD>regexp:-301|-300</TD></TR><!--Pan to the west-->
+  <TR>
+    <TD>clickAt</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[3]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>pause</TD>
+    <TD>5000</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>storeElementPositionLeft</TD>
+    <TD>//div[@id="myMap_OpenLayers_Container"]</TD>
+    <TD>PanWestPosition</TD></TR>
+  <TR>
+    <TD>verifyEval</TD>
+    <TD>${PanWestPosition} - ${PanEastPosition}</TD>
+    <TD>regexp:301|300</TD></TR><!--This stores the Top element position of the container as  'OriginalPositionTop'-->
+  <TR>
+    <TD>storeElementPositionTop</TD>
+    <TD>//div[@id="myMap_OpenLayers_Container"]</TD>
+    <TD>OriginalPositionTop</TD></TR><!--Pan to the North-->
+  <TR>
+    <TD>clickAt</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[1]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>pause</TD>
+    <TD>5000</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>storeElementPositionTop</TD>
+    <TD>//div[@id="myMap_OpenLayers_Container"]</TD>
+    <TD>PanNorthPosition</TD></TR>
+  <TR>
+    <TD>verifyEval</TD>
+    <TD>${PanNorthPosition}-${OriginalPositionTop}</TD>
+    <TD>regexp:200|201</TD></TR><!--Pan to the South-->
+  <TR>
+    <TD>clickAt</TD>
+    <TD>//div[@id='stratus_PanControl_0']/button[1]</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>pause</TD>
+    <TD>5000</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>storeElementPositionTop</TD>
+    <TD>//div[@id="myMap_OpenLayers_Container"]</TD>
+    <TD>PanSouthPosition</TD></TR>
+  <TR>
+    <TD>verifyEval</TD>
+    <TD>${PanNorthPosition}- ${PanSouthPosition}</TD>
+    <TD>regexp:-200|-201</TD></TR></TBODY></TABLE></BODY></HTML>

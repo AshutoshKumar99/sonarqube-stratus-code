@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>Disabled Zoom</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Disabled Zoom</td></tr>
+</thead><tbody>
+<!--This test verifies if a double-click on a map with disabled zoom function is ignored -->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapcomponent/mapcomponentdemo-no-zoom.html</td>
+	<td></td>
+</tr>
+<!--We expect the following config: initial-zoom="7" initial-x="527880.5" initial-y="184196.25"-->
+<tr>
+	<td>waitForCondition</td>
+	<td>var img = selenium.browserbot.locateElementByXPath('//img[contains(@src, &quot;/MapTiling/RESTService/getTile?name=MasterMapORIGINAL&amp;level=8&amp;row=68&amp;col=69&amp;output=png&quot;)]', window.document); img &amp;&amp; img.complete &amp;&amp; (typeof img.naturalWidth == 'undefined' || img.naturalWidth &gt; 0)</td>
+	<td>10000</td>
+</tr>
+<!-- Wait until OpenLayers is done processing. See corresponding comment in VerifyDoubleClickZoom.html -->
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<!-- 
+    Click on the centre of the zero in 20 King Henry's Road. We click on 
+    the WMS layer above the tiles, because that seems to receive the mouse
+    events
+-->
+<tr>
+	<td>doubleClickAt</td>
+	<td>//div[@id='myMap']/div/div/div[2]/div/img</td>
+	<td>192,44</td>
+</tr>
+<!--
+    Wait for 10 secs, since we are testing for the non-existance of an 
+    element, there's nothing we can wait for
+-->
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<!-- Make sure there is not a single image with zoom-level 9 (default is 8) -->
+<tr>
+	<td>assertElementNotPresent</td>
+	<td>//img[contains(@src, &quot;level=9&quot;)]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<map-config
+    max-bounds-left="-20037508"
+    max-bounds-bottom="-20037508"
+    max-bounds-right="20037508"
+    max-bounds-top="20037508.34"
+    max-zoom-levels="18"
+    max-resolution="156543.0339"
+    units="m"
+    projection="EPSG:3857"
+    initial-zoom="14"
+    initial-x="-15879"
+    initial-y="6717176"
+    legend-control-named-maps=""
+    disable-locator-marker="false"
+    disable-map-picker="true"
+    disable-pan-control="false"
+    disable-zoom-menu="false"
+    disable-double-click-zoom="true"
+    disable-callout-control="false"
+    disable-slider-control="false" 
+    default-copyright ="LB of Camden License 100019726">
+    
+<ZoomLevels>
+    <ZoomLevel Value="1" Name="World"></ZoomLevel>
+    <ZoomLevel Value="6" Name="Country"></ZoomLevel>
+    <ZoomLevel Value="11" Name="County"></ZoomLevel>
+    <ZoomLevel Value="14" Name="Borough"></ZoomLevel>
+    <ZoomLevel Value="18" Name="Street"></ZoomLevel>
+</ZoomLevels>
+
+<api-keys>
+    <key service="Google-Map">ABQIAAAA7cyB4z1PYYDQ6H6a5MURVBQ0Y4mhcAB83DvMf8TlXC7mAbw0axRfqlEDHDDTX05fn01958G0sR5nNg</key>
+</api-keys>
+
+<map 
+    service="Google-Map"
+    friendly-name="Google Street"
+    map-name="G_NORMAL_MAP" 
+    show-as="base"
+    opacity="1"
+    copyright="&#169; Google Copyright 2008"
+    alpha="true"/>
+</map-config>
+

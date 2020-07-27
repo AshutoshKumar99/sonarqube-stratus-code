@@ -1,0 +1,16 @@
+<ns5:DescribeNamedLayerResponse xmlns="http://www.mapinfo.com/midev/service/geometries/v1"
+                                xmlns:ns2="http://www.mapinfo.com/midev/service/featurecollection/v1"
+                                xmlns:ns3="http://www.mapinfo.com/midev/service/common/v1"
+                                xmlns:ns5="http://www.mapinfo.com/midev/service/mapping/v1"
+                                xmlns:ns4="http://www.mapinfo.com/midev/service/mappingcommon/v1"
+        >
+    <ns5:Layer name="testLayer1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns5:FeatureLayer">
+        <VisibilityConstraintList>
+            <ns2:VisibilityConstraint xsi:type="ns4:ZoomVisibilityConstraint">
+                <ns4:MaxZoom uom="Kilometer">2.0</ns4:MaxZoom>
+                <ns4:MinZoom uom="Kilometer">0.0</ns4:MinZoom>
+            </ns2:VisibilityConstraint>
+        </VisibilityConstraintList>
+        <ns3:Table name="/customerstratustenant1_noida/NamedTables/PlanningApplications" xsi:type="ns3:NamedTable"/>
+    </ns5:Layer>
+</ns5:DescribeNamedLayerResponse>

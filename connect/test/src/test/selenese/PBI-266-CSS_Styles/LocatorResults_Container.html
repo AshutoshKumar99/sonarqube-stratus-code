@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.168:8081/" />
+<title>LocatorResults_Container</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LocatorResults_Container</td></tr>
+</thead><tbody>
+<!--Purpose - Check the Locator Results Container max height and scrollbar-->
+<tr>
+	<td>open</td>
+	<td>/connect/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${locatorResultsLocator}</td>
+	<td>ResultHeight</td>
+</tr>
+<!--Check for the initial size of Locator Results to be zero-->
+<tr>
+	<td>assertEval</td>
+	<td>${ResultHeight}</td>
+	<td>0</td>
+</tr>
+<!--Insert searchable value-->
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>+1 +erskine +road -2 -floor -flat</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<!--Check for the size of Locator Results to be greater than zero. By default, the height is observed to be 245 px.-->
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}/table</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}/table//tr[@class='normalListColor']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>${locatorResultsLocator}/table</td>
+	<td>1 Erskine Road Chalk Farm London NW3 3AJ</td>
+</tr>
+<!--Wait for a bit longer to make sure the animation has time to finish-->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>1 Erskine Road Chalk Farm London NW3 3AJ</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${locatorResultsLocator}</td>
+	<td>ExpandedResultHeight</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${ExpandedResultHeight}</td>
+	<td>245</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var l = selenium.browserbot.locateElementByXPath('${locatorResultsLocator}', window.document); l.scrollHeight &lt;= l.offsetHeight</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>${SearchInputBox}</td>
+	<td>Erskine Road</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}/table</td>
+	<td></td>
+</tr>
+<!--Wait until animation finishes-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}/table//tr[@class='normalListColor']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>${ExpandedResultHeight}</td>
+	<td>245</td>
+</tr>
+<tr>
+	<td>assertEval</td>
+	<td>var l = selenium.browserbot.locateElementByXPath('${locatorResultsLocator}', window.document); l.scrollHeight &gt; l.offsetHeight</td>
+	<td>true</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

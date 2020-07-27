@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>PanControl_Function_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">PanControl_Function_Verify</td></tr>
+</thead><tbody>
+<!--To verify the sample page for Ria Samples for a simple PAN Control-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/pan/pandemo.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>LocatorControl &amp; LocatorResultsControl Demo</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='pan']/button[contains(@class, 'east')]</td>
+	<td>east</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${east}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${east}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${east}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id=&quot;status&quot;]</td>
+	<td>Panned 1, 0</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='pan']/button[contains(@class, 'west')]</td>
+	<td>west</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${west}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${west}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${west}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id=&quot;status&quot;]</td>
+	<td>Panned -1, 0</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='pan']/button[contains(@class, 'north')]</td>
+	<td>north</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${north}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${north}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${north}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id=&quot;status&quot;]</td>
+	<td>Panned 0, -1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='pan']/button[contains(@class, 'south')]</td>
+	<td>south</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${south}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${south}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${south}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForText</td>
+	<td>//div[@id=&quot;status&quot;]</td>
+	<td>Panned 0, 1</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

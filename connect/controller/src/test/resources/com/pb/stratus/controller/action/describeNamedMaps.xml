@@ -1,0 +1,28 @@
+<DescribeNamedMapsResponse xmlns="http://www.mapinfo.com/midev/service/mapping/v1" xmlns:ns2="http://www.mapinfo.com/midev/service/mappingcommon/v1" xmlns:ns3="http://www.mapinfo.com/midev/service/table/v1" xmlns:ns4="http://www.mapinfo.com/midev/service/style/v1" xmlns:ns5="http://www.mapinfo.com/midev/service/featurecollection/v1" xmlns:ns6="http://www.mapinfo.com/midev/service/geometries/v1" xmlns:ns7="http://www.mapinfo.com/midev/service/theme/v1" xmlns:ns8="http://www.mapinfo.com/midev/service/common/v1" xmlns:ns9="http://www.mapinfo.com/midev/service/units/v1">
+    <MapDescriptions>
+        <MapDescription>
+            <Name>/customerstratustenant1_noida/namedMap/testMap1</Name>
+            <Map name="/Samples/NamedMaps/WorldMapWithGroupLayer">
+                <Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="FeatureLayer" renderable="true" description="World Capitals">
+                    <ns3:Table xsi:type="ns3:NamedTable" name="/Samples/NamedTables/WorldcapTable"/>
+                </Layer>
+                <Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="NamedLayer" name="/Samples/NamedLayers/GroupLayer" renderable="true" description="Layer group for all supported layer type"/>
+            </Map>
+        </MapDescription>
+        <MapDescription>
+            <Name>customerstratustenant1_noida/namedMap/testMap2</Name>
+            <Map name="/Samples/NamedMaps/MapWithLayerStyle">
+                <Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="NamedLayer" name="/Samples/NamedLayers/LayerWithStyle" namedTableRef="/Samples/NamedTables/USA_CAPS" renderable="true" description="USA Capitals"/>
+                <Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="FeatureLayer" renderable="true" description="Sheilds1">
+                    <ns3:Table xsi:type="ns3:NamedTable" name="/Samples/NamedTables/Us_Int_Shields1"/>
+                </Layer>
+                <Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="FeatureLayer" renderable="true" description="USA">
+                    <ns3:Table xsi:type="ns3:NamedTable" name="/Samples/NamedTables/USA"/>
+                </Layer>
+                <Layer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="FeatureLayer" renderable="true" description="USACAPS">
+                    <ns3:Table xsi:type="ns3:NamedTable" name="/Samples/NamedTables/USA_CAPS"/>
+                </Layer>
+            </Map>
+        </MapDescription>
+        </MapDescriptions>
+</DescribeNamedMapsResponse>

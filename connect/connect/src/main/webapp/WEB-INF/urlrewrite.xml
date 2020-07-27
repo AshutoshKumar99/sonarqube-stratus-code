@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<!--
+    Extract the tenant name from the URL and set as an attribute of the request
+-->
+<urlrewrite>
+    <rule>
+        <name>ServiceSoap</name>
+        <note>Soap Service resource at present for Clear Cache only, don't do anything with URL</note>
+        <from>^/services/soap/(.*)</from>
+        <to last="true">/services/soap/$1</to>
+    </rule>
+    <rule>
+        <name>ServiceRest</name>
+        <note>Rest Service resource at present for locate service only, don't do anything with URL</note>
+        <from>^/LocateService/services/rest/([^/]*)/(.*)</from>
+        <set name="tenant">$1</set>
+        <to last="true">/LocateService/services/rest/$1/$2</to>
+    </rule>
+    <rule>
+        <name>AnalystServiceRest</name>
+        <note>Rest Service resource at present for analyst service only, don't do anything with URL</note>
+        <from>^/AnalystService/services/rest/Service/([^/]*)/(.*)</from>
+        <set name="tenant">$1</set>
+        <to last="true">/AnalystService/services/rest/Service/$1/$2</to>
+    </rule>
+    <rule>
+        <name>SingleLogout</name>
+        <note>The single logout callback service's behavior is not scoped to a single tenant.</note>
+        <from>^/slo/(.*)</from>
+        <to last="true">/slo/$1</to>
+    </rule>
+    <rule>
+        <name>StaticResources</name>
+        <note>Static resources have no tenant, we can just strip off the dummy 'static' tenant name and forward </note>
+        <from>^/static/(.*)</from>
+        <to last="true">/$1</to>
+    </rule>
+    <rule>
+        <name>TenantTheme</name>
+        <note>Expand {tenant}/theme/... to controller/theme/...</note>
+        <from>^/([^/]*)/theme/(.*)</from>
+        <set name="tenant">$1</set>
+        <to last="true">/controller/theme/$2</to>
+    </rule>
+    <rule>
+        <name>ForceTrailingSlash-NoQueryString</name>
+        <note>Ensure a trailing slash after the tenant name and redirect it to /mobile</note>
+        <from>^/([^/]+)$</from>
+        <condition type="query-string" operator="equal">^$</condition>
+        <to type="redirect" last="true">$1/mobile/#/main</to>
+    </rule>
+    <rule>
+        <name>Force Url to point to mobile</name>
+        <note>Ensure /connect/tenant/ is redirected to /connect/tenant/mobile/</note>
+        <from>^/([^/]+/)$</from>
+        <!--<condition type="query-string" operator="equal">^$</condition>-->
+        <to type="redirect" last="true">mobile/#/main?%{query-string}</to>
+    </rule>
+    <rule>
+        <name>ForceTrailingSlash-NoQueryString-mobile</name>
+        <note>Ensure a trailing slash after 'mobile'</note>
+        <from>^/([^/]*)/mobile$</from>
+        <!--<condition type="query-string" operator="equal">^$</condition>-->
+        <to type="redirect" last="true">mobile/#/main?%{query-string}</to>
+    </rule>
+    <!--<rule>-->
+        <!--<name>ForceTrailingSlash-NoQueryString-mobile</name>-->
+        <!--<note>Ensure a trailing slash after 'mobile'</note>-->
+        <!--<from>^(/([^/]*)/mobile/)$</from>-->
+        <!--&lt;!&ndash;<condition type="query-string" operator="equal">^$</condition>&ndash;&gt;-->
+        <!--<to type="redirect" last="true">mobile/#/main?%{query-string}</to>-->
+    <!--</rule>-->
+    <rule>
+        <name>ForceTrailingSlash-WithQueryString</name>
+        <note>Ensure a trailing slash after the tenant name</note>
+        <from>^/([^/]+)$</from>
+        <to type="redirect" last="true">$1/mobile/#/main?%{query-string}</to>
+    </rule>
+    <rule>
+        <name>TenantName</name>
+        <note>Move tenant name out and set tenant request attribute</note>
+        <from>^/([^/]*)/(.*)</from>
+        <set name="tenant">$1</set>
+        <to last="true">/$2</to>
+    </rule>
+</urlrewrite>
+

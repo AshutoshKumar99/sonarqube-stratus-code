@@ -1,0 +1,41 @@
+Scenarios To test for conn-953
+
+1. Call searchResultControl function = should return results with distance rounded to    one decimal place in meters
+   testharness1.html
+
+2. Test that the callback method is working = Clicking on a result row will modify the      white area below and reflect the current row clicked. 
+   testharness2.html
+
+3. This test-harness page is present to test that the results container will scroll if    the results are longer than the container. 
+   testharness3.html
+
+4. This test-harness page is present to test that the change made to styling reflects on    the page = Clicking on a search will get us the result in different styling. 
+   testharness4.html 	
+
+
+5. This test-harness page is present to test that the clean result function. = Clicking     on a Clear button will clear the results from the result container. 
+   testharness5.html
+
+6. This test page checks that the function returns Intorduction text and marker image       next to the address. 
+   testharness6.htm
+
+7. This test-harness page is present to test that the each result row has an alternating    background colour.
+   testharness7.html
+
+8. This test-harness page is present to test that each result includes a Title field and    in brackets the distance in meters to the result.
+   testharness8.html
+
+
+9. Test that the results are displayed in correct order, nearest to farthest.
+   testharness8.html
+
+
+10. Test that individual results row displays the content in right order as expected.
+    testharness8.html
+
+
+11  Test that each result includes a further two additional fields (which are optional)
+    User can select a result in the list. 
+    testharness8.html
+    
+

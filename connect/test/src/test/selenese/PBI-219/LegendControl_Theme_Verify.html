@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.51:8080/" />
+<title>LegendControl_Theme_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">LegendControl_Theme_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: Validate the expand/collapse functionality of the legend control and the Legend icons -->
+<!--Check the layer descriptions are already expanded-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-housing-postcodeIcon.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>15000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[@id=&quot;legendContainer&quot;]</td>
+	<td></td>
+</tr>
+<!--Check for the layers under 'Housing Thematic' legend-->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='Housing Thematic']</td>
+	<td>Housing Thematic</td>
+</tr>
+<!--Check that initially the Legend is expanded-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='SEDTEN']/img[contains(@src,&quot;/connect/widgets/stratus/img/treeChildExpand_minus.gif&quot;)]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='SEDTEN']/label</td>
+	<td>SEDTEN</td>
+</tr>
+<!--Verify the label Title under Sedten-->
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[1]/div/div</td>
+	<td>Sedten by PC_Rented_from_local_authority</td>
+</tr>
+<!--Check for the number of items under Housing Thematic,images verified manually-->
+<tr>
+	<td>storeXpathCount</td>
+	<td>//ul[@id='parent:SEDTEN']//li[@class='normalListColor childLayersStructure']</td>
+	<td>Number_Of_Items</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${Number_Of_Items}</td>
+	<td>6</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[2]/div/label</td>
+	<td>0.0 to 2.96</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[3]/div/label</td>
+	<td>2.96 to 8.61</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[4]/div/label</td>
+	<td>8.61 to 18.28</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[5]/div/label</td>
+	<td>18.28 to 39.73</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[6]/div/label</td>
+	<td>39.73 to 66.38</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:SEDTEN']/li[7]/div/label</td>
+	<td>66.38 to 98.37</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[@id='SEDTEN']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='SEDTEN']/img[contains(@src,&quot;/connect/widgets/stratus/img/treeChildExpand_plus.gif&quot;)]</td>
+	<td></td>
+</tr>
+<!--Collapse the 'Housing Thematic' Legend-->
+<tr>
+	<td>click</td>
+	<td>Housing Thematic</td>
+	<td></td>
+</tr>
+<!--Check the post code map legend-->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='Post Code Map']</td>
+	<td>Post Code Map</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='ListedBuildings']/img[contains(@src,&quot;/connect/widgets/stratus/img/treeChildExpand_minus.gif&quot;)]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='ListedBuildings']/label</td>
+	<td>ListedBuildings</td>
+</tr>
+<!--Check for the number of items under Listed buildings,images verified manually-->
+<tr>
+	<td>storeXpathCount</td>
+	<td>//ul[@id='parent:ListedBuildings']//li[@class='normalListColor childLayersStructure']</td>
+	<td>Number_Of_Items</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${Number_Of_Items}</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:ListedBuildings']/li[1]/div/label</td>
+	<td>Region</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:ListedBuildings']/li[2]/div/label</td>
+	<td>Line</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:ListedBuildings']/li[3]/div/label</td>
+	<td>Point</td>
+</tr>
+<tr>
+	<td>assertText</td>
+	<td>//ul[@id='parent:ListedBuildings']/li[4]/div/label</td>
+	<td>Region</td>
+</tr>
+<!--Collapse the 'Listed Buildings' legend-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='ListedBuildings']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='ListedBuildings']/img[contains(@src,&quot;/connect/widgets/stratus/img/treeChildExpand_plus.gif&quot;)]</td>
+	<td></td>
+</tr>
+<!--Check for Legends of postCode_Unique-->
+<tr>
+	<td>assertText</td>
+	<td>//div[@id='PostCode_Unique']/label</td>
+	<td>PostCode_Unique</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='PostCode_Unique']/img[contains(@src,&quot;/connect/widgets/stratus/img/treeChildExpand_minus.gif&quot;)]</td>
+	<td></td>
+</tr>
+<!--Verify the list under PostCode_Unique,images verified manually-->
+<tr>
+	<td>storeXpathCount</td>
+	<td>//ul[@id='parent:PostCode_Unique']//li[@class='highlightListColor childLayersStructure']</td>
+	<td>Number_Of_Items</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${Number_Of_Items}</td>
+	<td>11</td>
+</tr>
+<!--Collapse the Postcode_Unique legend-->
+<tr>
+	<td>click</td>
+	<td>//div[@id='PostCode_Unique']/img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>Post Code Map</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='PostCode_Unique']/img[contains(@src,&quot;/connect/widgets/stratus/img/treeChildExpand_plus.gif&quot;)]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//ul[@id='parent:SEDTEN']//li[@class='highlightListColor childLayersStructure']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyNotVisible</td>
+	<td>//ul[@id='parent:ListedBuildings']/li[1]</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

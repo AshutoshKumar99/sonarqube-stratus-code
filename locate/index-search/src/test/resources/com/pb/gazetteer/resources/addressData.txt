@@ -1,0 +1,66 @@
+1,Pitney Bowes Mapinfo 3rd Floor 186 City Road London. EC1V 2NT
+2,Mapinfo GDC 3rd Floor 69 Wilson Street London. EC2A 2BB
+3,Laphroaig Distillery Port Ellen Isle of Islay Argyll. PA42 7DU
+4,Flat 12 Lulworth Wrotham Road Camden London. NW1 9SS
+5,12 Camden Road St Pancras London. NW1 9DP
+6,Flat 12 Cliff Court Cliff Road Camden London. NW1 9AP
+7,Flat 12 217 Camden Road Caversham London. NW1 9AA
+8,50 the avenue Caversham London. NW1 9AA
+9,12 King's road TWLL-YN-Y-WAL London. NW1 9DP
+10,12 Cambridge Road Cambridgeshire NW1 9DP
+11,12 Cartridge Road Cambridgeshire NW1 9DP
+12,12 Dabridge Road Cambridgeshire NW1 9DP
+13,Victoria And James Street Cambridgeshire NW1 9DP
+14,Pitch 23 Leather Lane Market Leather Lane Holborn London
+15,Pitch 24 Leather Lane Market Leather Lane Holborn London
+16,Pitch 25 Leather Lane Market Leather Lane Holborn London
+17,Pitch 23 25 Leather Lane Market Leather Lane Holborn London
+18,Flat 4 Marr Camden Street St Pancras London NW1 0HE
+19,Friedensstraße 17 04932 Röderland Brandenburg
+20,Stratus & Connect Clifton Road London
+21,2 RAYMOND ROAD KENDRAY BARNSLEY S70 3JP
+22,34 Manchester Lancashire M1 1AA UK
+23,675 Manchester M60 1NW UK
+24,Manchester M60 UK
+25,723 South Croydon Surrey CR2 6XH
+26,Doncaster DN55 1PT
+27,70 Mortimer street Paddington London W1A 1HQ
+28,Exmouth Market London EC1A 1BB
+29,Exmouth or Mortimer Market London EC1 1GH
+30,Stratus Noida (1) EC1 1GH
+31,Stratus Noida (king's) EC1 1GH
+32,Neals-Yard
+33,"Neals,Yard"
+34,"Flat 1, 10 Bramshurst, Abbey Road, London, NW8 0AX"
+35,"Flat 1 Bramshurst, Abbey Road, London, NW8 0AX"
+36,"Flat 1 Bramshurst, Abbey Road, London, NW8 0AX"
+37,1/135 Boneo Road Rosebud 3939
+38,4/5 Newington Avenue Rosebud West 3940
+39,1-7 Henry Wilson Drive Rosebud West 3940
+40,2\lp127236
+41,25a~b\pp3850
+42,25a^3850
+43,25a&850
+44,25a|850
+45,25a+850
+46,50~a\pp3811
+47,44~a\pp3811
+48,Ww\ps718774
+49,笑手机 Ww\7 på også læse
+50,11/4 Wimmera Street Jeparit 3423 WC1H 8EQ
+51,6/5 High Street Dimboola 3414 WC1H 8EQ
+52,8/6 William Street Nhill 3418 WC1H 8EQ
+53,3/3 Leahy Street Nhill 3418 WC1H 8EQ good street
+54,8/56 William Street Nhill 3418 WC1H8EQ good street
+55,3/8a Moore Street Bannockburn 3331 WC1H 8EQ
+56,3-8 Moore Street Bannockburn 3331 WC1I 8EQ
+57,3 8 Moore Street Bannockburn 3331 WC1I 8EQ
+58,3-9 Moore Street Bannockburn 3331 WC1I 9EQ
+59,Pitch 23-25 Leather Lane Market Leather Lane Holborn London
+60,Exmouth Market London EC1A 1BC
+61,WC1H 8EY, London, London, United Kingdom
+62,WC1H, London, London, United Kingdom
+63,WC1H 8EZ, London, London, United Kingdom
+64,WC1, London, London, United Kingdom
+65,E11N0870 koramangala
+66,E11N0871 Ulsoor

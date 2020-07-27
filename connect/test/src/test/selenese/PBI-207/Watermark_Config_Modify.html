@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.30:8080/" />
+<title>Verify Watermark Config</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Verify Watermark Config</td></tr>
+</thead><tbody>
+<!--Purpose: To verify the new Watermark image and Watermark Height by making changes to the configuration.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map_alternativeWaterMark.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id =&quot;OpenLayers.Layer.Watermark_18&quot;]</td>
+	<td>watermarkTileLocator</td>
+</tr>
+<!--To verify that watermark image is displayed and verifying that right image(watermark.png) is displayed .-->
+<tr>
+	<td>store</td>
+	<td>${watermarkTileLocator}//img[contains(@src, '/connect/resource/watermark.png')]</td>
+	<td>newWaterMark</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${watermarkTileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${newWaterMark}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementHeight</td>
+	<td>${newWaterMark}</td>
+	<td>newWaterMarkHeight</td>
+</tr>
+<!--Verify that height has changed to 512 from 256-->
+<tr>
+	<td>verifyEval</td>
+	<td>${newWaterMarkHeight}</td>
+	<td>512</td>
+</tr>
+<tr>
+	<td>storeElementWidth</td>
+	<td>${newWaterMark}</td>
+	<td>newWatermarkWidth</td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${newWatermarkWidth}</td>
+	<td>512</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

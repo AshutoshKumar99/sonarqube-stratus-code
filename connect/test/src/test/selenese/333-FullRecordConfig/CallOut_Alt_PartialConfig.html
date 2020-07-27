@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8082/" />
+<title>CallOut_Alt_PartialConfig</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">CallOut_Alt_PartialConfig</td></tr>
+</thead><tbody>
+<!--Purpose : Check partial configuration of data populating the Call Out elements.-->
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/partialSummaryFields.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']</td>
+	<td>mapLocator</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>${mapLocator}//img[contains(@src, 'name=StreetProMM&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${mapLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;Info&quot;]</td>
+	<td>CallOut</td>
+</tr>
+<!--Pan twice & open the callout for Chamberlain Street (ListedBuildings data has all 3 configured data fields)-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[contains(@class, 'south')]</td>
+	<td>panSouth</td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseDown</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${panSouth}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>10000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAtImproved</td>
+	<td>//*[@id='myMap']</td>
+	<td>190,370</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>3000</td>
+	<td></td>
+</tr>
+<!--Wait for Call Out to pop up.-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${CallOut}</td>
+	<td></td>
+</tr>
+<!--Check for our expected results : ONLY 1 item for Chamberlain Street (OS_Sheet, Image and DateListed)-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;]</td>
+	<td>2</td>
+</tr>
+<!--Check for ListedBuildings Chamberlain Street contains our configured data - only 3 columns.-->
+<tr>
+	<td>verifyText</td>
+	<td>${CallOut}//div[@class=&quot;infoTableHeading heavyFont master&quot;][1]</td>
+	<td>ListedBuildings</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_InfoRow_0']</td>
+	<td>ListedBuildingsElement</td>
+</tr>
+<!--title-column confirmation - configured to point to OS_Sheet data column-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoTitle heavyFont&quot;]</td>
+	<td>TQ2784SE</td>
+</tr>
+<!--Link confirmation - not configured therefore expect no hyperlink.-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ListedBuildingsElement}/div[2]/a</td>
+	<td></td>
+</tr>
+<!--Image confirmation-->
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${ListedBuildingsElement}/img[@class=&quot;infoImage&quot;]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>${ListedBuildingsElement}/img[@class=&quot;infoImage&quot;]@src</td>
+	<td>http://mycamden.camden.gov.uk/LPGSearch/ListedBuildingPhoto/thumbnails/195.jpg</td>
+</tr>
+<!--KeyValue confirm - configured to point to DateListed data column-->
+<tr>
+	<td>verifyText</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoKey lightFont&quot;]</td>
+	<td>30/12/1999 00:00</td>
+</tr>
+<!--Description confirm- not configured therefore expect no description-->
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>${ListedBuildingsElement}//div[@class=&quot;infoDescription&quot;]</td>
+	<td></td>
+</tr>
+<!--Pass expected.-->
+
+</tbody></table>
+</body>
+</html>

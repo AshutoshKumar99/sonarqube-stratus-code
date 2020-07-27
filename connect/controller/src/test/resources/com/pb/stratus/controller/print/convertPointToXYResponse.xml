@@ -1,0 +1,5 @@
+<ns5:ConvertPointToXYResponse xmlns="http://www.mapinfo.com/midev/service/geometries/v1"
+                              xmlns:ns5="http://www.mapinfo.com/midev/service/mapping/v1"
+        >
+<ns5:XY y="500.0" x="500.0"/>
+</ns5:ConvertPointToXYResponse>

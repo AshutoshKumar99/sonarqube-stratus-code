@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>ReturnGeometryAsColumn_Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ReturnGeometryAsColumn_Test</td></tr>
+</thead><tbody>
+<!--Verifying the Search with Geometry as Column-->
+<!--Setting the timeout to 30s as 75s timeout is not required-->
+<tr>
+    <td>setTimeout</td>
+    <td>30000</td>
+    <td></td>
+</tr>
+<tr>
+    <td>open</td>
+    <td>/test-harness/conn-546-api-search-by-column/test.jsp</td>
+    <td></td>
+</tr>
+<tr>
+    <td>store</td>
+    <td>//input[@id='searchExpression']</td>
+    <td>textBox</td>
+</tr>
+<tr>
+    <td>store</td>
+    <td>//button[@id='searchQuery' and @onclick='searchWithGeometryAsColumn();']</td>
+    <td>Search</td>
+</tr>
+<!--Checking blank value search-->
+<tr>
+    <td>click</td>
+    <td>${Search}</td>
+    <td></td>
+</tr>
+<tr>
+    <td>waitForElementPresent</td>
+    <td>//div[@id='result']//table</td>
+    <td></td>
+</tr>
+<!--Verify the first table's feature values-->
+<tr>
+    <td>verifyText</td>
+    <td>//div[@id='result']/div/table/thead[1]/tr/th</td>
+    <td>Table Name : GeometryTypes2</td>
+</tr>
+<tr>
+    <td>waitForText</td>
+    <td>//div[@id='result']/div/table/thead[2]/tr/th</td>
+    <td>KeyValue</td>
+</tr>
+<tr>
+    <td>verifyXpathCount</td>
+    <td>//div[@id='result']/div/table/tbody/tr/td</td>
+    <td>13</td>
+</tr>
+<!--Clear the previous result set-->
+<tr>
+    <td>click</td>
+    <td>//button[@id='reset' and @onclick='reset();']</td>
+    <td></td>
+</tr>
+<!--Checking specific column search-->
+<tr>
+    <td>type</td>
+    <td>${textBox}</td>
+    <td>KeyValue='2'</td>
+</tr>
+<tr>
+    <td>click</td>
+    <td>${Search}</td>
+    <td></td>
+</tr>
+<tr>
+    <td>waitForText</td>
+    <td>//div[@id='result']/div/table/thead[2]/tr/th</td>
+    <td>KeyValue</td>
+</tr>
+<tr>
+    <td>verifyText</td>
+    <td>//div[@id='result']/div/table/tbody/tr/td</td>
+    <td>2</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

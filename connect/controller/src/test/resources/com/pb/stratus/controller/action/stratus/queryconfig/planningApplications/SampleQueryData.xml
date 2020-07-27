@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-config>
+  <tableName>PlanningApplications</tableName>
+   <desc>SampleQueryData</desc>
+  <column id="0">
+    <columnName>AppNumber</columnName>
+    <columnType>STRING</columnType>
+    <operator>=</operator>
+    <displayType>User Input</displayType>
+    <label>Enter AppNumber</label>
+  </column>
+</query-config>

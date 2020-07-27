@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.218.30:8080" />
+<title>ZoomSlider_I18N_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ZoomSlider_I18N_Verify</td></tr>
+</thead><tbody>
+<!--Purpose: Verify the tooltips of Zoom Slider in Swedish locale-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?locale=sv</td>
+	<td></td>
+</tr>
+<!--Check for the existence of Slider-->
+<tr>
+	<td>pause</td>
+	<td>5000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>//div[@id='stratus_ZoomSliderControl_0']</td>
+	<td></td>
+</tr>
+<!--Verify the tool tips are correct for Zoom Slider.-->
+<tr>
+	<td>verifyAttribute</td>
+	<td>//div[contains(@class,'dijitSliderIncrementIconV')]/@title</td>
+	<td>Zooma in</td>
+</tr>
+<tr>
+	<td>verifyAttribute</td>
+	<td>//div[contains(@class,'dijitSliderDecrementIconV')]/@title</td>
+	<td>Zooma ut</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

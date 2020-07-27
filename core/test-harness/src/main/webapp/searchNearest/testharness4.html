@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Search Nearest</title>
+        <script type="text/javascript">
+            dojo.require("stratus.search.FeatureSearch");
+
+            dojo.addOnLoad(function() {
+                window.featureSearch = new stratus.search.FeatureSearch();
+            });
+
+           function showAjaxLoader()
+           {
+            var resultstable = dojo.byId("resultslist");
+            resultstable.innerHTML = "<div class='ajaxloader'><img src='ajax-loader.gif' alt='Loading'/></div>";
+           }
+
+
+            function roundNumber(numToRound, decPlaces) {
+              return Math.round(numToRound * Math.pow(10, decPlaces)) / Math.pow(10, decPlaces);
+            }
+
+
+            function processResults(results)
+            {
+                var resultstable = dojo.byId("resultslist");
+                resultstable.innerHTML = "";
+
+                for(layer in results)
+                {
+                   for(var i = 0; i < results[layer].length; i++)
+                   {
+                     var roundedDistance = roundNumber(results[layer][i].properties.Distance, 1);
+                     var message = results[layer][i].properties.Title + ' (' + roundedDistance +' miles)';
+                     resultstable.innerHTML = resultstable.innerHTML + "<li class='resultitem'>" + message + "</li>";
+                   }
+                }
+
+                if(results[layer].length == 0)
+                {
+                    resultstable.innerHTML = "No results found";
+                }
+            }
+
+
+            function handleException(x)
+            {
+                var resultstable = dojo.byId("resultslist");
+                resultstable.innerHTML = "There was an error with the Service:" + x.message;
+            }
+
+            function searchNearestFromInput()
+            {
+               showAjaxLoader();
+                var f =
+                {
+                    "point" : {x:528800, y:179200, srs:'epsg:27700'},
+                    "tableName": ["ListedBuildings"],
+                    "attributeFields": ["Title"],
+                    "includeGeometry": false,
+                    "maxResults": 10,
+                    "maxDistance": 1000,
+                    "distanceUnit": "meter",
+                    "callback": processResults,
+                    "exceptionCallback": handleException
+                };
+                window.featureSearch.searchNearest(f);
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <p>This page tests the searchNearest function by calling it with a point outside the bounds of the table being searched.</p>
+        <p>Whether or not this returns any results, it should not cause an error.<p>
+
+        <div id="searchButtonDiv">
+            <button onclick="searchNearestFromInput();">Search</button>
+        </div>
+
+        <div id="resultsTableDiv">
+            <ol class="resultlist" id="resultslist" />
+        </div>
+
+    </body>
+</html>

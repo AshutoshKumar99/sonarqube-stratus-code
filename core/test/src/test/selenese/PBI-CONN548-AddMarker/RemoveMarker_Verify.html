@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://winsandra2:8082/" />
+<title>removeMarker_Verify</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">removeMarker_Verify</td></tr>
+</thead><tbody>
+<!--Verify the functionality of RemoveSelectedMarker(s) & RemoveAllMarker button-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/test-harness/mapMarker/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Sample Page for Marker API</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>//*[@id='mapContainer']</td>
+	<td></td>
+</tr>
+<!--Add few markers-->
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>527990.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>184086.25</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>527880.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>18376.25</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;xlocation&quot;]</td>
+	<td>527000.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>//input[@id=&quot;ylocation&quot;]</td>
+	<td>183765.25</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button</td>
+	<td></td>
+</tr>
+<!--Verify that there are 3 markers on the map itself-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id=&quot;samplemap_OpenLayers_Container&quot;]/div[4]/div</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>List of Markers</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[1]</td>
+	<td>1. lon=527990.5,lat=184086.25</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[2]</td>
+	<td>2. lon=527880.5,lat=18376.25</td>
+</tr>
+<tr>
+	<td>verifyText</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[3]</td>
+	<td>3. lon=527000.5,lat=183765.25</td>
+</tr>
+<!--Scenario 1 : Verify functionality of Remove Selected Marker button.-->
+<tr>
+	<td>addSelection</td>
+	<td>//select[@id=&quot;markerslist&quot;]</td>
+	<td>label=3. lon=527000.5,lat=183765.25</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//button[2]</td>
+	<td></td>
+</tr>
+<!--Check to see that there are now 2 markers on the map itself-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id=&quot;samplemap_OpenLayers_Container&quot;]/div[4]/div</td>
+	<td>2</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>3. lon=527000.5,lat=183765.25</td>
+	<td></td>
+</tr>
+<!--Scenario 2 : Verify functionality of Remove All Markers button.-->
+<tr>
+	<td>click</td>
+	<td>//button[3]</td>
+	<td></td>
+</tr>
+<!--Verify there are no markers on the map itself-->
+<tr>
+	<td>verifyXpathCount</td>
+	<td>//div[@id=&quot;OpenLayers.Layer.Markers_80&quot;]/div</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[1]</td>
+	<td>1. lon=527990.5,lat=184086.25</td>
+</tr>
+<tr>
+	<td>verifyTextNotPresent</td>
+	<td>//select[@id=&quot;markerslist&quot;]/option[2]</td>
+	<td>2. lon=527880.5,lat=18376.25</td>
+</tr>
+<!--Test Passed !!-->
+
+</tbody></table>
+</body>
+</html>

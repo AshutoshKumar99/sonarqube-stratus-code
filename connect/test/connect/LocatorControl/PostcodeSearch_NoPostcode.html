@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="" />
+<title>No Postcode</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">No Postcode</td></tr>
+</thead><tbody>
+<!--Purpose: Verify that the postcode search is invalid if no postcode is supplied.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map2.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>SearchInputBox</td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='myMap']//img[contains(@src, '/MapTilingService/RESTService/getTile?name=MasterMapORIGINAL&amp;level=8&amp;row=68&amp;col=69&amp;output=png')]</td>
+	<td>tileLocator</td>
+</tr>
+<!--wait for connect to finish downloading tiles etc-->
+<tr>
+	<td>waitForImageLoaded</td>
+	<td>${tileLocator}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${SearchInputBox}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//*[@id=&quot;postcode&quot;]</td>
+	<td>PostcodeRadio</td>
+</tr>
+<tr>
+	<td>check</td>
+	<td>${PostcodeRadio}</td>
+	<td></td>
+</tr>
+<!--Check for the initial contents of the Results List to be zero-->
+<tr>
+	<td>store</td>
+	<td>//div[@id=&quot;result&quot;]</td>
+	<td>SearchResults</td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SearchResults}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementHeight</td>
+	<td>${SearchResults}</td>
+	<td>0</td>
+</tr>
+<!--Do a Postcode Search with no entry (ie click the Submit button!) & check the height is still 0-->
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']/div/button</td>
+	<td>SubmitButton</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SubmitButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>${SearchResults}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementHeight</td>
+	<td>${SearchResults}</td>
+	<td>0</td>
+</tr>
+<!--PASS EXPECTED-->
+
+</tbody></table>
+</body>
+</html>

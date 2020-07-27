@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.216:8080" />
+<title>SingleNonTransparentBaseMap_MultipleBusinessMap</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">SingleNonTransparentBaseMap_MultipleBusinessMap</td></tr>
+</thead><tbody>
+<!--This test loads 1 non transparent base layer and 2 business layers in a specific order and verifies they are loaded in that order.-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<!--Non-transparent Base Map Config File-->
+<tr>
+	<td>open</td>
+	<td>/connect/?mapConfigLocation=/connect/config/map-nontransparentbaselayer.xml</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;getTile?name=MasterMap&quot;)]</td>
+	<td>BaseMap</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Development Map&quot;)]</td>
+	<td>BusinessLayer1</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//img[contains(@src,&quot;mapname=Conservation Map&quot;)]</td>
+	<td>BusinessLayer2</td>
+</tr>
+<!--Ensure that the layer elements are loaded-->
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BaseMap}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BusinessLayer1}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${BusinessLayer2}</td>
+	<td></td>
+</tr>
+<!--Use the z-index of the grandparent container div to check the order of visibility of layers.-->
+<!--Z index value here signifies that the base layer (value 340) is at the top and visible. -->
+<!--Other business layer exist but cannot be seen as this base layer is not transparent.-->
+<tr>
+	<td>assertAttribute</td>
+	<td>${BaseMap}/../../@style</td>
+	<td>regexp:(.*z-index:.*340.*)|(.*Z-INDEX:.*340.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${BusinessLayer1}/../../@style</td>
+	<td>regexp:(.*z-index:.*335.*)|(.*Z-INDEX:.*335.*)</td>
+</tr>
+<tr>
+	<td>assertAttribute</td>
+	<td>${BusinessLayer2}/../../@style</td>
+	<td>regexp:(.*z-index:.*330.*)|(.*Z-INDEX:.*330.*)</td>
+</tr>
+<!--Displays Base Layer at the top as desired, but unable to see the other business layer as MasterMap is not transparent.-->
+<!--Pass !!!-->
+
+</tbody></table>
+</body>
+</html>

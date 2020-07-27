@@ -1,0 +1,30 @@
+<ns6:GetNamedMapLegendsResponse xmlns="http://www.mapinfo.com/midev/service/mappingcommon/v1"
+                                xmlns:ns6="http://www.mapinfo.com/midev/service/mapping/v1"
+        >
+    <ns6:Legend layerName="ListedBuildings" legendType="Cartographic" imageMimeType="image/png" title="ListedBuildings">
+        <ns6:LegendRow>
+            <ns6:Description>Region</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAKElEQVR42mP4z8DwnxLMQHUDGBgY8BqKLs9Acy8QdNFoGIyGwfAIAwCfB+gm2tsxbgAAAABJRU5ErkJggg==</ns6:Image>
+        </ns6:LegendRow>
+        <ns6:LegendRow>
+            <ns6:Description>Line</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGElEQVR42mNgGAXDAfwHIkow5QaMguEAAImfP8ERNy6TAAAAAElFTkSuQmCC</ns6:Image>
+        </ns6:LegendRow>
+        <ns6:LegendRow>
+            <ns6:Description>Point</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAJUlEQVR42mNgGAVYwX8gQscUaSbaEHyaiTJk1AAqxAJV0sHQAwDqi4l3T5f3ygAAAABJRU5ErkJggg==</ns6:Image>
+        </ns6:LegendRow>
+    </ns6:Legend>
+    <ns6:Legend layerName="ConservationAreas" legendType="Cartographic" imageMimeType="image/png" title="ConservationAreas">
+        <ns6:LegendRow>
+            <ns6:Description>Region</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVR42mP4TyFgoJ4BEQqk41EDRg0YNQCLAWQCAA4T+qkDxEMcAAAAAElFTkSuQmCC</ns6:Image>
+        </ns6:LegendRow>
+    </ns6:Legend>
+    <ns6:Legend layerName="OpenSpaces" legendType="Cartographic" imageMimeType="image/png" title="OpenSpaces">
+        <ns6:LegendRow>
+            <ns6:Description>Region</ns6:Description>
+            <ns6:Image>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAANUlEQVR42mNgaGD4TxGGEAwMZ/83gGkYIIoPM4AszSCA7AKSNWMzgFSXjIbBaBgMtjCgAAMAnLf+a9Q7eyYAAAAASUVORK5CYII=</ns6:Image>
+        </ns6:LegendRow>
+    </ns6:Legend>
+</ns6:GetNamedMapLegendsResponse>

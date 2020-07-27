@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+<head>
+<title>SingleDeferred Example</title>
+
+<script type="text/javascript">
+
+    dojo.require("stratus.RiaHub");
+    dojo.require("stratus.geometry.Point");
+    dojo.require("stratus.async.SingleDeferred");
+    dojo.require("stratus.async.Deferred");
+    dojo.require("stratus.async.CancelFailedException");
+    dojo.require("stratus.UnknownSrsException");
+    dojo.require("stratus.GeometryServices");
+    
+    dojo.addOnLoad(function() { 
+
+    });
+    
+    function changeCursorToWait()
+    {
+        document.body.style.cursor = 'wait';
+    }
+    
+    function changeCursorToDefault()
+    {
+        document.body.style.cursor = 'default';
+    }
+    
+    // Method called of the single deferred Operation completed successfully
+    function successfulCoordinateConversion(resultSetCallBack)
+    {
+        dojo.byId("coverted_easting").value = resultSetCallBack.result.getX();
+        dojo.byId("coverted_northing").value = resultSetCallBack.result.getY();
+        dojo.byId("coverted_projection").value = resultSetCallBack.result.getProjection();
+        resultSetCallBack.release();
+        changeCursorToDefault();
+    }
+    
+    // Method called of the single deferred Operation did not complete
+    function errorCallBack(errorCallBack)
+    {  
+        dojo.byId("errorMessage").innerHTML = errorCallBack.error.message;
+        errorCallBack.release();
+        changeCursorToDefault();
+    }
+    
+    function transformCoordinate()
+    {       
+        var x = dojo.byId("pre_easting").value;
+        var y = dojo.byId("pre_northing").value;
+        var currentProjection = dojo.byId("pre_projection").value;
+        var transformationProjection = dojo.byId("post_projection").value;
+        var geometryServices = new stratus.GeometryServices();
+        
+        var pointParameters = 
+        {
+            x: x,
+            y: y,
+            srs: currentProjection
+        };
+        
+        var conversionPoint = new stratus.geometry.Point(pointParameters);
+        
+        var singleDeferred = geometryServices.transformPoint(conversionPoint, transformationProjection);
+               
+        singleDeferred.addSuccessCallback(successfulCoordinateConversion);
+        singleDeferred.addErrorCallback(errorCallBack);
+        changeCursorToWait();
+    }          
+    
+</script>
+</head>
+<body>
+
+<h1>stratus.async.SingleDeferred Example</h1>
+ 
+<h2>
+
+    <p>
+        This sample page transforms a coordinate set from one projection to another by 
+        using the geometry service as a asynchronous request operation using the stratus.async.SingleDeferred 
+        object.
+    </p>
+
+    <p>
+        The singleDeferred object provides listeners for when the asynchronous request is successful and
+        when the request fails.  These listeners are passed to the stratus.async.SingleDeferred when the request is created.
+    </p>
+
+    <p>
+        The stratus.async.SingleDeferred only handles a single asynchronous operation and once the asynchronous operation
+        has been completed, resources used by stratus.async.SingleDeferred need to be released.
+    </p>
+</h2>
+
+<h2>Target Coordinate</h2>
+<p>
+    Easting <input type="text" id="pre_easting" value="527812"/>
+    Northing <input type="text" id="pre_northing" value="184228"/>
+    Projection <input type="text" id="pre_projection" value="epsg:27700"/>
+    Tranformation Projection <input type="text" id="post_projection" value="epsg:4326"/>
+</p>
+
+<h2>Transformed Coordinate</h2>
+<p>
+    Easting <input type="text" id="coverted_easting" value=""/>
+    Northing <input type="text" id="coverted_northing" value=""/>
+    Projection <input type="text" id="coverted_projection" value=""/> 
+</p>
+
+<p>
+    <label id="errorMessage" />
+</p>
+
+<input type="button" name="convert" value="Convert Coordinates" onclick="transformCoordinate()" />
+
+</body>
+</html>

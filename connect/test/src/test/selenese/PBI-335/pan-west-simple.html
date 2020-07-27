@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://152.144.195.216:8080/connect/" />
+<title>Pan West</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Pan West</td></tr>
+</thead><tbody>
+<!--Purpose: This test case verifies that the pan control buttons pan the map by some amount (if we are really specific to 25% of the screen we get random failures!)-->
+<tr>
+	<td>setTimeout</td>
+	<td>75000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>open</td>
+	<td>/connect</td>
+	<td></td>
+</tr>
+<tr>
+	<td>resizeWindow</td>
+	<td>1016,664</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>500</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='stratus_PanControl_0']/button[contains(@class, 'west')]</td>
+	<td>West</td>
+</tr>
+<!--Check for the existence of pan controls-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>//div[contains(@class, 'panControl png')]</td>
+	<td></td>
+</tr>
+<!--Locate an address & display the marker on the map - this forms our visible point of reference for panning.-->
+<tr>
+	<td>type</td>
+	<td>//div[@id='locator']//input[1]</td>
+	<td>King</td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='locator']/div/button</td>
+	<td>SearchButton</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${SearchButton}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeExpression</td>
+	<td>//*[@id='result']</td>
+	<td>locatorResultsLocator</td>
+</tr>
+<tr>
+	<td>waitForElementPresent</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${locatorResultsLocator}//table//tr[1]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>2000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>store</td>
+	<td>//div[@id='MapMarker']</td>
+	<td>marker</td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>${marker}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>storeElementPositionTop</td>
+	<td>${marker}</td>
+	<td>originalMarkerTop</td>
+</tr>
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${marker}</td>
+	<td>originalMarkerLeft</td>
+</tr>
+<!--Pan to the west-->
+<tr>
+	<td>mouseDown</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<tr>
+	<td>mouseUp</td>
+	<td>${West}</td>
+	<td></td>
+</tr>
+<!--Check marker has moved right from its original position.-->
+<tr>
+	<td>storeElementPositionLeft</td>
+	<td>${marker}</td>
+	<td>westMarkerLeft</td>
+</tr>
+<tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyEval</td>
+	<td>${originalMarkerLeft}&lt;${westMarkerLeft}</td>
+	<td>true</td>
+</tr>
+<tr>
+	<td>verifyElementPositionTop</td>
+	<td>${marker}</td>
+	<td>${originalMarkerTop}</td>
+</tr>
+<!--PASS expected.-->
+
+</tbody></table>
+</body>
+</html>

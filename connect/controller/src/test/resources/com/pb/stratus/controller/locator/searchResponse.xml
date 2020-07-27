@@ -1,0 +1,8 @@
+ <ns2:searchResponse xmlns:ns2="http://webservice.gazetteer.pb.com/">
+ <return>
+    <address>Site At Butlers Yard And 1a Southampton Road Kingsford Street Gospel Oak London</address>
+    <id>119451</id>
+    <x>527817.0</x>
+    <y>185252.0</y>
+ </return>
+</ns2:searchResponse>
